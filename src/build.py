@@ -13,6 +13,17 @@ def build(dc, shell, out):
 build('results.dc.html', 'shell.html', 'midterms')
 build('senat.dc.html', 'shell.html', 'midterms-test')
 build('forecast.dc.html', 'shell_forecast.html', 'midterm-forecast')
+
+# Carte de la Chambre seule, pour la page d'accueil (iframe) : carte-chambre/ (état des courses), carte-chambre-resultats/ (résultats)
+def build_embed(dc, shell_for_blobs, out):
+    blobs = next(l for l in (d / shell_for_blobs).read_text().split('\n') if 'const BLOBS' in l).strip()
+    t = (d / 'shell_embed_house.html').read_text().replace('/*__BLOBS__*/', blobs)
+    (d / '_embed_tmp.html').write_text(t)
+    build(dc, '_embed_tmp.html', out); (d / '_embed_tmp.html').unlink()
+    p = d.parent / out / 'index.html'
+    p.write_text(p.read_text().replace("'../../", "'../"))
+build_embed('forecast.dc.html', 'shell_forecast.html', 'carte-chambre')
+build_embed('results.dc.html', 'shell.html', 'carte-chambre-resultats')
 # Racine : renvoi vers la page des résultats
 (d.parent / 'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Midterms 2026 · Le Grand Continent</title><meta http-equiv="refresh" content="0; url=midterms/"><link rel="canonical" href="midterms/"></head><body><a href="midterms/">Résultats des midterms 2026</a></body></html>\n')
 print('ok')
