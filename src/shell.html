@@ -266,6 +266,13 @@ class DCLogic {
     clearTimeout(hideT); clearHover();
   });
   document.addEventListener('mouseleave', () => { clearTimeout(hideT); clearHover(); });
+  const dropSoft = () => { const s = window.__soft; window.__soft = null; if (!s || window.__pinned !== s) return; clearTimeout(hideT); cancelAnimationFrame(raf); hoverId = null; window.__pinned = null; comp.setState({ sel: null }); };
+  app.addEventListener('mouseout', (e) => {
+    if (!window.__soft || !e.target.closest('.mapside')) return;
+    const to = e.relatedTarget; if (to && to.closest && to.closest('.mapside')) return;
+    dropSoft();
+  });
+  document.addEventListener('mouseleave', () => { if (window.__soft) dropSoft(); });
   app.addEventListener('click', (e) => {
     const b = e.target.closest('[data-h]'); if (!b) return;
     window.__lastFocus = b.getAttribute('aria-label');
@@ -274,6 +281,8 @@ class DCLogic {
     if (id === hoverId && comp.state.sel && comp.state.sel !== window.__pinned) { hoverId = null; window.__render(); return; }
     hoverId = null;
     const fn = handlers[id]; if (fn) fn();
+    // État choisi dans le calendrier à côté de la carte : sélection « souple », qui disparaît quand le curseur quitte la carte et le calendrier
+    window.__soft = b.closest('.tl-side') && comp.state.sel ? comp.state.sel : null;
     // clic dans le calendrier sous la carte (téléphone, tablette) : on remonte jusqu’à la carte
     if (b.closest('.tl-below')) requestAnimationFrame(() => { const box = document.querySelector('.mapbox'); if (box) window.__gcScroll(box, 'start'); });
   });
