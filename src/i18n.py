@@ -146,6 +146,8 @@ T = [
  'Scenari: Nate Cohn, The New York Times, 29 ottobre 2026. Le corse in bilico sono attribuite nell’ordine delle medie di Silver Bulletin. Camera: elaborazione de Il Grand Continent sui rating di Cook.'),
 
 # --- Calendrier
+('Fermeture des bureaux, heure de Paris', 'Cierre de los colegios electorales, hora de París', 'Chiusura dei seggi, ora di Parigi'),
+('La nuit électorale', 'La noche electoral', 'La notte elettorale'),
 ('La nuit électorale, heure par heure', 'La noche electoral, hora a hora', 'La notte elettorale, ora per ora'),
 ('Premiers résultats attendus - heure de Paris, 4 novembre', 'Primeros resultados previstos - hora de París, 4 de noviembre', 'Primi risultati attesi - ora di Parigi, 4 novembre'),
 ('Premiers résultats attendus le 4 novembre à minuit, heure de Paris', 'Primeros resultados previstos el 4 de noviembre a medianoche, hora de París', 'Primi risultati attesi il 4 novembre a mezzanotte, ora di Parigi'),
