@@ -23,22 +23,22 @@ const pollCols = (p, cands) => {
 const out = path.join(__dirname, '..', 'data');
 
 // Sénat
-const S = [['État', 'Code', 'Siège détenu par', 'Sortant candidat', 'Remarque', 'Classement Cook', 'Candidats', 'Candidat en tête', 'Parti', 'Moyenne (%)', 'Deuxième', 'Parti', 'Moyenne (%)', 'Sondages', 'Instituts', 'Autres candidats (moyenne %)']];
+const S = [['État', 'Code', 'Siège détenu par', 'Sortant candidat', 'Remarque', 'Classement Cook', 'Candidats (* sortant)', 'Candidat en tête', 'Parti', 'Moyenne (%)', 'Deuxième', 'Parti', 'Moyenne (%)', 'Sondages', 'Instituts', 'Autres candidats (moyenne %)']];
 for (const st of Object.keys(RACES).sort((a, b) => NAMES[a].localeCompare(NAMES[b], 'fr'))) {
   const [type, holder, , , cands] = RACES[st], p = POLLS['S:' + st];
   const inc = cands.find((k) => k[2]);
-  const list = cands.map((k) => k[0] + ' (' + k[1] + (k[2] ? ', sortant' : '') + ')').join(' ; ');
+  const list = cands.map((k) => k[0] + (k[2] ? '*' : '') + ' (' + k[1] + ')').join(' ; ');
   const pc = p ? pollCols(p, cands) : ['', '', '', '', '', '', '', '', 'Pas de moyenne Silver Bulletin (moins de trois sondages)'];
   S.push([NAMES[st], st, PARTY[holder], inc ? inc[0] : 'Siège ouvert', type === 'Partielle' ? 'Élection partielle' : '', COOKL[COOK[st]], list, ...pc]);
 }
 fs.writeFileSync(path.join(out, 'sondages-senat.csv'), csv(S));
 
 // Chambre
-const H = [['Circonscription', 'État', 'Siège détenu par', 'Classement Cook', 'Candidats', 'Candidat en tête', 'Parti', 'Moyenne (%)', 'Deuxième', 'Parti', 'Moyenne (%)', 'Sondages', 'Instituts', 'Autres candidats (moyenne %)']];
+const H = [['Circonscription', 'État', 'Siège détenu par', 'Classement Cook', 'Candidats (* sortant)', 'Candidat en tête', 'Parti', 'Moyenne (%)', 'Deuxième', 'Parti', 'Moyenne (%)', 'Sondages', 'Instituts', 'Autres candidats (moyenne %)']];
 const ord = (id) => id.slice(0, 2) + (id.endsWith('AL') ? '00' : id.slice(3).padStart(2, '0'));
 for (const id of Object.keys(HOUSE).sort((a, b) => ord(a).localeCompare(ord(b)))) {
   const [holder, cook, cands] = HOUSE[id], p = POLLS['H:' + id];
-  const list = cands.map((k) => k[0] + ' (' + k[1] + (k[2] ? ', sortant' : '') + ')').join(' ; ');
+  const list = cands.map((k) => k[0] + (k[2] ? '*' : '') + ' (' + k[1] + ')').join(' ; ');
   H.push([id, NAMES[id.slice(0, 2)], PARTY[holder], COOKL[cook], list, ...pollCols(p, cands)]);
 }
 fs.writeFileSync(path.join(out, 'sondages-chambre.csv'), csv(H));
