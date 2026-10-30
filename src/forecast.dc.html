@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
+@font-face{font-family:"GC Sanomat";src:url(/_blob/6f7f42ea0bae29e5b8a02c62425e0e7b) format("woff2");font-weight:600;font-display:swap}
 @font-face{font-family:"GC Sanomat";src:url(/_blob/c4fd8d6d1d7a2041e43f26de5a10ab2a) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"GC Sanomat";src:url(/_blob/015e2d14d5f3a749e4267611a46cb999) format("woff2");font-weight:700;font-display:swap}
 @font-face{font-family:"GC National";src:url(/_blob/6e7eb2b7eaced59ba5f079a07c4e57fe) format("woff2");font-weight:400;font-display:swap}
@@ -53,25 +54,35 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
 
   <!-- En-tête -->
   <header style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 26px;">
-    <h1 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-size: clamp(36px, 5.2vw, 62px); line-height: 1; letter-spacing: -.02em; max-width: 20ch;">{{headline}}</h1>
+    <h1 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: clamp(36px, 5.2vw, 62px); line-height: 1; letter-spacing: -.02em; max-width: 20ch;">{{headline}}</h1>
     <p style="margin: 0; max-width: 64ch; font-size: 18px; line-height: 1.5; color: #3a3936;">{{dek}}</p>
     <sc-if value="{{showMockTag}}" hint-placeholder-val="{{ true }}">
       <span class="mono" style="align-self: flex-start; font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #7a5600; background: #fbefcc; border-radius: 999px; padding: 4px 10px;">Maquette · résultats fictifs</span>
     </sc-if>
   </header>
 
-  <!-- Bascule Sénat / Chambre -->
-  <div role="tablist" aria-label="Choisir l’assemblée" class="mono" style="display: inline-flex; gap: 0; padding: 4px; border-radius: 999px; background: #f0eeea; margin-bottom: 22px;">
-    <sc-for list="{{tabs}}" as="t" hint-placeholder-count="2">
-      <button class="seg" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
+  <!-- Bandeau de navigation -->
+  <nav aria-label="Dans cette page" style="background: #f4f4f2; margin: 4px 0 30px; padding: 16px 22px 0; display: flex; flex-wrap: wrap; gap: 14px 44px; align-items: flex-end;">
+    <sc-for list="{{navGroups}}" as="g" hint-placeholder-count="2">
+      <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #828282;">{{g.label}}</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0 28px;">
+          <sc-for list="{{g.items}}" as="it" hint-placeholder-count="2">
+            <button onClick="{{it.pick}}" aria-current="{{it.cur}}" style="display: flex; flex-direction: column; gap: 12px; text-align: left; min-height: 44px; padding: 0; font-family: 'GC National', 'Helvetica Neue', sans-serif;">
+              <span style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; line-height: 1.25; color: #1c1b1c;">{{it.label}}<span style="font-size: 9.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #ffffff; background: {{it.tagBg}}; border-radius: 999px; padding: 2px 7px;">{{it.tag}}</span></span>
+              <span aria-hidden="true" style="{{it.barStyle}}"></span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
     </sc-for>
-  </div>
+  </nav>
 
   <!-- Barre des sièges -->
   <section aria-label="Répartition des sièges">
     <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 4px;">
-        <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-variant-numeric: lining-nums tabular-nums; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: #3b8ee6; letter-spacing: -.02em;">{{dTotal}}</span>
+        <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: #3b8ee6; letter-spacing: -.02em;">{{dTotal}}</span>
         <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-weight: 600; font-size: 16px; color: #1f6fc4;">Démocrates {{dCheck}}</span>
       </div>
       <div style="flex: 1; position: relative; align-self: stretch;">
@@ -81,7 +92,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
         </div>
       </div>
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
-        <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-variant-numeric: lining-nums tabular-nums; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: #e85462; letter-spacing: -.02em;">{{rTotal}}</span>
+        <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: #e85462; letter-spacing: -.02em;">{{rTotal}}</span>
         <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-weight: 600; font-size: 16px; color: #c62f3f;">{{rCheck}} Républicains</span>
       </div>
     </div>
@@ -118,11 +129,11 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
   </section>
 
   <!-- Carte + panneau -->
-  <section style="display: flex; flex-wrap: wrap; gap: 28px 40px; padding-top: 34px; margin-top: 34px; ">
+  <section id="cartes" style="scroll-margin-top: 16px; display: flex; flex-wrap: wrap; gap: 28px 40px; padding-top: 34px; margin-top: 34px; ">
 
     <div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px;">
-        <h2 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-size: 26px; letter-spacing: -.01em;">{{mapTitle}}</h2>
+        <h2 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 26px; letter-spacing: -.01em;">{{mapTitle}}</h2>
         <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">{{mapHint}}</span>
       </div>
 
@@ -169,7 +180,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
                   <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
                     <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">{{sel.kicker}}</span>
-                    <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-size: 18px; line-height: 1.1;">{{sel.name}}</span>
+                    <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 18px; line-height: 1.1;">{{sel.name}}</span>
                   </div>
                   <button aria-label="Fermer" onClick="{{clearSel}}" style="flex: none; width: 32px; height: 32px; margin: -6px -6px 0 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b6965;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button>
                 </div>
@@ -202,7 +213,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
                   <div style="display: flex; flex-direction: column; gap: 2px;">
                     <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">{{stSel.kicker}}</span>
-                    <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-size: 18px; line-height: 1.1;">{{stSel.name}}</span>
+                    <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 18px; line-height: 1.1;">{{stSel.name}}</span>
                   </div>
                   <button aria-label="Fermer" onClick="{{clearSel}}" style="flex: none; width: 32px; height: 32px; margin: -6px -6px 0 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b6965;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button>
                 </div>
@@ -233,7 +244,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                   <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
                     <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
                       <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">{{sel.kicker}}</span>
-                      <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-size: 18px; line-height: 1.1;">{{sel.name}}</span>
+                      <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 18px; line-height: 1.1;">{{sel.name}}</span>
                     </div>
                     <button aria-label="Fermer" onClick="{{clearSel}}" style="flex: none; width: 32px; height: 32px; margin: -6px -6px 0 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b6965;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button>
                   </div>
@@ -266,7 +277,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                   <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
                     <div style="display: flex; flex-direction: column; gap: 2px;">
                       <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">{{stSel.kicker}}</span>
-                      <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-size: 18px; line-height: 1.1;">{{stSel.name}}</span>
+                      <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 18px; line-height: 1.1;">{{stSel.name}}</span>
                     </div>
                     <button aria-label="Fermer" onClick="{{clearSel}}" style="flex: none; width: 32px; height: 32px; margin: -6px -6px 0 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b6965;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button>
                   </div>
@@ -290,10 +301,48 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
 
   </section>
 
+  <!-- Scénarios -->
+  <section id="scenarios" aria-label="Composition des chambres selon quatre scénarios" style="scroll-margin-top: 16px; padding-top: 34px; margin-top: 34px; display: flex; flex-direction: column; gap: 18px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <h2 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 26px; letter-spacing: -.01em;">Quatre scénarios pour le Congrès</h2>
+      <p style="margin: 0; max-width: 70ch; font-size: 16px; line-height: 1.5; color: #3a3936;">Selon l’ampleur de la vague démocrate et l’erreur des sondages, Nate Cohn, analyste en chef du New York Times, distingue quatre issues possibles. Voici la composition des deux chambres dans chacune d’elles.</p>
+    </div>
+    <div role="group" aria-label="Choisir un scénario" style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <sc-for list="{{scnTabs}}" as="b" hint-placeholder-count="4">
+        <button onClick="{{b.pick}}" aria-pressed="{{b.cur}}" style="{{b.style}}"><span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; opacity: .7;">Scénario {{b.n}}</span><span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 15px; font-weight: 600; line-height: 1.25;">{{b.t}}</span></button>
+      </sc-for>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 14.5px; line-height: 1.45;">
+      <span><b style="font-weight: 600;">{{scn.wave}}</b> · {{scn.err}}</span>
+      <span style="flex: 1 1 100%; color: #3a3936;">{{scn.out}}</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px 48px;">
+      <figure style="margin: 0; flex: 1 1 300px; max-width: 520px; display: flex; flex-direction: column; gap: 8px;">
+        <figcaption style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px;"><span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Sénat</span><span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 26px; font-variant-numeric: lining-nums tabular-nums;">{{scn.sTxt}}</span></figcaption>
+        <svg viewBox="0 0 400 216" role="img" aria-label="Sénat : {{scn.sTxt}}" style="width: 100%; height: auto; display: block;">
+          <sc-for list="{{dotsS}}" as="d" hint-placeholder-count="100"><circle cx="{{d.cx}}" cy="{{d.cy}}" r="{{d.r}}" fill="{{d.fill}}"></circle></sc-for>
+          <line x1="200" y1="2" x2="200" y2="120" stroke="#1c1b1c" stroke-width="1.2" stroke-dasharray="3 3"></line>
+        </svg>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 14px; font-weight: 600; color: {{scn.sCtlColor}};">{{scn.sCtl}}</span>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; color: #828282;">Courses indécises remportées par les démocrates : {{scn.flips}}.</span>
+      </figure>
+      <figure style="margin: 0; flex: 1 1 300px; max-width: 520px; display: flex; flex-direction: column; gap: 8px;">
+        <figcaption style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px;"><span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Chambre des représentants</span><span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 26px; font-variant-numeric: lining-nums tabular-nums;">{{scn.hTxt}}</span></figcaption>
+        <svg viewBox="0 0 400 216" role="img" aria-label="Chambre : {{scn.hTxt}}" style="width: 100%; height: auto; display: block;">
+          <sc-for list="{{dotsH}}" as="d" hint-placeholder-count="435"><circle cx="{{d.cx}}" cy="{{d.cy}}" r="{{d.r}}" fill="{{d.fill}}"></circle></sc-for>
+          <line x1="200" y1="2" x2="200" y2="120" stroke="#1c1b1c" stroke-width="1.2" stroke-dasharray="3 3"></line>
+        </svg>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 14px; font-weight: 600; color: {{scn.hCtlColor}};">{{scn.hCtl}}</span>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; color: #828282;">Majorité à 218 sièges ; 51 au Sénat, ou 50 avec la voix du vice-président.</span>
+      </figure>
+    </div>
+    <p style="margin: 0; max-width: 90ch; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 12.5px; line-height: 1.55; color: #828282;">Démocrates à gauche (y compris, au Sénat, les deux indépendants qui siègent avec eux), républicains à droite. Scénarios : Nate Cohn, « Four Scenarios for How the Midterms Could Go », The New York Times, 29 octobre 2026. Sénat : totaux décrits par Nate Cohn (53 pour le dernier scénario, « 53 ou plus ») ; les courses indécises sont attribuées dans l’ordre des moyennes Silver Bulletin. Chambre : calcul Le Grand Continent à partir des classements Cook. Scénario 1 : sièges classés côté démocrate et courses indécises où le démocrate devance son adversaire de plus que la marge d’erreur (4,1 points) ; scénario 2 : courses indécises où le démocrate est en tête ; scénario 3 : toutes les courses indécises ; scénario 4 : en plus, les sièges qui penchent républicain. Nate Cohn évoque 223 sièges démocrates dans le premier cas et environ 250 dans le dernier.</p>
+  </section>
+
   <!-- Calendrier de la nuit -->
   <section aria-label="Calendrier de la nuit électorale" style="padding-top: 34px; margin-top: 34px;  display: flex; flex-direction: column; gap: 18px;">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px;">
-      <h2 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-size: 26px; letter-spacing: -.01em;">La nuit électorale, heure par heure</h2>
+      <h2 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 26px; letter-spacing: -.01em;">La nuit électorale, heure par heure</h2>
       <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">Premiers résultats attendus · heure de Paris, 4 novembre</span>
     </div>
     <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;">
@@ -511,6 +560,37 @@ class Component extends DCLogic {
   }
 
   fmtP(v) { return v.toFixed(1).replace('.', ',') + ' %'; }
+
+  // Hémicycle : positions des sièges, de gauche à droite (rangées concentriques)
+  hemi(n, rows) {
+    const key = n + ':' + rows; this._hemi = this._hemi || {};
+    if (this._hemi[key]) return this._hemi[key];
+    const r0 = 0.42, r1 = 1, radii = [], seatsPer = [];
+    for (let i = 0; i < rows; i++) radii.push(r0 + (r1 - r0) * i / (rows - 1));
+    const tot = radii.reduce((a, b) => a + b, 0);
+    let left = n;
+    radii.forEach((r, i) => { const k = i === rows - 1 ? left : Math.round(n * r / tot); seatsPer.push(k); left -= k; });
+    const pts = [];
+    radii.forEach((r, i) => { const k = seatsPer[i]; for (let j = 0; j < k; j++) { const a = Math.PI - (k === 1 ? Math.PI / 2 : Math.PI * j / (k - 1)); pts.push({ a, x: 1 + r * Math.cos(a), y: 1 - r * Math.sin(a) }); } });
+    pts.sort((p, q) => q.a - p.a || q.y - p.y);
+    let gap = (r1 - r0) / (rows - 1);
+    radii.forEach((r, i) => { if (seatsPer[i] > 1) gap = Math.min(gap, Math.PI * r / (seatsPer[i] - 1)); });
+    const dot = gap * 0.42;
+    return (this._hemi[key] = { pts, dot });
+  }
+
+  // Scénarios de Nate Cohn (New York Times, 29 octobre 2026), appliqués aux classements Cook et aux moyennes Silver Bulletin
+  scenarios() {
+    return [
+      { t: 'Les républicains restent au sec', wave: 'Vague démocrate de 5 à 7 points', err: 'Les sondages surestiment les démocrates, comme en 2016 ou en 2020', out: 'Les républicains conservent le Sénat sans grande difficulté ; les démocrates obtiennent une majorité étroite à la Chambre.', sen: 49, house: 1 },
+      { t: 'Les républicains tiennent de justesse', wave: 'Vague démocrate de 7 à 9 points', err: 'Les sondages sous-estiment un peu les républicains, comme en 2018 ou en 2024', out: 'Le Sénat reste républicain à une voix près ; les démocrates progressent nettement à la Chambre.', sen: 50, house: 2 },
+      { t: 'Les démocrates basculent le Sénat', wave: 'Vague démocrate de 8 à 10 points', err: 'Les sondages sont assez justes, comme en 2006 ou en 2022', out: 'Les démocrates prennent le Sénat et obtiennent à la Chambre une majorité plus large qu’en 2018.', sen: 51, house: 3 },
+      { t: 'Tsunami', wave: 'Vague démocrate de 10 points ou plus', err: 'Les démocrates font mieux que les sondages, comme en 2012 ou en 2022', out: 'Large majorité démocrate à la Chambre (environ 250 sièges selon Nate Cohn) et au moins 53 sièges au Sénat.', sen: 53, house: 4 }
+    ];
+  }
+
+  goTo(id) { try { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} }
+  goChamber(c) { this.setState({ chamber: c, sel: null }); setTimeout(() => this.goTo('cartes'), 30); }
 
   renderVals() {
     const scenario = 'Avant le scrutin';
@@ -804,7 +884,40 @@ class Component extends DCLogic {
       labelStyle: "font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:" + (on ? '#1c1b1c' : '#828282') + ';'
     });
 
+    // ---------- Scénarios ----------
+    const SCN = this.scenarios(), si = this.state.scn == null ? 2 : this.state.scn, sc = SCN[si];
+    const PLS = this.polls(), CKS = this.cookSenate(), HDS = this.houseData();
+    const dLead = (p) => { if (!p) return null; const nr = p.c.filter((c) => c[1] !== 'R'), rr = p.c.filter((c) => c[1] === 'R'); if (!nr.length || !rr.length) return null; return Math.max(...nr.map((c) => c[2])) - Math.max(...rr.map((c) => c[2])); };
+    // Sénat : 34 sièges démocrates hors scrutin + sièges classés côté démocrate, puis courses indécises dans l’ordre des sondages
+    const sBase = 34 + Object.keys(CKS).filter((k) => CKS[k] <= 2).length;
+    const sOrder = Object.keys(CKS).filter((k) => CKS[k] >= 3).map((k) => ({ k, m: dLead(PLS['S:' + k]) })).filter((o) => o.m != null).sort((a, b) => b.m - a.m);
+    const flips = sOrder.slice(0, Math.max(0, sc.sen - sBase)).map((o) => NAMES[o.k]);
+    // Chambre : sièges classés côté démocrate, puis indécis selon les sondages, puis tous les indécis, puis les « penche républicain »
+    const hIds = Object.keys(HDS);
+    const hWin = (lvl) => hIds.filter((id) => { const c = HDS[id][1], m = dLead(PLS['H:' + id]); if (c <= 2) return true; if (c === 3) return lvl >= 3 || (lvl === 2 && m != null && m > 0) || (lvl === 1 && m != null && m >= 4.1); if (c === 4) return lvl >= 4; return false; }).length;
+    const hD = hWin(sc.house), sD = sc.sen;
+    const hemiDots = (n, rows, d, W) => { const H = this.hemi(n, rows), k = (W / 2) / (1 + H.dot), o = H.dot * k; return H.pts.map((p, i) => ({ cx: (o + p.x * k).toFixed(1), cy: (o + p.y * k).toFixed(1), r: (H.dot * k).toFixed(2), fill: i < d ? SOLID.D : SOLID.R })); };
+    const fmtR = (d, n) => d + ' – ' + (n - d);
+    const scnV = {
+      scnTabs: SCN.map((x, i) => ({ n: String(i + 1), t: x.t, pick: () => this.setState({ scn: i }), cur: i === si ? 'true' : 'false', style: 'display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 12px 14px; border-radius: 10px; min-height: 44px; box-sizing: border-box; flex: 1 1 180px; ' + (i === si ? 'background: #1c1b1c; color: #ffffff;' : 'background: #f4f4f2; color: #1c1b1c;') })),
+      scn: { wave: sc.wave, err: sc.err, out: sc.out, flips: flips.length ? flips.join(', ') : 'aucune', sTxt: fmtR(sD, 100), hTxt: fmtR(hD, 435),
+        sCtl: sD >= 51 ? 'Majorité démocrate' : (sD === 50 ? 'Majorité républicaine grâce à la voix du vice-président' : 'Majorité républicaine'), sCtlColor: sD >= 51 ? '#1f6fc4' : '#c62f3f',
+        hCtl: hD >= 218 ? 'Majorité démocrate' : 'Majorité républicaine', hCtlColor: hD >= 218 ? '#1f6fc4' : '#c62f3f' },
+      dotsS: hemiDots(100, 5, sD, 400), dotsH: hemiDots(435, 12, hD, 400)
+    };
+
+    const navBar = (on) => 'display: block; height: 5px; width: 100%; background: ' + (on ? '#1c1b1c' : '#d9d7d2') + ';';
     return {
+      ...scnV,
+      navGroups: [
+      { label: 'Cartes électorales', items: [
+        { label: 'Sénat', tag: 'Carte', tagBg: '#1c1b1c', cur: isSenate ? 'true' : 'false', pick: () => this.goChamber('S'), barStyle: navBar(isSenate) },
+        { label: 'Chambre des représentants', tag: 'Carte', tagBg: '#1c1b1c', cur: !isSenate ? 'true' : 'false', pick: () => this.goChamber('H'), barStyle: navBar(!isSenate) }
+      ] },
+      { label: 'Composition des chambres selon les projections', items: [
+        { label: 'Quatre scénarios', tag: 'Projections', tagBg: '#c62f3f', cur: 'false', pick: () => this.goTo('scenarios'), barStyle: navBar(false) }
+      ] }
+      ],
       tabs: [
         { label: 'Sénat', on: isSenate, pick: () => this.setState({ chamber: 'S', sel: null }), style: tabStyle(isSenate) },
         { label: 'Chambre des représentants', on: !isSenate, pick: () => this.setState({ chamber: 'H', sel: null }), style: tabStyle(!isSenate) }
