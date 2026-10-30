@@ -218,7 +218,7 @@ class Component extends DCLogic {
   // Moyennes de sondages Silver Bulletin au 29 octobre 2026 (au moins 3 sondages de 2 instituts)
   polls() {
     if (this._pl) return this._pl;
-    const POLLS = {"H:AK-AL":{"n":11,"f":8,"c":[["Begich","R",49.49],["Bill Hill","I",39.39],["Hafner","D",7.18],["Jim McDermott","I",3.05]]},"S:AK":{"n":20,"f":10,"c":[["Peltola","D",48.24],["Sullivan","R",44.54],["Daniel J. Sullivan Jr.","O",2.95],["Gerald Heikes","R",2.22]]},"H:AL-02":{"n":4,"f":4,"c":[["Marques","R",48.2],["Figures","D",46.15]]},"S:AL":{"n":5,"f":5,"c":[["Moore","R",50.71],["Wess","D",36.81]]},"H:AR-02":{"n":3,"f":3,"c":[["Hill","R",50.16],["Jones","D",48.37]]},"S:AR":{"n":6,"f":4,"c":[["Cotton","R",50.8],["Shoffner","D",39.41]]},"H:AZ-02":{"n":3,"f":2,"c":[["Crane","R",48.1],["Nez","D",48.06]]},"H:CA-11":{"n":3,"f":3,"c":[["Wiener","D",50.76],["Chan","D",44.05]]},"H:CA-34":{"n":3,"f":3,"c":[["Gonzales-Torres","D",48.87],["Gomez","D",42.5]]},"H:CA-40":{"n":3,"f":3,"c":[["Kim","R",36.96],["Calvert","R",34.22]]},"H:CA-48":{"n":4,"f":3,"c":[["Von Wilpert","D",48.31],["Desmond","R",41.23]]},"H:CO-05":{"n":3,"f":2,"c":[["Crank","R",46.14],["Killin","D",44.36]]},"H:FL-13":{"n":5,"f":4,"c":[["Luna","R",47.84],["Gray","D",45.62]]},"H:FL-22":{"n":3,"f":3,"c":[["Dandiya","D",48.1],["Askar","R",48.05]]},"H:FL-25":{"n":3,"f":2,"c":[["Moskowitz","D",45.01],["Singer","R",44.23]]},"S:FL":{"n":21,"f":14,"c":[["Moody","R",49.98],["Nixon","D",43.44]]},"S:GA":{"n":14,"f":10,"c":[["Ossoff","D",52.47],["Collins","R",42.14]]},"H:IA-02":{"n":3,"f":3,"c":[["James","D",48.48],["Mitchell","R",46.43]]},"S:IA":{"n":35,"f":21,"c":[["Turek","D",46.81],["Hinson","R",45.96]]},"H:ID-01":{"n":3,"f":3,"c":[["Fulcher","R",51.95],["Peterson","D",28.35]]},"S:ID":{"n":8,"f":5,"c":[["Risch","R",50.81],["Achilles","I",34.79]]},"H:IN-05":{"n":3,"f":3,"c":[["Spartz","R",48.1],["Ford","D",45.23]]},"S:KS":{"n":14,"f":11,"c":[["Hamilton","D",47.42],["Marshall","R",46.07]]},"H:KY-06":{"n":9,"f":5,"c":[["Dembo","D",44.74],["Alvarado","R",42.19]]},"S:MA":{"n":13,"f":6,"c":[["Markey","D",57.23],["Deaton","R",29.7]]},"H:ME-02":{"n":8,"f":5,"c":[["Dunlap","D",49.88],["LePage","R",48.29]]},"S:ME":{"n":28,"f":20,"c":[["Jackson","D",49.4],["Collins","R",46.91]]},"H:MI-04":{"n":4,"f":3,"c":[["Huizenga","R",47.43],["McCann","D",46.85]]},"H:MI-07":{"n":3,"f":3,"c":[["Lawrence","D",51.81],["Barrett","R",46.39]]},"S:MI":{"n":53,"f":30,"c":[["El-Sayed","D",49.29],["Rogers","R",45.61]]},"H:MN-01":{"n":5,"f":4,"c":[["Finstad","R",45.23],["Johnson","D",44.89]]},"S:MN":{"n":17,"f":14,"c":[["Flanagan","D",49.37],["Tafoya","R",42.89]]},"H:MO-02":{"n":3,"f":3,"c":[["Wellman","D",47.21],["Wagner","R",46.0]]},"S:MS":{"n":3,"f":3,"c":[["Hyde-Smith","R",45.45],["Colom","D",38.86]]},"H:MT-01":{"n":8,"f":6,"c":[["Forstag","D",47.75],["Flint","R",46.26]]},"S:MT":{"n":15,"f":11,"c":[["Alme","R",42.05],["Bodnar","I",33.65],["Bankhead","D",15.19]]},"H:NC-01":{"n":7,"f":4,"c":[["Davis","D",47.66],["Buckhout","R",41.72]]},"S:NC":{"n":42,"f":17,"c":[["Cooper","D",52.15],["Whatley","R",41.96]]},"H:NE-01":{"n":3,"f":3,"c":[["Flood","R",47.16],["Backemeyer","D",44.22]]},"S:NE":{"n":15,"f":9,"c":[["Osborn","I",46.72],["Ricketts","R",46.43]]},"H:NH-02":{"n":7,"f":2,"c":[["Goodlander","D",55.67],["Williams","R",37.5]]},"S:NH":{"n":25,"f":16,"c":[["Pappas","D",49.81],["Sununu","R",42.58]]},"H:NM-02":{"n":3,"f":3,"c":[["Vasquez","D",48.64],["Cunningham","R",44.16]]},"S:NM":{"n":3,"f":2,"c":[["Luján","D",54.28],["Marker","R",37.25]]},"H:NV-02":{"n":3,"f":3,"c":[["Flippo","R",45.82],["Benitez-Thompson","D",41.34]]},"H:NY-17":{"n":4,"f":4,"c":[["Conley","D",48.73],["Lawler","R",47.79]]},"H:NY-21":{"n":8,"f":5,"c":[["Constantino","R",46.85],["Gendebien","D",44.65]]},"H:OH-01":{"n":4,"f":3,"c":[["Landsman","D",48.1],["Conroy","R",43.61]]},"H:OH-10":{"n":3,"f":3,"c":[["Turner","R",47.46],["Knickerbocker","D",43.93]]},"H:OH-07":{"n":3,"f":3,"c":[["Poindexter","D",48.92],["Miller","R",42.76]]},"S:OH":{"n":35,"f":22,"c":[["Brown","D",48.26],["Husted","R",45.19]]},"H:PA-01":{"n":6,"f":4,"c":[["Fitzpatrick","R",47.3],["Harvie","D",47.18]]},"H:PA-10":{"n":5,"f":5,"c":[["Stelson","D",48.58],["Perry","R",47.42]]},"H:PA-07":{"n":3,"f":3,"c":[["Brooks","D",48.8],["Mackenzie","R",43.83]]},"H:PA-08":{"n":4,"f":4,"c":[["Cognetti","D",51.19],["Bresnahan","R",47.41]]},"S:RI":{"n":6,"f":3,"c":[["Reed","D",57.79],["McKay","R",29.05]]},"H:SC-01":{"n":4,"f":3,"c":[["Honeycutt","R",46.17],["Lacore","D",44.3]]},"S:SC":{"n":11,"f":8,"c":[["Graham","R",46.6],["Andrews","D",45.11]]},"S:SD":{"n":13,"f":9,"c":[["Rounds","R",53.72],["Bengs","I",41.3]]},"H:TX-15":{"n":5,"f":3,"c":[["Pulido","D",52.02],["De La Cruz","R",43.91]]},"H:TX-28":{"n":3,"f":3,"c":[["Cuellar","D",50.75],["Tijerina","R",35.98]]},"H:TX-34":{"n":4,"f":4,"c":[["Gonzalez","D",49.09],["Flores","R",42.98]]},"H:TX-35":{"n":4,"f":3,"c":[["De La Cruz","R",48.49],["Garcia","D",48.23]]},"H:TX-09":{"n":3,"f":3,"c":[["Mealer","R",49.18],["Gutierrez","D",44.08]]},"S:TX":{"n":61,"f":28,"c":[["Talarico","D",48.99],["Paxton","R",46.04]]},"GB":{"n":455,"f":66,"c":[["Democrats","D",52.36],["Republicans","R",43.21]]},"H:VA-01":{"n":5,"f":4,"c":[["Wittman","R",47.64],["Taylor","D",47.01]]},"H:VA-05":{"n":3,"f":2,"c":[["McGuire","R",50.72],["Perriello","D",45.45]]},"H:VT-AL":{"n":4,"f":2,"c":[["Balint","D",55.93],["Malloy","R",31.42]]},"H:WA-03":{"n":4,"f":4,"c":[["Braun","R",46.51],["Gluesenkamp Pérez","D",45.38]]},"H:WI-01":{"n":4,"f":3,"c":[["Steil","R",50.04],["Berman","D",47.06]]},"H:WI-03":{"n":3,"f":2,"c":[["Cooke","D",49.93],["Van Orden","R",48.38]]}};
+    const POLLS = {"H:AK-AL":{"n":11,"f":8,"c":[["Begich","R",49.49],["Bill Hill","I",39.39],["Hafner","D",7.18],["Jim McDermott","I",3.05]]},"S:AK":{"n":20,"f":10,"c":[["Peltola","D",48.24],["Sullivan","R",44.54],["Daniel J. Sullivan Jr.","R",2.95],["Gerald Heikes","R",2.22]]},"H:AL-02":{"n":4,"f":4,"c":[["Marques","R",48.2],["Figures","D",46.15]]},"S:AL":{"n":5,"f":5,"c":[["Moore","R",50.71],["Wess","D",36.81]]},"H:AR-02":{"n":3,"f":3,"c":[["Hill","R",50.16],["Jones","D",48.37]]},"S:AR":{"n":6,"f":4,"c":[["Cotton","R",50.8],["Shoffner","D",39.41]]},"H:AZ-02":{"n":3,"f":2,"c":[["Crane","R",48.1],["Nez","D",48.06]]},"H:CA-11":{"n":3,"f":3,"c":[["Wiener","D",50.76],["Chan","D",44.05]]},"H:CA-34":{"n":3,"f":3,"c":[["Gonzales-Torres","D",48.87],["Gomez","D",42.5]]},"H:CA-40":{"n":3,"f":3,"c":[["Kim","R",36.96],["Calvert","R",34.22]]},"H:CA-48":{"n":4,"f":3,"c":[["Von Wilpert","D",48.31],["Desmond","R",41.23]]},"H:CO-05":{"n":3,"f":2,"c":[["Crank","R",46.14],["Killin","D",44.36]]},"H:FL-13":{"n":5,"f":4,"c":[["Luna","R",47.84],["Gray","D",45.62]]},"H:FL-22":{"n":3,"f":3,"c":[["Dandiya","D",48.1],["Askar","R",48.05]]},"H:FL-25":{"n":3,"f":2,"c":[["Moskowitz","D",45.01],["Singer","R",44.23]]},"S:FL":{"n":21,"f":14,"c":[["Moody","R",49.98],["Nixon","D",43.44]]},"S:GA":{"n":14,"f":10,"c":[["Ossoff","D",52.47],["Collins","R",42.14]]},"H:IA-02":{"n":3,"f":3,"c":[["James","D",48.48],["Mitchell","R",46.43]]},"S:IA":{"n":35,"f":21,"c":[["Turek","D",46.81],["Hinson","R",45.96]]},"H:ID-01":{"n":3,"f":3,"c":[["Fulcher","R",51.95],["Peterson","D",28.35]]},"S:ID":{"n":8,"f":5,"c":[["Risch","R",50.81],["Achilles","I",34.79]]},"H:IN-05":{"n":3,"f":3,"c":[["Spartz","R",48.1],["Ford","D",45.23]]},"S:KS":{"n":14,"f":11,"c":[["Hamilton","D",47.42],["Marshall","R",46.07]]},"H:KY-06":{"n":9,"f":5,"c":[["Dembo","D",44.74],["Alvarado","R",42.19]]},"S:MA":{"n":13,"f":6,"c":[["Markey","D",57.23],["Deaton","R",29.7]]},"H:ME-02":{"n":8,"f":5,"c":[["Dunlap","D",49.88],["LePage","R",48.29]]},"S:ME":{"n":28,"f":20,"c":[["Jackson","D",49.4],["Collins","R",46.91]]},"H:MI-04":{"n":4,"f":3,"c":[["Huizenga","R",47.43],["McCann","D",46.85]]},"H:MI-07":{"n":3,"f":3,"c":[["Lawrence","D",51.81],["Barrett","R",46.39]]},"S:MI":{"n":53,"f":30,"c":[["El-Sayed","D",49.29],["Rogers","R",45.61]]},"H:MN-01":{"n":5,"f":4,"c":[["Finstad","R",45.23],["Johnson","D",44.89]]},"S:MN":{"n":17,"f":14,"c":[["Flanagan","D",49.37],["Tafoya","R",42.89]]},"H:MO-02":{"n":3,"f":3,"c":[["Wellman","D",47.21],["Wagner","R",46.0]]},"S:MS":{"n":3,"f":3,"c":[["Hyde-Smith","R",45.45],["Colom","D",38.86]]},"H:MT-01":{"n":8,"f":6,"c":[["Forstag","D",47.75],["Flint","R",46.26]]},"S:MT":{"n":15,"f":11,"c":[["Alme","R",42.05],["Bodnar","I",33.65],["Bankhead","D",15.19]]},"H:NC-01":{"n":7,"f":4,"c":[["Davis","D",47.66],["Buckhout","R",41.72]]},"S:NC":{"n":42,"f":17,"c":[["Cooper","D",52.15],["Whatley","R",41.96]]},"H:NE-01":{"n":3,"f":3,"c":[["Flood","R",47.16],["Backemeyer","D",44.22]]},"S:NE":{"n":15,"f":9,"c":[["Osborn","I",46.72],["Ricketts","R",46.43]]},"H:NH-02":{"n":7,"f":2,"c":[["Goodlander","D",55.67],["Williams","R",37.5]]},"S:NH":{"n":25,"f":16,"c":[["Pappas","D",49.81],["Sununu","R",42.58]]},"H:NM-02":{"n":3,"f":3,"c":[["Vasquez","D",48.64],["Cunningham","R",44.16]]},"S:NM":{"n":3,"f":2,"c":[["Luján","D",54.28],["Marker","R",37.25]]},"H:NV-02":{"n":3,"f":3,"c":[["Flippo","R",45.82],["Benitez-Thompson","D",41.34]]},"H:NY-17":{"n":4,"f":4,"c":[["Conley","D",48.73],["Lawler","R",47.79]]},"H:NY-21":{"n":8,"f":5,"c":[["Constantino","R",46.85],["Gendebien","D",44.65]]},"H:OH-01":{"n":4,"f":3,"c":[["Landsman","D",48.1],["Conroy","R",43.61]]},"H:OH-10":{"n":3,"f":3,"c":[["Turner","R",47.46],["Knickerbocker","D",43.93]]},"H:OH-07":{"n":3,"f":3,"c":[["Poindexter","D",48.92],["Miller","R",42.76]]},"S:OH":{"n":35,"f":22,"c":[["Brown","D",48.26],["Husted","R",45.19]]},"H:PA-01":{"n":6,"f":4,"c":[["Fitzpatrick","R",47.3],["Harvie","D",47.18]]},"H:PA-10":{"n":5,"f":5,"c":[["Stelson","D",48.58],["Perry","R",47.42]]},"H:PA-07":{"n":3,"f":3,"c":[["Brooks","D",48.8],["Mackenzie","R",43.83]]},"H:PA-08":{"n":4,"f":4,"c":[["Cognetti","D",51.19],["Bresnahan","R",47.41]]},"S:RI":{"n":6,"f":3,"c":[["Reed","D",57.79],["McKay","R",29.05]]},"H:SC-01":{"n":4,"f":3,"c":[["Honeycutt","R",46.17],["Lacore","D",44.3]]},"S:SC":{"n":11,"f":8,"c":[["Graham","R",46.6],["Andrews","D",45.11]]},"S:SD":{"n":13,"f":9,"c":[["Rounds","R",53.72],["Bengs","I",41.3]]},"H:TX-15":{"n":5,"f":3,"c":[["Pulido","D",52.02],["De La Cruz","R",43.91]]},"H:TX-28":{"n":3,"f":3,"c":[["Cuellar","D",50.75],["Tijerina","R",35.98]]},"H:TX-34":{"n":4,"f":4,"c":[["Gonzalez","D",49.09],["Flores","R",42.98]]},"H:TX-35":{"n":4,"f":3,"c":[["De La Cruz","R",48.49],["Garcia","D",48.23]]},"H:TX-09":{"n":3,"f":3,"c":[["Mealer","R",49.18],["Gutierrez","D",44.08]]},"S:TX":{"n":61,"f":28,"c":[["Talarico","D",48.99],["Paxton","R",46.04]]},"GB":{"n":455,"f":66,"c":[["Democrats","D",52.36],["Republicans","R",43.21]]},"H:VA-01":{"n":5,"f":4,"c":[["Wittman","R",47.64],["Taylor","D",47.01]]},"H:VA-05":{"n":3,"f":2,"c":[["McGuire","R",50.72],["Perriello","D",45.45]]},"H:VT-AL":{"n":4,"f":2,"c":[["Balint","D",55.93],["Malloy","R",31.42]]},"H:WA-03":{"n":4,"f":4,"c":[["Braun","R",46.51],["Gluesenkamp Pérez","D",45.38]]},"H:WI-01":{"n":4,"f":3,"c":[["Steil","R",50.04],["Berman","D",47.06]]},"H:WI-03":{"n":3,"f":2,"c":[["Cooke","D",49.93],["Van Orden","R",48.38]]}};
     this._pl = POLLS; return POLLS;
   }
 
@@ -252,7 +252,7 @@ class Component extends DCLogic {
   pollGap(lead, sec, SOLID, TINT, TEXT, senate) {
     if (!lead || !sec) return { hasPoll: false };
     const MOE = senate ? 4.1 : 4.4, r1 = (x) => Math.round(x * 10) / 10;
-    const last = (n) => n.split(' ').slice(-1)[0];
+    const last = (n) => { const w = n.replace(/,?\s+(Jr\.?|Sr\.?|II|III|IV)$/, '').split(' '); let i = w.length - 1; while (i > 1 && /^(de|De|del|Del|della|La|la|Le|le|Van|van|Von|von|der|Der|da|Da|di|Di|St\.?|Mc)$/.test(w[i - 1])) i--; return w.slice(i).join(' '); };
     // D à gauche, R à droite ; sinon le premier à gauche
     let A = lead, B = sec;
     if (B.p === 'D' && A.p !== 'D') { A = sec; B = lead; }
@@ -264,8 +264,8 @@ class Component extends DCLogic {
     const inMoe = gap < MOE;
     return {
       hasPoll: true,
-      gapText: last(lead.n) + ' +' + gap.toFixed(1).replace('.', ',') + ' pts',
-      moeText: inMoe ? 'Dans la marge d’erreur' : 'Au-delà de la marge',
+      gapText: gap === 0 ? 'Égalité' : last(lead.n) + ' +' + gap.toFixed(1).replace('.', ',') + (gap < 2 ? ' pt' : ' pts'),
+      moeText: inMoe ? 'Inférieur à l’erreur moyenne des sondages' : 'Supérieur à l’erreur moyenne des sondages',
       moeStyle: 'color: ' + (inMoe ? '#6b4fa8' : (TEXT[lead.p] || '#6b6965')) + ';',
       bandStyle: 'left: ' + pos(m + MOE).toFixed(2) + '%; width: ' + (MOE / S * 100).toFixed(2) + '%; background: ' + (TINT[lead.p] || '#e4e2de') + '; box-shadow: inset 0 0 0 1px ' + (SOLID[lead.p] || '#8c8a85') + ';',
       tickStyle: 'left: ' + pos(m).toFixed(2) + '%;',
@@ -275,7 +275,7 @@ class Component extends DCLogic {
     };
   }
 
-  fmtP(v) { return v.toFixed(1).replace('.', ',') + ' %'; }
+  fmtP(v) { return (Math.round(v * 10) / 10).toFixed(1).replace('.', ',') + ' %'; }
 
   // Hémicycle : rangées concentriques ; chaque parti occupe un secteur aux bords droits, séparé de l’autre par un couloir.
   // Dans chaque rangée, les sièges d’un parti sont répartis régulièrement, du sol jusqu’au bord du couloir.
@@ -339,8 +339,8 @@ class Component extends DCLogic {
     return [
       { t: 'Les républicains limitent la casse', wave: 'Vague démocrate de 5 à 7 points', err: 'Les sondages surestiment les démocrates, comme en 2016 ou en 2020', out: 'Les républicains conservent le Sénat sans grande difficulté ; les démocrates obtiennent une majorité étroite à la Chambre.', sen: 49, house: 1 },
       { t: 'Les républicains tiennent de justesse', wave: 'Vague démocrate de 7 à 9 points', err: 'Les sondages sous-estiment un peu les républicains, comme en 2018 ou en 2024', out: 'Le Sénat reste républicain à une voix près ; les démocrates progressent nettement à la Chambre.', sen: 50, house: 2 },
-      { t: 'Les démocrates basculent le Sénat', wave: 'Vague démocrate de 8 à 10 points', err: 'Les sondages sont assez justes, comme en 2006 ou en 2022', out: 'Les démocrates prennent le Sénat et obtiennent à la Chambre une majorité plus large qu’en 2018.', sen: 51, house: 3 },
-      { t: 'Tsunami démocrate', wave: 'Vague démocrate de 10 points ou plus', err: 'Les démocrates font mieux que les sondages, comme en 2012 ou en 2022', out: 'Large majorité démocrate à la Chambre (environ 250 sièges selon Nate Cohn) et au moins 53 sièges au Sénat.', sen: 53, house: 4 }
+      { t: 'Les démocrates font basculer le Sénat', wave: 'Vague démocrate de 8 à 10 points', err: 'Les sondages sont assez justes, comme en 2006 ou en 2022', out: 'Les démocrates prennent le Sénat et obtiennent à la Chambre une majorité plus large qu’en 2018.', sen: 51, house: 3 },
+      { t: 'Tsunami démocrate', wave: 'Vague démocrate de 10 points ou plus', err: 'Les démocrates font mieux que les sondages, comme en 2012, en 2022 ou en 2025', out: 'Large majorité démocrate à la Chambre (environ 250 sièges selon Nate Cohn) et au moins 53 sièges au Sénat.', sen: 53, house: 4 }
     ];
   }
 
@@ -380,8 +380,10 @@ class Component extends DCLogic {
       let cands;
       if (polled) cands = polled.c.map(([n, p, v]) => {
         const m = base.find((b) => norm(b[0]).endsWith(norm(n)) && b[1] === p) || base.find((b) => norm(b[0]).endsWith(norm(n)));
-        return { n: m ? m[0] : n, p, inc: m ? m[2] : 0, v, avg: v };
+        return { n: m ? m[0] : n, p, inc: m ? m[2] : 0, v, avg: v, _b: m };
       });
+      // candidats en lice absents de la moyenne de sondages (ex. Ty Pinkins au Mississippi) : affichés sans chiffre
+      if (polled) { for (const b of base) if (!cands.some((c) => c._b === b)) cands.push({ n: b[0], p: b[1], inc: b[2], v: 0, avg: null }); }
       else cands = base.slice(0, 4).map((b) => ({ n: b[0], p: b[1], inc: b[2], v: 0 }));
       return { eevp: 0, cands, winner: null, status: 'forecast', rating, poll: polled || null };
     };
@@ -499,15 +501,16 @@ class Component extends DCLogic {
       if (r.status === 'forecast') {
         const p = r.poll;
         const lead = p ? r.cands[0] : null, sec = p ? r.cands[1] : null;
-        const last = (n) => n.split(' ').slice(-1)[0];
+        const last = (n) => { const w = n.replace(/,?\s+(Jr\.?|Sr\.?|II|III|IV)$/, '').split(' '); let i = w.length - 1; while (i > 1 && /^(de|De|del|Del|della|La|la|Le|le|Van|van|Von|von|der|Der|da|Da|di|Di|St\.?|Mc)$/.test(w[i - 1])) i--; return w.slice(i).join(' '); };
         return {
           name: title, kicker,
           cands: r.cands.map((c, i) => ({
             n: c.n, star: c.inc ? '*' : '', check: '', ps: ({ D: 'Dém.', R: 'Rép.', I: 'Ind.' })[c.p] || 'Div.',
-            pn: p ? this.fmtP(c.avg) : '—',
+            pn: p && c.avg != null ? this.fmtP(c.avg) : '—',
             rowStyle: 'box-shadow: inset 3px 0 0 ' + (SOLID[c.p] || '#8c8a85') + ';'
           })),
-          foot: p ? 'Silver Bulletin, 29 oct. - ' + p.n + ' sondages, ' + p.f + ' instituts' : 'Pas de moyenne de sondages (moins de trois sondages)',
+          foot: p ? 'Silver Bulletin, 29 oct. - ' + p.n + ' sondages, ' + p.f + ' instituts' : 'Pas de moyenne de sondages (il en faut au moins trois, de deux instituts)',
+          note: extra || '',
           hasBack: !!back, back,
           ...this.pollGap(lead, sec, SOLID, TINT, TEXT, !back)
         };
@@ -548,7 +551,7 @@ class Component extends DCLogic {
       selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain') + ' - ' + statusText(sRes[st]), EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
-      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant - ' + statusText(hRes[id]) + (m.favor ? ' - redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
+      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), ({ D: 'Siège détenu par les démocrates', R: 'Siège détenu par les républicains' }[(hRes[id].cands.find((c) => c.inc) || {}).p || m.holder] || 'Siège détenu par un indépendant') + ' - ' + statusText(hRes[id]) + (m.favor ? ' - circonscription redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), '', () => this.setState({ sel: 'HS:' + st }));
     } else if (sel && !isSenate && sel.startsWith('HS:') && house) {
       const st = sel.slice(3);
       const ids = house.cells.filter((c) => c.st === st).map((c) => c.id).sort();
@@ -581,7 +584,7 @@ class Component extends DCLogic {
     const watchRow = (name, r, a, b, gain, pick, resET) => {
       const tot = r.cands.reduce((s, c) => s + c.v, 0) || 1;
       const pa = r.eevp ? a.v / tot * 100 : 0, pb = r.eevp ? b.v / tot * 100 : 0;
-      const last = (n) => n.startsWith('Candidat') ? (n.endsWith('démocrate') ? 'Dém.' : 'Rép.') : n.split(' ').slice(-1)[0];
+      const last = (n) => n.startsWith('Candidat') ? (n.endsWith('démocrate') ? 'Dém.' : 'Rép.') : ((n) => { const w = n.replace(/,?\s+(Jr\.?|Sr\.?|II|III|IV)$/, '').split(' '); let i = w.length - 1; while (i > 1 && /^(de|De|del|Del|della|La|la|Le|le|Van|van|Von|von|der|Der|da|Da|di|Di|St\.?|Mc)$/.test(w[i - 1])) i--; return w.slice(i).join(' '); })(n);
       const barS = (c, p) => 'flex: 0 0 calc(' + p + '% - 3px); border-radius: 999px; background: ' + (r.winner ? (r.winner === c.p ? SOLID[c.p] : TINT[c.p]) : SOLID[c.p]) + ';' + (p ? '' : ' display: none;');
       return {
         name, gainMark: gain ? ' ●' : '', pick, aria: name + ', ' + statusText(r, resET),
@@ -708,7 +711,7 @@ class Component extends DCLogic {
       sel: selV || { cands: [], hours: [], hasBack: false }, stSel: stSel || { rows: [] },
       clearSel: () => this.setState({ sel: null }),
       watch, slots,
-      sourceLine: 'Classements : Cook Political Report (Sénat, 30 octobre 2026 ; Chambre, 30 octobre 2026). Sondages : moyennes Silver Bulletin au 29 octobre 2026, d’après la base de sondages du New York Times ; seules les courses comptant au moins trois sondages de deux instituts ont une moyenne. Marge d’erreur indicative (±4,1 points au Sénat, ±4,4 points à la Chambre) : écart moyen, depuis 1998, entre la moyenne des sondages publiés dans les trois dernières semaines et le résultat, calculé par Le Grand Continent d’après la base de sondages de Silver Bulletin. Graphique : Le Grand Continent.',
+      sourceLine: 'Classements : Cook Political Report (Sénat, 30 octobre 2026 ; Chambre, 30 octobre 2026). Sondages : moyennes Silver Bulletin au 29 octobre 2026, d’après la base de sondages du New York Times ; seules les courses comptant au moins trois sondages de deux instituts ont une moyenne. Erreur moyenne des sondages (±4,1 points au Sénat, ±4,4 points à la Chambre) : écart moyen, depuis 1998, entre la moyenne des sondages publiés dans les trois dernières semaines et le résultat, calculé par Le Grand Continent d’après la base de sondages de Silver Bulletin. Graphique : Le Grand Continent.',
       ruleLine: isSenate
         ? 'Il faut 51 sièges pour la majorité ; à 50-50, la voix du vice-président J. D. Vance revient aux républicains. Les deux indépendants hors scrutin, qui siègent avec les démocrates, sont comptés avec eux.'
         : 'Il faut 218 sièges pour la majorité. Sièges sortants : House Press Gallery (2 septembre 2026) et 270toWin ; les deux sièges vacants (Floride et Texas) sont attribués à leur ancien parti.'
@@ -771,6 +774,7 @@ class Component extends DCLogic {
           + '<div aria-hidden="true" style="position:relative;height:14px;border-radius:999px;background:#f0eeea"><span style="position:absolute;top:0;bottom:0;border-radius:999px;' + s.bandStyle + '"></span><span style="position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#8c8a85"></span><span style="position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:#141414;' + s.tickStyle + '"></span></div>'
           + '<div class="mono" style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:.04em"><span style="' + s.endAStyle + '">← ' + esc(s.endA) + '</span><span style="color:#6b6965">0</span><span style="' + s.endBStyle + '">' + esc(s.endB) + ' →</span></div>'
           + '<span style="font-size:11.5px;line-height:1.35;color:#828282;">' + esc(s.moeNote) + '</span></div>' : '')
+        + (s.note ? '<span style="font-size:12.5px;line-height:1.4;color:#3a3936">' + esc(s.note) + '</span>' : '')
         + '<div class="mono" style="display:flex;justify-content:space-between;gap:8px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11.5px;color:#828282;"><span>' + esc(s.foot) + '</span><span>* Sortant</span></div>'
         + (s.hasBack ? '<button class="mono" data-h="' + h(s.back) + '" style="align-self:flex-start;min-height:28px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#141414;border-bottom:1px solid #141414">Tout l’État →</button>' : '')
         + '</div>';

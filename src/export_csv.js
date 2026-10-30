@@ -28,8 +28,8 @@ for (const st of Object.keys(RACES).sort((a, b) => NAMES[a].localeCompare(NAMES[
   const [type, holder, , , cands] = RACES[st], p = POLLS['S:' + st];
   const inc = cands.find((k) => k[2]);
   const list = cands.map((k) => k[0] + (k[2] ? '*' : '') + ' (' + k[1] + ')').join(' ; ');
-  const pc = p ? pollCols(p, cands) : ['', '', '', '', '', '', '', '', 'Pas de moyenne Silver Bulletin (moins de trois sondages)'];
-  S.push([NAMES[st], st, PARTY[holder], inc ? inc[0] : 'Siège ouvert', type === 'Partielle' ? 'Élection partielle' : '', COOKL[COOK[st]], list, ...pc]);
+  const pc = p ? pollCols(p, cands) : ['', '', '', '', '', '', '', '', 'Pas de moyenne Silver Bulletin (il en faut au moins trois, de deux instituts)'];
+  S.push([NAMES[st], st, PARTY[holder], inc ? inc[0] : (type === 'Sortant battu' ? 'Aucun (sortant battu à la primaire)' : 'Siège ouvert'), type === 'Partielle' ? 'Élection partielle' : type === 'Sortant battu' ? 'Sortant battu à la primaire' : '', COOKL[COOK[st]], list, ...pc]);
 }
 fs.writeFileSync(path.join(out, 'sondages-senat.csv'), csv(S));
 

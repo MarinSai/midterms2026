@@ -135,7 +135,8 @@ class Component extends DCLogic {
       const res = this.bbgTsv(await get('results.tsv'));
       counts = res; calls = res.filter((r) => r.winner === 'X').map((r) => ({ raceKey: r.raceKey, winnerCandidateID: r.candidateID }));
     }
-    const out = { senate: {}, house: {}, source: 'Bloomberg (AP)' };
+    const pt = new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit' }).split(':');
+    const out = { senate: {}, house: {}, source: 'Bloomberg (AP)', updated: pt[0] + ' h ' + pt[1] };
     const races = new Map();
     for (const r of counts) {
       const k = this.bbgKey(r.raceKey); if (!k) continue;
@@ -164,7 +165,7 @@ class Component extends DCLogic {
     const bbg = /^bloomberg(?::(.+))?$/.exec(url);
     const pull = () => (bbg ? this.pullBloomberg(bbg[1] || '2026-11-03') : fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now())
       .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }))
-      .then((j) => this.setState({ feed: j, feedErr: null }))
+      .then((j) => { const n = j ? Object.keys(j.senate || {}).length + Object.keys(j.house || {}).length : 0; this.setState({ feed: n ? j : null, feedErr: null }); })
       .catch((e) => this.setState({ feedErr: String(e) }));
     pull();
     this.timer = setInterval(pull, Math.max(15, this.props.pollSeconds || 60) * 1000);
@@ -290,7 +291,7 @@ class Component extends DCLogic {
   }
 
   fmtN(v) { return v.toLocaleString('fr-FR').replace(/[  ]/g, ' '); }
-  fmtP(v) { return v.toFixed(1).replace('.', ',') + ' %'; }
+  fmtP(v) { return (Math.round(v * 10) / 10).toFixed(1).replace('.', ',') + ' %'; }
 
   goTo(id) { try { const el = document.getElementById(id); if (!el) return; if (window.__gcScroll) window.__gcScroll(el); else el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} }
   goChamber(c) { this.setState({ chamber: c, sel: null }); }
@@ -491,7 +492,7 @@ class Component extends DCLogic {
       selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
-      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant - ' + ['Démocrate sûr (Cook)', 'Plutôt démocrate (Cook)', 'Plutôt démocrate (Cook)', 'Indécis (Cook)', 'Plutôt républicain (Cook)', 'Plutôt républicain (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' - redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
+      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), ({ D: 'Siège détenu par les démocrates', R: 'Siège détenu par les républicains' }[(hRes[id].cands.find((c) => c.inc) || {}).p || m.holder] || 'Siège détenu par un indépendant') + ' - ' + ['Démocrate sûr (Cook)', 'Démocrate probable (Cook)', 'Penche démocrate (Cook)', 'Indécis (Cook)', 'Penche républicain (Cook)', 'Républicain probable (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' - circonscription redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP).', () => this.setState({ sel: 'HS:' + st }));
     } else if (sel && !isSenate && sel.startsWith('HS:') && house) {
       const st = sel.slice(3);
       const ids = house.cells.filter((c) => c.st === st).map((c) => c.id).sort();
@@ -523,7 +524,7 @@ class Component extends DCLogic {
     const watchRow = (name, r, a, b, gain, pick, resET) => {
       const tot = r.cands.reduce((s, c) => s + c.v, 0) || 1;
       const pa = r.eevp ? a.v / tot * 100 : 0, pb = r.eevp ? b.v / tot * 100 : 0;
-      const last = (n) => n.startsWith('Candidat') ? (n.endsWith('démocrate') ? 'Dém.' : 'Rép.') : n.split(' ').slice(-1)[0];
+      const last = (n) => n.startsWith('Candidat') ? (n.endsWith('démocrate') ? 'Dém.' : 'Rép.') : ((n) => { const w = n.replace(/,?\s+(Jr\.?|Sr\.?|II|III|IV)$/, '').split(' '); let i = w.length - 1; while (i > 1 && /^(de|De|del|Del|della|La|la|Le|le|Van|van|Von|von|der|Der|da|Da|di|Di|St\.?|Mc)$/.test(w[i - 1])) i--; return w.slice(i).join(' '); })(n);
       const barS = (c, p) => 'flex: 0 0 calc(' + p + '% - 3px); border-radius: 999px; background: ' + (r.winner ? (r.winner === c.p ? SOLID[c.p] : TINT[c.p]) : SOLID[c.p]) + ';' + (p ? '' : ' display: none;');
       return {
         name, gainMark: gain ? ' ●' : '', pick, aria: name + ', ' + statusText(r, resET),
@@ -538,7 +539,7 @@ class Component extends DCLogic {
       : (house ? ['IA-02', 'MI-04', 'MI-07', 'MI-10', 'MT-01', 'OH-07', 'OH-09', 'PA-08', 'AZ-01', 'AZ-06', 'CO-08', 'PA-07'].filter((id) => hRes[id]).map((id) => { const st = id.split('-')[0], r = hRes[id]; return watchRow(NAMES[st] + ' - ' + id, r, r.cands[0], r.cands[1], hGain(id), pickSel('H:' + id), HOURS[st][2]); }) : []);
 
     // ---------- Calendrier ----------
-    const NOW_ET = scenario === 'Avant le scrutin' ? 0 : scenario === 'Soirée électorale' ? 25.2 : 99;
+    const NOW_ET = (Date.now() - Date.UTC(2026, 10, 3, 5)) / 36e5; // heure de l’Est depuis le 3 novembre à 0 h (UTC-5)
     const bySlot = {};
     const slotStates = isSenate ? Object.keys(RACES) : Object.keys(HOURS);
     for (const st of slotStates) { const t = HOURS[st][2]; (bySlot[t] = bySlot[t] || []).push(st); }
@@ -570,10 +571,12 @@ class Component extends DCLogic {
     });
 
     // ---------- Textes ----------
-    const before = scenario === 'Avant le scrutin';
+    // page officielle : « avant le scrutin » tant qu’aucune course du flux n’a de voix ni de vainqueur
+    const started = !!feed && ['senate', 'house'].some((c) => Object.values(feed[c] || {}).some((r) => r.winner || +r.eevp > 0 || (r.cands || []).some((x) => +x.v > 0)));
+    const before = !started;
     const dCtrl = dTotal >= majD && !before, rCtrl = rTotal >= majR && !dCtrl && !before;
     const live = !!feed || scenario === 'Soirée électorale';
-    const updated = feed && feed.updated ? 'Mis à jour ' + feed.updated : (this.state.feedErr ? 'Flux indisponible, nouvel essai…' : before ? 'Premiers résultats le 4 nov. à minuit' : scenario === 'Soirée électorale' ? 'Mis à jour à 07 h 12, heure de Paris' : 'Mis à jour le 5 nov. à 18 h 00');
+    const updated = feed && feed.updated ? 'Mis à jour à ' + feed.updated + ', heure de Paris' : (this.state.feedErr ? 'Flux indisponible, nouvel essai…' : before ? 'Premiers résultats le 4 nov. à minuit' : scenario === 'Soirée électorale' ? 'Mis à jour à 07 h 12, heure de Paris' : 'Mis à jour le 5 nov. à 18 h 00');
     const tabStyle = (on) => 'min-height: 40px; padding: 0 18px; border-radius: 999px; font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; ' + (on ? 'background: #141414; color: #ffffff;' : 'color: #3a3936;');
     const thumb = (on, key) => ({
       on, pick: () => this.setState({ chamber: key, sel: null }),
@@ -625,7 +628,7 @@ class Component extends DCLogic {
       sel: selV || { cands: [], hours: [], hasBack: false }, stSel: stSel || { rows: [] },
       clearSel: () => this.setState({ sel: null }),
       watch, slots,
-      sourceLine: (feed ? 'Source : Associated Press' : 'Premiers résultats attendus le 4 novembre à minuit, heure de Paris') + ' - Graphique : Le Grand Continent',
+      sourceLine: (started ? 'Source : Associated Press, via Bloomberg' : 'Premiers résultats attendus le 4 novembre à minuit, heure de Paris') + ' - Graphique : Le Grand Continent',
       ruleLine: isSenate
         ? 'Il faut 51 sièges pour la majorité ; à 50-50, la voix du vice-président J. D. Vance revient aux républicains. Les deux indépendants hors scrutin, qui siègent avec les démocrates, sont comptés avec eux.'
         : 'Il faut 218 sièges pour la majorité. Sièges sortants : House Press Gallery (dernière mise à jour le 2 septembre 2026, sans changement depuis selon The Green Papers) ; les deux sièges vacants (Floride et Texas) sont attribués à leur ancien parti.'
@@ -684,6 +687,7 @@ class Component extends DCLogic {
       pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
         + '<div><div class="prow mono" style="padding-top:0;padding-bottom:4px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;border-bottom:1px solid #efedea"><span>Candidat</span><span>Parti</span><span style="text-align:right">Voix</span><span style="text-align:right">%</span></div>'
         + s.cands.map((c) => '<div class="prow" style="border-bottom:1px solid #efedea;' + c.rowStyle + '"><span style="font-weight:600;line-height:1.2">' + esc(c.check + c.n + c.star) + '</span><span style="font-size:12px;opacity:.85">' + c.ps + '</span><span class="mono" style="text-align:right;font-size:12px">' + c.vn + '</span><span class="mono" style="text-align:right;font-weight:600">' + c.pn + '</span></div>').join('') + '</div>'
+        + (s.note ? '<span style="font-size:12.5px;line-height:1.4;color:#3a3936">' + esc(s.note) + '</span>' : '')
         + '<div class="mono" style="display:flex;justify-content:space-between;gap:8px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11.5px;color:#828282;"><span>' + esc(s.foot) + '</span><span>* Sortant</span></div>'
         + (s.hasBack ? '<button class="mono" data-h="' + h(s.back) + '" style="align-self:flex-start;min-height:28px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#141414;border-bottom:1px solid #141414">Tout l’État →</button>' : '')
         + '</div>';

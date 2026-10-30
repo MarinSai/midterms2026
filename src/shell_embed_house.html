@@ -52,8 +52,8 @@ body{font-family:'GC National','Helvetica Neue',sans-serif;font-size:16px;line-h
 #app{height:100%}
 .frame{height:100%;display:flex;align-items:center;justify-content:center;padding:8px;box-sizing:border-box}
 .wrap{position:relative;aspect-ratio:var(--a);width:min(100%,calc((100vh - 16px) * var(--a)))}
-.sheet{position:fixed;left:8px;right:8px;bottom:8px;z-index:20;max-height:70vh;overflow-y:auto}
-.sheet .pop{position:static!important;width:100%!important;max-width:none!important}
+.sheet{position:fixed;left:8px;right:8px;bottom:8px;width:auto!important;z-index:20;max-height:70vh;overflow-y:auto}
+.sheet .pop{position:static!important;left:auto!important;right:auto!important;width:100%!important;max-width:none!important;transform:none!important;translate:none!important}
 </style>
 </head>
 <body>
@@ -93,25 +93,27 @@ class DCLogic {
   let handlers = {};
   const h = (fn) => { if (!fn) return ''; const id = 'h' + Object.keys(handlers).length; handlers[id] = fn; return id; };
   const dotH = (on, c, size) => on ? '<span style="width:' + (size || '6px') + ';height:' + (size || '6px') + ';border-radius:50%;background:' + c + '"></span>' : '';
+  window.__isRes = typeof Component !== 'undefined' && typeof Component.prototype.pollGap !== 'function';
   const popHtml = (v) => {
     let pop = '';
     const popHead = (kicker, name) => '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="mono" style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">' + esc(kicker) + '</span><span style="font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:18px;line-height:1.1">' + esc(name) + '</span></div><button aria-label="Fermer" data-h="' + h(v.clearSel) + '" style="flex:none;width:32px;height:32px;margin:-6px -6px 0 0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#6b6965"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button></div>';
     if (v.hasSel) {
       const s = v.sel;
       pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
-        + '<div><div class="prow mono" style="padding-top:0;padding-bottom:4px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;border-bottom:1px solid #efedea"><span>Candidat</span><span>Parti</span><span style="text-align:right">Sondages</span></div>'
+        + '<div><div class="prow mono" style="padding-top:0;padding-bottom:4px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;border-bottom:1px solid #efedea"><span>Candidat</span><span>Parti</span><span style="text-align:right">' + (window.__isRes ? '%' : 'Sondages') + '</span></div>'
         + s.cands.map((c) => '<div class="prow" style="border-bottom:1px solid #efedea;' + c.rowStyle + '"><span style="font-weight:600;line-height:1.2">' + esc(c.check + c.n + c.star) + '</span><span style="font-size:12px;opacity:.85">' + c.ps + '</span><span class="mono" style="text-align:right;font-weight:600">' + c.pn + '</span></div>').join('') + '</div>'
         + (s.hasPoll ? '<div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px"><span>Écart - <b>' + esc(s.gapText) + '</b></span><span class="mono" style="font-size:10px;letter-spacing:.04em;white-space:nowrap;' + s.moeStyle + '">' + esc(s.moeText) + '</span></div>'
           + '<div aria-hidden="true" style="position:relative;height:14px;border-radius:999px;background:#f0eeea"><span style="position:absolute;top:0;bottom:0;border-radius:999px;' + s.bandStyle + '"></span><span style="position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#8c8a85"></span><span style="position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:#141414;' + s.tickStyle + '"></span></div>'
           + '<div class="mono" style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:.04em"><span style="' + s.endAStyle + '">← ' + esc(s.endA) + '</span><span style="color:#6b6965">0</span><span style="' + s.endBStyle + '">' + esc(s.endB) + ' →</span></div>'
           + '<span style="font-size:11.5px;line-height:1.35;color:#828282;">' + esc(s.moeNote) + '</span></div>' : '')
+        + (s.note ? '<span style="font-size:12.5px;line-height:1.4;color:#3a3936">' + esc(s.note) + '</span>' : '')
         + '<div class="mono" style="display:flex;justify-content:space-between;gap:8px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11.5px;color:#828282;"><span>' + esc(s.foot) + '</span><span>* Sortant</span></div>'
         + (s.hasBack ? '<button class="mono" data-h="' + h(s.back) + '" style="align-self:flex-start;min-height:28px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#141414;border-bottom:1px solid #141414">Tout l’État →</button>' : '')
         + '</div>';
     } else if (v.hasStateSel) {
       const s = v.stSel;
       pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
-        + '<div class="mono" style="display:flex;gap:14px;font-size:11.5px"><span style="color:#1f6fc4">Dém. ' + s.d + '</span><span style="color:#c62f3f">Rép. ' + s.r + '</span><span style="color:#6b6965">Indécis ' + s.u + '</span></div>'
+        + '<div class="mono" style="display:flex;gap:14px;font-size:11.5px"><span style="color:#1f6fc4">Dém. ' + s.d + '</span><span style="color:#c62f3f">Rép. ' + s.r + '</span><span style="color:#6b6965">' + (window.__isRes ? 'Non tranché ' : 'Indécis ') + s.u + '</span></div>'
         + '<div style="max-height:210px;overflow-y:auto">' + s.rows.map((w) => '<button class="row mono" data-h="' + h(w.pick) + '" aria-label="' + esc(w.aria) + '" style="width:100%;display:flex;justify-content:space-between;gap:8px;padding:7px 4px;border-bottom:1px solid #efedea;font-size:11.5px;text-align:left;box-sizing:border-box"><span style="font-weight:600">' + esc(w.name + w.gainMark) + '</span><span style="color:' + w.statusColor + '">' + esc(w.status) + '</span></button>').join('') + '</div></div>';
     }
 
