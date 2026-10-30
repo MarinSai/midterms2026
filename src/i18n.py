@@ -306,7 +306,11 @@ T = [
 ('siège démocrate', 'escaño demócrata', 'seggio democratico'),
 ('siège républicain', 'escaño republicano', 'seggio repubblicano'),
 ('En tête dans les sondages et écart en points ; — : pas de moyenne.', 'En cabeza en las encuestas y diferencia en puntos; —: sin media.', 'In testa nei sondaggi e scarto in punti; —: nessuna media.'),
-('Classements : Cook Political Report, 30 octobre 2026. Sondages : moyennes Silver Bulletin, 29 octobre 2026 (écart en points). Graphique : Le Grand Continent.', 'Clasificaciones: Cook Political Report, 30 de octubre de 2026. Encuestas: medias de Silver Bulletin, 29 de octubre de 2026 (diferencia en puntos). Gráfico: El Grand Continent.', 'Rating: Cook Political Report, 30 ottobre 2026. Sondaggi: medie di Silver Bulletin, 29 ottobre 2026 (scarto in punti). Grafico: Il Grand Continent.'),
+('Classements : Cook Political Report, 30 octobre 2026. Sondages : moyennes Silver Bulletin, 29 octobre 2026 (écart en points).', 'Clasificaciones: Cook Political Report, 30 de octubre de 2026. Encuestas: medias de Silver Bulletin, 29 de octubre de 2026 (diferencia en puntos).', 'Rating: Cook Political Report, 30 ottobre 2026. Sondaggi: medie di Silver Bulletin, 29 ottobre 2026 (scarto in punti).'),
+('Graphique : Le Grand Continent', 'Gráfico: El Grand Continent', 'Grafico: Il Grand Continent'),
+('Au Sénat, ', 'En el Senado, ', 'Al Senato, '),
+(' courses sont à suivre', ' contiendas a seguir', ' sfide da seguire'),
+('À la Chambre, le scrutin sera serré dans ', 'En la Cámara, la votación será reñida en ', 'Alla Camera, il voto sarà serrato in '),
 ('Mi-mandat 2026 — Courses indécises - Le Grand Continent', 'Elecciones de mitad de mandato 2026: contiendas indecisas - El Grand Continent', 'Elezioni di midterm 2026: sfide in bilico - Il Grand Continent'),
 
 ('>Nord-Est<', '>Noreste<', '>Nord-est<'),

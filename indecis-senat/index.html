@@ -53,6 +53,8 @@ body{font-family:'GC National','Helvetica Neue',sans-serif;font-size:16px;line-h
 @media (max-width:600px){.pop .x{width:44px!important;height:44px!important;margin:-10px -10px 0 0!important}}
 .sheet{position:fixed;left:8px;right:8px;bottom:8px;width:auto!important;z-index:20;max-height:70vh;overflow-y:auto}
 .sheet .pop{position:static!important;left:auto!important;right:auto!important;width:100%!important;max-width:none!important;transform:none!important;translate:none!important}
+.ttl{margin:4px 0 6px;font-family:'GC Sanomat',Georgia,serif;font-weight:600;font-size:clamp(22px,3.2vw,30px);line-height:1.12;letter-spacing:-.01em;color:#141414;text-wrap:balance}
+.credit{margin:6px 0 0;font-size:11px;color:#6b6965}
 .tframe{display:flex;gap:22px;align-items:flex-start;padding:8px 0;box-sizing:border-box}
 .tmap{flex:1 1 auto;min-width:0;position:sticky;top:8px}
 .tmap .wrap{width:100%}
@@ -853,9 +855,10 @@ class Component extends DCLogic {
       + '<span style="font-size:12.5px;line-height:1.4;color:#3a3936">' + (CH === 'S' ? 'Majorité : 51 sièges (50 pour les républicains, grâce à la voix du vice-président). Sièges hors scrutin compris.' : 'Majorité : 218 sièges.') + '</span>'
       + '<span class="mono" style="font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;margin-top:4px">' + (CH === 'S' ? list.length + ' courses indécises' : list.length + ' circonscriptions indécises') + '</span>'
       + '<div class="trows' + (CH === 'H' ? ' hgrid' : '') + '">' + rows + '</div>' + (CH === 'H' ? '<span class="tsub" style="display:flex;gap:12px"><span><span class="hd" style="background:#3b8ee6"></span> siège démocrate</span><span><span class="hd" style="background:#e85462"></span> siège républicain</span></span><span class="tsub">En tête dans les sondages et écart en points ; — : pas de moyenne.</span>' : '')
-      + '<span style="font-size:11px;line-height:1.4;color:#6b6965">Classements : Cook Political Report, 30 octobre 2026. Sondages : moyennes Silver Bulletin, 29 octobre 2026 (écart en points). Graphique : Le Grand Continent.</span>'
+      + '<span style="font-size:11px;line-height:1.4;color:#6b6965">Classements : Cook Political Report, 30 octobre 2026. Sondages : moyennes Silver Bulletin, 29 octobre 2026 (écart en points).</span>'
       + '</aside>';
-    document.getElementById('app').innerHTML = '<div class="tframe"><div class="tmap">' + map + (mob && pop ? '<div class="popm">' + pop + '</div>' : '') + '</div>' + panel + '</div>';
+    const title = CH === 'S' ? 'Au Sénat, ' + list.length + ' courses sont à suivre' : 'À la Chambre, le scrutin sera serré dans ' + list.length + ' circonscriptions';
+    document.getElementById('app').innerHTML = '<h2 class="ttl">' + title + '</h2><div class="tframe"><div class="tmap">' + map + (mob && pop ? '<div class="popm">' + pop + '</div>' : '') + '<p class="credit">Graphique : Le Grand Continent</p></div>' + panel + '</div>';
     const pm = mob && document.querySelector('.popm'); if (pm && window.__popKey !== comp.state.sel) window.__gcScroll(pm, 'nearest'); window.__popKey = comp.state.sel;
     window.__typo(document.getElementById('app'));
     const pd = !mob && document.querySelector('.wrap .pop');
