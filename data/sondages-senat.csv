@@ -1,36 +1,36 @@
-État,Code,Siège détenu par,Sortant candidat,Remarque,Classement Cook,Candidat en tête,Parti,Moyenne (%),Deuxième,Parti,Moyenne (%),Sondages,Instituts,Autres candidats (moyenne %)
-Alabama,AL,Républicain,Siège ouvert,,Républicain sûr,Barry Moore,R,50.71,Everett Wess,D,36.81,5,5,
-Alaska,AK,Républicain,Dan Sullivan,,Indécis,Mary Peltola,D,48.24,Dan Sullivan,R,44.54,20,10,"Daniel J. Sullivan Jr. (O) 3,0 ; Gerald Heikes (R) 2,2"
-Arkansas,AR,Républicain,Tom Cotton,,Républicain sûr,Tom Cotton,R,50.8,Hallie Shoffner,D,39.41,6,4,
-Caroline du Nord,NC,Républicain,Siège ouvert,,Démocrate probable,Roy Cooper,D,52.15,Michael Whatley,R,41.96,42,17,
-Caroline du Sud,SC,Républicain,Darline Graham,,Penche républicain,Darline Graham,R,46.6,Annie Andrews,D,45.11,11,8,
-Colorado,CO,Démocrate,John Hickenlooper,,Démocrate sûr,John Hickenlooper,D,,Mark Baisley,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Dakota du Sud,SD,Républicain,Mike Rounds,,Républicain sûr,Mike Rounds,R,53.72,Brian Bengs,I,41.3,13,9,
-Delaware,DE,Démocrate,Chris Coons,,Démocrate sûr,Chris Coons,D,,Michael Katz,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Floride,FL,Républicain,Ashley Moody,Élection partielle,Républicain sûr,Ashley Moody,R,49.98,Angie Nixon,D,43.44,21,14,
-Géorgie,GA,Démocrate,Jon Ossoff,,Démocrate probable,Jon Ossoff,D,52.47,Mike Collins,R,42.14,14,10,
-Idaho,ID,Républicain,Jim Risch,,Républicain sûr,Jim Risch,R,50.81,Todd Achilles,I,34.79,8,5,
-Illinois,IL,Démocrate,Siège ouvert,,Démocrate sûr,Juliana Stratton,D,,Don Tracy,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Iowa,IA,Républicain,Siège ouvert,,Indécis,Josh Turek,D,46.81,Ashley Hinson,R,45.96,35,21,
-Kansas,KS,Républicain,Roger Marshall,,Indécis,Adam Hamilton,D,47.42,Roger Marshall,R,46.07,14,11,
-Kentucky,KY,Républicain,Siège ouvert,,Républicain sûr,Charles Booker,D,,Andy Barr,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Louisiane,LA,Républicain,Siège ouvert,,Républicain sûr,Jamie Davis,D,,Julia Letlow,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Maine,ME,Républicain,Susan Collins,,Indécis,Troy Jackson,D,49.4,Susan Collins,R,46.91,28,20,
-Massachusetts,MA,Démocrate,Ed Markey,,Démocrate sûr,Ed Markey,D,57.23,John Deaton,R,29.7,13,6,
-Michigan,MI,Démocrate,Siège ouvert,,Indécis,Abdul El-Sayed,D,49.29,Mike Rogers,R,45.61,53,30,
-Minnesota,MN,Démocrate,Siège ouvert,,Penche démocrate,Peggy Flanagan,D,49.37,Michele Tafoya,R,42.89,17,14,
-Mississippi,MS,Républicain,Cindy Hyde-Smith,,Républicain probable,Cindy Hyde-Smith,R,45.45,Scott Colom,D,38.86,3,3,
-Montana,MT,Républicain,Siège ouvert,,Républicain sûr,Kurt Alme,R,42.05,Seth Bodnar,I,33.65,15,11,"Alani Bankhead (D) 15,2"
-Nebraska,NE,Républicain,Pete Ricketts,,Républicain probable,Dan Osborn,I,46.72,Pete Ricketts,R,46.43,15,9,
-New Hampshire,NH,Démocrate,Siège ouvert,,Penche démocrate,Chris Pappas,D,49.81,John E. Sununu,R,42.58,25,16,
-New Jersey,NJ,Démocrate,Cory Booker,,Démocrate sûr,Cory Booker,D,,Justin Murphy,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Nouveau-Mexique,NM,Démocrate,Ben Ray Luján,,Démocrate sûr,Ben Ray Luján,D,54.28,Larry Marker,R,37.25,3,2,
-Ohio,OH,Républicain,Jon Husted,Élection partielle,Indécis,Sherrod Brown,D,48.26,Jon Husted,R,45.19,35,22,
-Oklahoma,OK,Républicain,Siège ouvert,,Républicain sûr,N’Kiyla Thomas,D,,Kevin Hern,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Oregon,OR,Démocrate,Jeff Merkley,,Démocrate sûr,Jeff Merkley,D,,David Brock Smith,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Rhode Island,RI,Démocrate,Jack Reed,,Démocrate sûr,Jack Reed,D,57.79,Raymond McKay,R,29.05,6,3,
-Tennessee,TN,Républicain,Bill Hagerty,,Républicain sûr,Marquita Bradshaw,D,,Bill Hagerty,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Texas,TX,Républicain,Siège ouvert,,Indécis,James Talarico,D,48.99,Ken Paxton,R,46.04,61,28,
-Virginie,VA,Démocrate,Mark Warner,,Démocrate sûr,Mark Warner,D,,Bert Mizusawa,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Virginie-Occidentale,WV,Républicain,Shelley Moore Capito,,Républicain sûr,Rachel Fetty Anderson,D,,Shelley Moore Capito,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
-Wyoming,WY,Républicain,Siège ouvert,,Républicain sûr,James W. Byrd,D,,Harriet Hageman,R,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+État,Code,Siège détenu par,Sortant candidat,Remarque,Classement Cook,Candidats,Candidat en tête,Parti,Moyenne (%),Deuxième,Parti,Moyenne (%),Sondages,Instituts,Autres candidats (moyenne %)
+Alabama,AL,Républicain,Siège ouvert,,Républicain sûr,Everett Wess (D) ; Barry Moore (R),Barry Moore,R,50.71,Everett Wess,D,36.81,5,5,
+Alaska,AK,Républicain,Dan Sullivan,,Indécis,"Mary Peltola (D) ; Dan Sullivan (R, sortant)",Mary Peltola,D,48.24,Dan Sullivan,R,44.54,20,10,"Daniel J. Sullivan Jr. (O) 3,0 ; Gerald Heikes (R) 2,2"
+Arkansas,AR,Républicain,Tom Cotton,,Républicain sûr,"Hallie Shoffner (D) ; Tom Cotton (R, sortant)",Tom Cotton,R,50.8,Hallie Shoffner,D,39.41,6,4,
+Caroline du Nord,NC,Républicain,Siège ouvert,,Démocrate probable,Roy Cooper (D) ; Michael Whatley (R),Roy Cooper,D,52.15,Michael Whatley,R,41.96,42,17,
+Caroline du Sud,SC,Républicain,Darline Graham,,Penche républicain,"Annie Andrews (D) ; Darline Graham (R, sortant)",Darline Graham,R,46.6,Annie Andrews,D,45.11,11,8,
+Colorado,CO,Démocrate,John Hickenlooper,,Démocrate sûr,"John Hickenlooper (D, sortant) ; Mark Baisley (R)",,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Dakota du Sud,SD,Républicain,Mike Rounds,,Républicain sûr,"Brian Bengs (I) ; Mike Rounds (R, sortant)",Mike Rounds,R,53.72,Brian Bengs,I,41.3,13,9,
+Delaware,DE,Démocrate,Chris Coons,,Démocrate sûr,"Chris Coons (D, sortant) ; Michael Katz (R)",,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Floride,FL,Républicain,Ashley Moody,Élection partielle,Républicain sûr,"Angie Nixon (D) ; Ashley Moody (R, sortant)",Ashley Moody,R,49.98,Angie Nixon,D,43.44,21,14,
+Géorgie,GA,Démocrate,Jon Ossoff,,Démocrate probable,"Jon Ossoff (D, sortant) ; Mike Collins (R)",Jon Ossoff,D,52.47,Mike Collins,R,42.14,14,10,
+Idaho,ID,Républicain,Jim Risch,,Républicain sûr,"Todd Achilles (I) ; Jim Risch (R, sortant)",Jim Risch,R,50.81,Todd Achilles,I,34.79,8,5,
+Illinois,IL,Démocrate,Siège ouvert,,Démocrate sûr,Juliana Stratton (D) ; Don Tracy (R),,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Iowa,IA,Républicain,Siège ouvert,,Indécis,Josh Turek (D) ; Ashley Hinson (R),Josh Turek,D,46.81,Ashley Hinson,R,45.96,35,21,
+Kansas,KS,Républicain,Roger Marshall,,Indécis,"Adam Hamilton (D) ; Roger Marshall (R, sortant)",Adam Hamilton,D,47.42,Roger Marshall,R,46.07,14,11,
+Kentucky,KY,Républicain,Siège ouvert,,Républicain sûr,Charles Booker (D) ; Andy Barr (R),,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Louisiane,LA,Républicain,Siège ouvert,,Républicain sûr,Jamie Davis (D) ; Julia Letlow (R),,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Maine,ME,Républicain,Susan Collins,,Indécis,"Troy Jackson (D) ; Susan Collins (R, sortant)",Troy Jackson,D,49.4,Susan Collins,R,46.91,28,20,
+Massachusetts,MA,Démocrate,Ed Markey,,Démocrate sûr,"Ed Markey (D, sortant) ; John Deaton (R)",Ed Markey,D,57.23,John Deaton,R,29.7,13,6,
+Michigan,MI,Démocrate,Siège ouvert,,Indécis,Abdul El-Sayed (D) ; Mike Rogers (R),Abdul El-Sayed,D,49.29,Mike Rogers,R,45.61,53,30,
+Minnesota,MN,Démocrate,Siège ouvert,,Penche démocrate,Peggy Flanagan (D) ; Michele Tafoya (R),Peggy Flanagan,D,49.37,Michele Tafoya,R,42.89,17,14,
+Mississippi,MS,Républicain,Cindy Hyde-Smith,,Républicain probable,"Scott Colom (D) ; Cindy Hyde-Smith (R, sortant) ; Ty Pinkins (I)",Cindy Hyde-Smith,R,45.45,Scott Colom,D,38.86,3,3,
+Montana,MT,Républicain,Siège ouvert,,Républicain sûr,Seth Bodnar (I) ; Kurt Alme (R) ; Alani Bankhead (D),Kurt Alme,R,42.05,Seth Bodnar,I,33.65,15,11,"Alani Bankhead (D) 15,2"
+Nebraska,NE,Républicain,Pete Ricketts,,Républicain probable,"Dan Osborn (I) ; Pete Ricketts (R, sortant)",Dan Osborn,I,46.72,Pete Ricketts,R,46.43,15,9,
+New Hampshire,NH,Démocrate,Siège ouvert,,Penche démocrate,Chris Pappas (D) ; John E. Sununu (R),Chris Pappas,D,49.81,John E. Sununu,R,42.58,25,16,
+New Jersey,NJ,Démocrate,Cory Booker,,Démocrate sûr,"Cory Booker (D, sortant) ; Justin Murphy (R)",,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Nouveau-Mexique,NM,Démocrate,Ben Ray Luján,,Démocrate sûr,"Ben Ray Luján (D, sortant) ; Larry Marker (R)",Ben Ray Luján,D,54.28,Larry Marker,R,37.25,3,2,
+Ohio,OH,Républicain,Jon Husted,Élection partielle,Indécis,"Sherrod Brown (D) ; Jon Husted (R, sortant)",Sherrod Brown,D,48.26,Jon Husted,R,45.19,35,22,
+Oklahoma,OK,Républicain,Siège ouvert,,Républicain sûr,N’Kiyla Thomas (D) ; Kevin Hern (R),,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Oregon,OR,Démocrate,Jeff Merkley,,Démocrate sûr,"Jeff Merkley (D, sortant) ; David Brock Smith (R)",,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Rhode Island,RI,Démocrate,Jack Reed,,Démocrate sûr,"Jack Reed (D, sortant) ; Raymond McKay (R)",Jack Reed,D,57.79,Raymond McKay,R,29.05,6,3,
+Tennessee,TN,Républicain,Bill Hagerty,,Républicain sûr,"Marquita Bradshaw (D) ; Bill Hagerty (R, sortant)",,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Texas,TX,Républicain,Siège ouvert,,Indécis,James Talarico (D) ; Ken Paxton (R),James Talarico,D,48.99,Ken Paxton,R,46.04,61,28,
+Virginie,VA,Démocrate,Mark Warner,,Démocrate sûr,"Mark Warner (D, sortant) ; Bert Mizusawa (R)",,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Virginie-Occidentale,WV,Républicain,Shelley Moore Capito,,Républicain sûr,"Rachel Fetty Anderson (D) ; Shelley Moore Capito (R, sortant)",,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)
+Wyoming,WY,Républicain,Siège ouvert,,Républicain sûr,James W. Byrd (D) ; Harriet Hageman (R),,,,,,,,,Pas de moyenne Silver Bulletin (moins de trois sondages)

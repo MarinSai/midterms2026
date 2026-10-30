@@ -23,12 +23,13 @@ const pollCols = (p, cands) => {
 const out = path.join(__dirname, '..', 'data');
 
 // Sénat
-const S = [['État', 'Code', 'Siège détenu par', 'Sortant candidat', 'Remarque', 'Classement Cook', 'Candidat en tête', 'Parti', 'Moyenne (%)', 'Deuxième', 'Parti', 'Moyenne (%)', 'Sondages', 'Instituts', 'Autres candidats (moyenne %)']];
+const S = [['État', 'Code', 'Siège détenu par', 'Sortant candidat', 'Remarque', 'Classement Cook', 'Candidats', 'Candidat en tête', 'Parti', 'Moyenne (%)', 'Deuxième', 'Parti', 'Moyenne (%)', 'Sondages', 'Instituts', 'Autres candidats (moyenne %)']];
 for (const st of Object.keys(RACES).sort((a, b) => NAMES[a].localeCompare(NAMES[b], 'fr'))) {
   const [type, holder, , , cands] = RACES[st], p = POLLS['S:' + st];
   const inc = cands.find((k) => k[2]);
-  const pc = p ? pollCols(p, cands) : [cands[0][0], cands[0][1], '', cands[1] ? cands[1][0] : '', cands[1] ? cands[1][1] : '', '', '', '', 'Pas de moyenne Silver Bulletin (moins de trois sondages)'];
-  S.push([NAMES[st], st, PARTY[holder], inc ? inc[0] : 'Siège ouvert', type === 'Partielle' ? 'Élection partielle' : '', COOKL[COOK[st]], ...pc]);
+  const list = cands.map((k) => k[0] + ' (' + k[1] + (k[2] ? ', sortant' : '') + ')').join(' ; ');
+  const pc = p ? pollCols(p, cands) : ['', '', '', '', '', '', '', '', 'Pas de moyenne Silver Bulletin (moins de trois sondages)'];
+  S.push([NAMES[st], st, PARTY[holder], inc ? inc[0] : 'Siège ouvert', type === 'Partielle' ? 'Élection partielle' : '', COOKL[COOK[st]], list, ...pc]);
 }
 fs.writeFileSync(path.join(out, 'sondages-senat.csv'), csv(S));
 
