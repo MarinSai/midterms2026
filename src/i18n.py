@@ -86,9 +86,9 @@ T = [
 (' aux républicains. Dans la moyenne des sondages de Silver Bulletin, les démocrates devancent les républicains de ', ' a los republicanos. En la media de encuestas de Silver Bulletin, los demócratas aventajan a los republicanos en ', ' ai repubblicani. Nella media dei sondaggi di Silver Bulletin, i democratici sono avanti ai repubblicani di '),
 (' points sur le vote générique.', ' puntos en el voto genérico.', ' punti nel voto generico.'),
 ('Classements au 30 oct. - sondages au 29 oct.', 'Clasificaciones del 30 de oct. - encuestas del 29 de oct.', 'Rating al 30 ott. - sondaggi al 29 ott.'),
-('Classements : Cook Political Report (Sénat, 30 octobre 2026 ; Chambre, 30 octobre 2026). Sondages : moyennes Silver Bulletin au 29 octobre 2026, d’après la base de sondages du New York Times ; seules les courses comptant au moins trois sondages de deux instituts ont une moyenne. Erreur moyenne des sondages (±4,1 points au Sénat, ±4,4 points à la Chambre) : écart moyen, depuis 1998, entre la moyenne des sondages publiés dans les trois dernières semaines et le résultat, calculé par Le Grand Continent d’après la base de sondages de Silver Bulletin. Graphique : Le Grand Continent.',
- 'Clasificaciones: Cook Political Report (Senado, 30 de octubre de 2026; Cámara, 30 de octubre de 2026). Encuestas: medias de Silver Bulletin a 29 de octubre de 2026, a partir de la base de encuestas del New York Times; solo tienen media las contiendas con al menos tres encuestas de dos institutos. Error medio de las encuestas (±4,1 puntos en el Senado, ±4,4 puntos en la Cámara): diferencia media, desde 1998, entre la media de las encuestas publicadas en las tres últimas semanas y el resultado, calculada por El Grand Continent a partir de la base de encuestas de Silver Bulletin. Gráfico: El Grand Continent.',
- 'Rating: Cook Political Report (Senato, 30 ottobre 2026; Camera, 30 ottobre 2026). Sondaggi: medie di Silver Bulletin al 29 ottobre 2026, sulla base dei sondaggi del New York Times; hanno una media solo le corse con almeno tre sondaggi di due istituti. Errore medio dei sondaggi (±4,1 punti al Senato, ±4,4 punti alla Camera): scarto medio, dal 1998, tra la media dei sondaggi pubblicati nelle ultime tre settimane e il risultato, calcolato da Il Grand Continent sulla base dei sondaggi di Silver Bulletin. Grafico: Il Grand Continent.'),
+('Classements : Cook Political Report (Sénat, 30 octobre 2026 ; Chambre, 30 octobre 2026). Sondages : moyennes Silver Bulletin au 29 octobre 2026, d’après la base de sondages du New York Times (vote générique : moyenne Silver Bulletin du 28 octobre) ; seules les courses comptant au moins trois sondages de deux instituts ont une moyenne. Erreur moyenne des sondages (±4,1 points au Sénat, ±4,4 points à la Chambre) : écart moyen, depuis 1998, entre la moyenne des sondages publiés dans les trois dernières semaines et le résultat, calculé par Le Grand Continent d’après la base de sondages de Silver Bulletin. Graphique : Le Grand Continent.',
+ 'Clasificaciones: Cook Political Report (Senado, 30 de octubre de 2026; Cámara, 30 de octubre de 2026). Encuestas: medias de Silver Bulletin a 29 de octubre de 2026, a partir de la base de encuestas del New York Times (voto genérico: media de Silver Bulletin del 28 de octubre); solo tienen media las contiendas con al menos tres encuestas de dos institutos. Error medio de las encuestas (±4,1 puntos en el Senado, ±4,4 puntos en la Cámara): diferencia media, desde 1998, entre la media de las encuestas publicadas en las tres últimas semanas y el resultado, calculada por El Grand Continent a partir de la base de encuestas de Silver Bulletin. Gráfico: El Grand Continent.',
+ 'Rating: Cook Political Report (Senato, 30 ottobre 2026; Camera, 30 ottobre 2026). Sondaggi: medie di Silver Bulletin al 29 ottobre 2026, sulla base dei sondaggi del New York Times (voto generico: media di Silver Bulletin del 28 ottobre); hanno una media solo le corse con almeno tre sondaggi di due istituti. Errore medio dei sondaggi (±4,1 punti al Senato, ±4,4 punti alla Camera): scarto medio, dal 1998, tra la media dei sondaggi pubblicati nelle ultime tre settimane e il risultato, calcolato da Il Grand Continent sulla base dei sondaggi di Silver Bulletin. Grafico: Il Grand Continent.'),
 ('dont 34 hors scrutin', 'de ellos, 34 no se renuevan', 'di cui 34 non in palio'),
 ('dont 31 hors scrutin', 'de ellos, 31 no se renuevan', 'di cui 31 non in palio'),
 ('Vote générique : ', 'Voto genérico: ', 'Voto generico: '),
@@ -335,7 +335,7 @@ CODE = {
   ("ordinal(c.id) + ' : ' +", "ordinal(c.id) + ': ' +"),
   ("const closeParis = (et) => { const h = (Math.floor(et) + 6) % 24, m = et % 1 ? '30' : ''; return h === 0 && !m ? 'minuit' : h + ' h' + (m ? ' ' + m : ''); };", "const closeParis = (et) => { const h = (Math.floor(et) + 6) % 24; return String(h).padStart(2, '0') + ':' + (et % 1 ? '30' : '00'); };"),
   ("' circonscription' + (ids.length > 1 ? 's' : '')", "(ids.length > 1 ? ' collegi' : ' collegio')"),
-  ("' course' + (nSeats > 1 ? 's' : '')", "(nSeats > 1 ? ' corse' : ' corsa')"),
+  ("' course' + (nSeats > 1 ? 's' : '')", "(nSeats > 1 ? ' sfide' : ' sfida')"),
   ("' siège' + (nSeats > 1 ? 's' : '')", "(nSeats > 1 ? ' seggi' : ' seggio')"),
   ("' circonscriptions'", "' collegi'"),
   ("(+n === 1 ? '1re' : +n + 'e') + ' circonscription'", "(+n) + '° collegio'"),
@@ -359,4 +359,8 @@ def translate(page, lang):
     # Un seul passage : les fragments les plus longs l'emportent, le texte traduit n'est pas retraité
     rx = re.compile('|'.join('(?<![A-Za-zÀ-ÿ])' + re.escape(t[0]) + '(?![A-Za-zÀ-ÿ])' for t in pairs))
     m = {t[0]: t[k] for t in pairs}
+    if lang == 'it':
+        # choix de la rédaction italienne : « sfida/sfide » plutôt que « corsa/corse », « Scarto » plutôt que « Banda », « midterm » dans les titres
+        fix = lambda v: re.sub(r'\b([Cc])ors([ae])\b', lambda x: ('S' if x.group(1) == 'C' else 's') + 'fid' + x.group(2), v).replace('Banda: ±', 'Scarto: ±').replace('lezioni di metà mandato', 'lezioni di midterm')
+        m = {a: fix(b) for a, b in m.items()}
     return rx.sub(lambda g: m[g.group(0)], page)

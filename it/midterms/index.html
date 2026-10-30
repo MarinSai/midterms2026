@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Elezioni di metà mandato 2026: Senato e Camera - Il Grand Continent</title>
+<title>Elezioni di midterm 2026: Senato e Camera - Il Grand Continent</title>
 <script async src="../../vendor/iframe-resizer-child-5.5.9.umd.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -389,14 +389,14 @@ class Component extends DCLogic {
     let x = 0;
     if (dBase) { put(x, dBase, hatch(SOLID.D), dBase + ' seggi democratici non in palio'); x += dBase; }
     put(x, T.won.D, SOLID.D, T.won.D + ' seggi vinti dai democratici'); x += T.won.D;
-    put(x, T.led.D, TINT.D, T.led.D + ' corse con il democratico in testa'); x += T.led.D;
+    put(x, T.led.D, TINT.D, T.led.D + ' sfide con il democratico in testa'); x += T.led.D;
     put(x, T.won.I, SOLID.I, T.won.I + (T.won.I > 1 ? ' seggi indipendenti' : ' seggio indipendente')); x += T.won.I;
-    put(x, T.led.I, TINT.I, T.led.I + (T.led.I > 1 ? ' corse con un indipendente in testa' : ' corsa con un indipendente in testa')); x += T.led.I;
+    put(x, T.led.I, TINT.I, T.led.I + (T.led.I > 1 ? ' sfide con un indipendente in testa' : ' sfida con un indipendente in testa')); x += T.led.I;
     let y = total;
     if (rBase) { y -= rBase; put(y, rBase, hatch(SOLID.R), rBase + ' seggi repubblicani non in palio'); }
     y -= T.won.R; put(y, T.won.R, SOLID.R, T.won.R + ' seggi vinti dai repubblicani');
-    y -= T.led.R; put(y, T.led.R, TINT.R, T.led.R + ' corse con il repubblicano in testa');
-    if (y - x > 0) put(x, y - x, '#f0eeea', (y - x) + ' corse senza risultato');
+    y -= T.led.R; put(y, T.led.R, TINT.R, T.led.R + ' sfide con il repubblicano in testa');
+    if (y - x > 0) put(x, y - x, '#f0eeea', (y - x) + ' sfide senza risultato');
 // Un carré par siège, rangés par colonnes (2 rangées pour le Senato, 5 pour la Camera)
     const ROWS = isSenate ? 2 : 5, COLS = Math.ceil(total / ROWS), FILL = isSenate ? .86 : .8;
     for (let i = 0; i < total; i++) {
@@ -501,7 +501,7 @@ class Component extends DCLogic {
         eevpLabel: pending ? 'Ancora nessun risultato' : '≈ ' + r.eevp + '% dei voti attesi scrutinati',
         eevpW: r.eevp + '%',
         foot: pending ? statusText(r, HOURS[st][2]) : '≈ ' + r.eevp + '% dei voti scrutinati' + (r.winner ? ' - vincitore proiettato da AP' : ''),
-        note: (pending ? '' : (r.winner ? 'Vincitore proiettato dall’Associated Press; i dati cambiano fino alla certificazione. ' : 'Risultati parziali, corsa non ancora decisa. ')) + (extra || ''),
+        note: (pending ? '' : (r.winner ? 'Vincitore proiettato dall’Associated Press; i dati cambiano fino alla certificazione. ' : 'Risultati parziali, sfida non ancora decisa. ')) + (extra || ''),
         hours: hoursRows(st),
         hasBack: !!back, back
       };
@@ -574,7 +574,7 @@ class Component extends DCLogic {
         time: closeParis(t),
         timeColor: past ? '#141414' : '#8c8a85',
         lineStyle: 'height: 2px; border-radius: 999px; background: ' + (past ? '#141414' : '#e4e2de') + ';',
-        n: isSenate ? nSeats + (nSeats > 1 ? ' corse' : ' corsa') : nSeats + (nSeats > 1 ? ' seggi' : ' seggio'),
+        n: isSenate ? nSeats + (nSeats > 1 ? ' sfide' : ' sfida') : nSeats + (nSeats > 1 ? ' seggi' : ' seggio'),
         chips: sts.map((st) => {
           if (isSenate) {
             const f = sFill(st), pend = f === PENDING;
@@ -630,7 +630,7 @@ class Component extends DCLogic {
       liveCls: live ? 'live' : '', liveDot: live ? '#e85462' : '#b9b6b0', updatedLabel: updated,
       dTotal, rTotal,
       dCheck: dCtrl ? '✓' : '', rCheck: rCtrl ? '✓' : '',
-      dVotes: isSenate ? 'di cui 34 non in palio' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voti (totale delle corse)' : '') : (T.dV ? this.fmtN(T.dV) + ' voti (totale delle corse)' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voti (totale delle corse) - ' : '') + 'di cui 31 non in palio' : (T.rV ? this.fmtN(T.rV) + ' voti (totale delle corse)' : '—'),
+      dVotes: isSenate ? 'di cui 34 non in palio' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voti (totale delle sfide)' : '') : (T.dV ? this.fmtN(T.dV) + ' voti (totale delle sfide)' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voti (totale delle sfide) - ' : '') + 'di cui 31 non in palio' : (T.rV ? this.fmtN(T.rV) + ' voti (totale delle sfide)' : '—'),
       pendingLabel: before ? (isSenate ? '35 seggi in palio' : '435 seggi in palio') : (undec > 0 ? undec + ' seggi non assegnati' : ''),
       markLabel: markAt + ' SEGGI',
       markStyle: 'position: absolute; left: ' + mPct + '%; bottom: calc(100% + 14px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',
@@ -641,7 +641,7 @@ class Component extends DCLogic {
         { name: 'Rep.', tint: TINT.R, solid: SOLID.R },
         { name: 'Ind.', tint: TINT.I, solid: SOLID.I }
       ],
-      mapTitle: isSenate ? 'Le 35 corse' : 'I 435 collegi',
+      mapTitle: isSenate ? 'Le 35 sfide' : 'I 435 collegi',
       mapHint: isSenate ? 'Clicca su uno Stato' : 'Clicca su un collegio',
       geoReady: !!geo, states, labels, callouts, coLines, miniS,
       selD: sel && sel.startsWith('S:') && geo && geo.states[sel.slice(2)] ? geo.states[sel.slice(2)].d : '',
@@ -756,7 +756,7 @@ class Component extends DCLogic {
     window.__pinned = comp.state.sel || null;
     document.getElementById('app').innerHTML =
       '<div style="background:#fff;color:#141414;font-family:\'GC National\',Georgia,serif;font-size:16px;line-height:1.45"><div style="max-width:1200px;margin:0 auto;padding:32px clamp(16px,3vw,40px) 56px;box-sizing:border-box">'
-      + '<header style="display:flex;flex-direction:column;gap:14px;padding-bottom:26px"><h1 style="margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:clamp(36px,5.2vw,62px);line-height:1;letter-spacing:-.02em;max-width:30ch;text-wrap:balance">Osservatorio delle elezioni di metà mandato 2026</h1><p style="margin:0;max-width:64ch;font-size:18px;line-height:1.5;color:#3a3936">Gli elettori americani si recano alle urne martedì 3 novembre per rinnovare la Camera dei rappresentanti e più di un terzo del Senato. Negli Stati si tengono inoltre diverse migliaia di votazioni per eleggere, tra gli altri, governatori, procuratori generali e membri delle assemblee legislative statali.</p>'
+      + '<header style="display:flex;flex-direction:column;gap:14px;padding-bottom:26px"><h1 style="margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:clamp(36px,5.2vw,62px);line-height:1;letter-spacing:-.02em;max-width:30ch;text-wrap:balance">Osservatorio delle elezioni di midterm 2026</h1><p style="margin:0;max-width:64ch;font-size:18px;line-height:1.5;color:#3a3936">Gli elettori americani si recano alle urne martedì 3 novembre per rinnovare la Camera dei rappresentanti e più di un terzo del Senato. Negli Stati si tengono inoltre diverse migliaia di votazioni per eleggere, tra gli altri, governatori, procuratori generali e membri delle assemblee legislative statali.</p>'
       + (v.showMockTag ? '<span class="mono" style="align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7a5600;background:#fbefcc;border-radius:999px;padding:4px 10px">Bozza - risultati fittizi</span>' : '') + '</header>'
       + '<nav aria-label="In questa pagina" style="background:#f4f4f2;margin:4px 0 30px;padding:16px 22px 16px;display:flex;flex-wrap:wrap;gap:14px 44px;align-items:flex-end">' + v.navGroups.map((g) => '<div style="display:flex;flex-direction:column;gap:10px;min-width:0"><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#6b6965">' + esc(g.label) + '</span><div style="display:flex;flex-wrap:wrap;gap:0 28px">' + g.items.map((it) => '<button data-h="' + h(it.pick) + '" aria-current="' + it.cur + '" aria-label="' + esc(it.label) + '" style="display:flex;flex-direction:column;gap:12px;text-align:left;min-height:44px;padding:0;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;"><span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:16px;font-weight:600;line-height:1.25;color:#1c1b1c">' + esc(it.label) + '<span style="font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:' + it.tagBg + ';border-radius:999px;padding:2px 7px">' + esc(it.tag) + '</span></span><span aria-hidden="true" style="' + it.barStyle + '"></span></button>').join('') + '</div></div>').join('') + '</nav>'
       + '<section aria-label="Ripartizione dei seggi"><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px"><h2 style="margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:30px;line-height:1.05;letter-spacing:-.01em">' + esc(v.headline) + '</h2><p style="margin:0;max-width:70ch;font-size:16px;line-height:1.5;color:#3a3936">' + esc(v.dek) + '</p></div><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:\'GC Sanomat\', Georgia, serif;font-weight:600;font-variant-numeric:lining-nums tabular-nums;font-size:clamp(42px,5vw,60px);line-height:1;color:#3b8ee6;letter-spacing:-.02em">' + v.dTotal + '</span><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-weight:600;font-size:16px;color:#1f6fc4">Democratici ' + v.dCheck + '</span></div>'
