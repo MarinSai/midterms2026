@@ -16,3 +16,4 @@ build('forecast.dc.html', 'shell_forecast.html', 'midterm-forecast')
 # Racine : renvoi vers la page des résultats
 (d.parent / 'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Midterms 2026 · Le Grand Continent</title><meta http-equiv="refresh" content="0; url=midterms/"><link rel="canonical" href="midterms/"></head><body><a href="midterms/">Résultats des midterms 2026</a></body></html>\n')
 print('ok')
+import subprocess; subprocess.run(['node', str(d / 'export_csv.js')], check=True)
