@@ -17,3 +17,12 @@ build('forecast.dc.html', 'shell_forecast.html', 'midterm-forecast')
 (d.parent / 'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Midterms 2026 · Le Grand Continent</title><meta http-equiv="refresh" content="0; url=midterms/"><link rel="canonical" href="midterms/"></head><body><a href="midterms/">Résultats des midterms 2026</a></body></html>\n')
 print('ok')
 import subprocess; subprocess.run(['node', str(d / 'export_csv.js')], check=True)
+# Versions espagnole et italienne des pages résultats et forecast : es/<page>/, it/<page>/
+import re, sys
+sys.path.insert(0, str(d)); from i18n import translate
+for lang in ('es', 'it'):
+    for page in ('midterms', 'midterm-forecast'):
+        s = (d.parent / page / 'index.html').read_text()
+        s = re.sub(r'(["\'(])\.\./', r'\1../../', translate(s, lang))
+        p = d.parent / lang / page / 'index.html'; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(s)
+print('i18n ok')
