@@ -55,7 +55,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
   <!-- En-tête -->
   <header style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 26px;">
     <h1 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: clamp(36px, 5.2vw, 62px); line-height: 1; letter-spacing: -.02em; max-width: 30ch; text-wrap: balance;">Observatoire des élections de mi-mandat 2026</h1>
-    <p style="margin: 0; max-width: 64ch; font-size: 18px; line-height: 1.5; color: #3a3936;">Les électeurs américains se rendent aux urnes mardi 3 novembre pour renouveler la Chambre des représentants et plus d’un tiers du Sénat. Plusieurs milliers de scrutins ont également lieu au sein des États pour élire des gouverneurs, des procureurs généraux et des élus des législatures d’États notamment.</p>
+    <p style="margin: 0; max-width: 64ch; font-size: 18px; line-height: 1.5; color: #3a3936;">Les électeurs américains se rendent aux urnes mardi 3 novembre pour renouveler la Chambre des représentants et plus d’un tiers du Sénat. Plusieurs milliers de scrutins ont également lieu au sein des États pour élire notamment des gouverneurs, des procureurs généraux et des élus des législatures d’États.</p>
     <sc-if value="{{showMockTag}}" hint-placeholder-val="{{ true }}">
       <span class="mono" style="align-self: flex-start; font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #7a5600; background: #fbefcc; border-radius: 999px; padding: 4px 10px;">Maquette - résultats fictifs</span>
     </sc-if>
@@ -546,7 +546,7 @@ class Component extends DCLogic {
       if (r.status === 'runoff') return 'Second tour';
       if (r.status === 'too_close') return 'Trop serré';
       if (r.status === 'final') return 'Dépouillement terminé';
-      if (r.winner) return 'Vainqueur désigné';
+      if (r.winner) return 'Élu : ' + ({ D: 'Dém.', R: 'Rép.', I: 'Ind.' }[r.winner] || 'Autre');
       if (r.status === 'counting') return r.eevp + ' % dépouillé';
       return 'Premiers résultats à ' + closeParis(res);
     };
@@ -719,7 +719,7 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Partielle' ? 'Élection partielle' : race[0] === 'Siège ouvert' ? 'Siège ouvert' : race[0] === 'Sortant battu' ? 'Sortant battu à la primaire' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], ({ 'Siège ouvert': { D: 'Siège démocrate ouvert', R: 'Siège républicain ouvert' }, 'Élection partielle': { D: 'Élection partielle (siège démocrate)', R: 'Élection partielle (siège républicain)' }, 'Sortant battu à la primaire': { D: 'Siège démocrate - sortant battu à la primaire', R: 'Siège républicain - sortant battu à la primaire' } }[kind] || { D: 'Siège démocrate', R: 'Siège républicain' })[race[1] === 'D' ? 'D' : 'R'], EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
       selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), ({ D: 'Siège détenu par les démocrates', R: 'Siège détenu par les républicains' }[(hRes[id].cands.find((c) => c.inc) || {}).p || m.holder] || 'Siège détenu par un indépendant') + ' - ' + ['Démocrate sûr (Cook)', 'Démocrate probable (Cook)', 'Penche démocrate (Cook)', 'Indécis (Cook)', 'Penche républicain (Cook)', 'Républicain probable (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' - circonscription redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
@@ -837,7 +837,7 @@ class Component extends DCLogic {
       liveCls: live ? 'live' : '', liveDot: live ? '#e85462' : '#b9b6b0', updatedLabel: updated,
       dTotal, rTotal,
       dCheck: dCtrl ? '✓' : '', rCheck: rCtrl ? '✓' : '',
-      dVotes: isSenate ? 'dont 34 hors scrutin' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voix' : '') : (T.dV ? this.fmtN(T.dV) + ' voix' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voix - ' : '') + 'dont 31 hors scrutin' : (T.rV ? this.fmtN(T.rV) + ' voix' : '—'),
+      dVotes: isSenate ? 'dont 34 hors scrutin' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voix (total des courses)' : '') : (T.dV ? this.fmtN(T.dV) + ' voix (total des courses)' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voix (total des courses) - ' : '') + 'dont 31 hors scrutin' : (T.rV ? this.fmtN(T.rV) + ' voix (total des courses)' : '—'),
       pendingLabel: before ? (isSenate ? '35 sièges en jeu' : '435 sièges en jeu') : (undec > 0 ? undec + ' sièges non attribués' : ''),
       markLabel: markAt + ' SIÈGES',
       markStyle: 'position: absolute; left: ' + mPct + '%; bottom: calc(100% + 14px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',

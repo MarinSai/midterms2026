@@ -337,7 +337,7 @@ class Component extends DCLogic {
       if (r.status === 'runoff') return 'Segunda vuelta';
       if (r.status === 'too_close') return 'Demasiado ajustado';
       if (r.status === 'final') return 'Escrutinio terminado';
-      if (r.winner) return 'Ganador proyectado';
+      if (r.winner) return 'Electo: ' + ({ D: 'Dem.', R: 'Rep.', I: 'Ind.' }[r.winner] || 'Otro');
       if (r.status === 'counting') return r.eevp + ' % escrutado';
       return 'Primeros resultados a las ' + closeParis(res);
     };
@@ -510,7 +510,7 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Parcial' ? 'Elección parcial' : race[0] === 'Escaño abierto' ? 'Escaño abierto' : race[0] === 'Saliente derrotado' ? 'Saliente derrotado en las primarias' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - escaño ' : 'Escaño ') + (race[1] === 'D' ? 'demócrata' : 'republicano'), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], ({ 'Escaño abierto': { D: 'Escaño demócrata abierto', R: 'Escaño republicano abierto' }, 'Elección parcial': { D: 'Elección parcial (escaño demócrata)', R: 'Elección parcial (escaño republicano)' }, 'Saliente derrotado en las primarias': { D: 'Escaño demócrata - saliente derrotado en las primarias', R: 'Escaño republicano - saliente derrotado en las primarias' } }[kind] || { D: 'Escaño demócrata', R: 'Escaño republicano' })[race[1] === 'D' ? 'D' : 'R'], EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
       selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), ({ D: 'Escaño en manos de los demócratas', R: 'Escaño en manos de los republicanos' }[(hRes[id].cands.find((c) => c.inc) || {}).p || m.holder] || 'Escaño en manos de un independiente') + ' - ' + ['Demócrata seguro (Cook)', 'Demócrata probable (Cook)', 'Tendencia demócrata (Cook)', 'Indeciso (Cook)', 'Tendencia republicana (Cook)', 'Republicano probable (Cook)', 'Republicano seguro (Cook)'][m.cook] + (m.favor ? ' - distrito redibujado a favor de los ' + (m.favor === 'R' ? 'republicanos' : 'demócratas') : ''), 'Candidatos: Bloomberg (datos de AP).', () => this.setState({ sel: 'HS:' + st }));
@@ -630,7 +630,7 @@ class Component extends DCLogic {
       liveCls: live ? 'live' : '', liveDot: live ? '#e85462' : '#b9b6b0', updatedLabel: updated,
       dTotal, rTotal,
       dCheck: dCtrl ? '✓' : '', rCheck: rCtrl ? '✓' : '',
-      dVotes: isSenate ? 'de ellos, 34 no se renuevan' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' votos' : '') : (T.dV ? this.fmtN(T.dV) + ' votos' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' votos - ' : '') + 'de ellos, 31 no se renuevan' : (T.rV ? this.fmtN(T.rV) + ' votos' : '—'),
+      dVotes: isSenate ? 'de ellos, 34 no se renuevan' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' votos (total de las contiendas)' : '') : (T.dV ? this.fmtN(T.dV) + ' votos (total de las contiendas)' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' votos (total de las contiendas) - ' : '') + 'de ellos, 31 no se renuevan' : (T.rV ? this.fmtN(T.rV) + ' votos (total de las contiendas)' : '—'),
       pendingLabel: before ? (isSenate ? '35 escaños en juego' : '435 escaños en juego') : (undec > 0 ? undec + ' escaños sin atribuir' : ''),
       markLabel: markAt + ' ESCAÑOS',
       markStyle: 'position: absolute; left: ' + mPct + '%; bottom: calc(100% + 14px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',
@@ -793,6 +793,8 @@ class Component extends DCLogic {
     const lf = window.__lastFocus;
     rove();
     if (lf) { const el = document.querySelector('[aria-label="' + CSS.escape(lf) + '"]'); if (el) el.focus({ preventScroll: true }); }
+    // fiche ouverte au clavier : le focus passe dans la fiche (Échap ou × le rendent à l’État)
+    if (window.__kbOpen) { window.__kbOpen = false; const pd = document.querySelector('.pop:not(.pv), .popm .pop'); if (pd) { pd.tabIndex = -1; pd.focus({ preventScroll: true }); } }
   };
   // Sur ordinateur, la fiche s’ouvre au survol de la carte ; un clic l’épingle (comme avant)
   const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -858,6 +860,7 @@ class Component extends DCLogic {
     // clic sur la case survolée : la fiche déjà affichée est épinglée au lieu d’être refermée
     if (id === hoverId && comp.state.sel && comp.state.sel !== window.__pinned) { hoverId = null; window.__render(); return; }
     hoverId = null;
+    window.__kbOpen = e.detail === 0 && !b.closest('.pop'); // activation au clavier (Entrée, Espace)
     const fn = handlers[id]; if (fn) fn();
     // État choisi dans le calendrier à côté de la carte : sélection « souple », qui disparaît quand le curseur quitte la carte et le calendrier
     window.__soft = b.closest('.tl-side') && comp.state.sel ? comp.state.sel : null;

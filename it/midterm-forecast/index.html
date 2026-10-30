@@ -569,7 +569,7 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Suppletiva' ? 'Elezione suppletiva' : race[0] === 'Seggio aperto' ? 'Seggio aperto' : race[0] === 'Uscente sconfitto' ? 'Uscente sconfitto alle primarie' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - seggio ' : 'Seggio ') + (race[1] === 'D' ? 'democratico' : 'repubblicano') + ' - ' + statusText(sRes[st]), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], ({ 'Seggio aperto': { D: 'Seggio democratico aperto', R: 'Seggio repubblicano aperto' }, 'Elezione suppletiva': { D: 'Elezione suppletiva (seggio democratico)', R: 'Elezione suppletiva (seggio repubblicano)' }, 'Uscente sconfitto alle primarie': { D: 'Seggio democratico - uscente sconfitto alle primarie', R: 'Seggio repubblicano - uscente sconfitto alle primarie' } }[kind] || { D: 'Seggio democratico', R: 'Seggio repubblicano' })[race[1] === 'D' ? 'D' : 'R'] + ' - ' + statusText(sRes[st]), EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
       selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), ({ D: 'Seggio detenuto dai democratici', R: 'Seggio detenuto dai repubblicani' }[(hRes[id].cands.find((c) => c.inc) || {}).p || m.holder] || 'Seggio detenuto da un indipendente') + ' - ' + statusText(hRes[id]) + (m.favor ? ' - collegio ridisegnato a favore dei ' + (m.favor === 'R' ? 'repubblicani' : 'democratici') : ''), '', () => this.setState({ sel: 'HS:' + st }));
@@ -705,8 +705,8 @@ class Component extends DCLogic {
       isSenate, isHouse: !isSenate,
       headline: isSenate ? 'Senato: lo stato delle corse' : 'Camera: lo stato delle corse',
       dek: isSenate
-        ? 'A pochi giorni dal voto, il Cook Political Report considera in bilico ' + undec + ' delle 35 corse. Contando i seggi non in palio, ' + dTotal + ' seggi sono sicuri o favorevoli ai democratici e ' + rTotal + ' ai repubblicani. Ai democratici servono 51 seggi per la maggioranza, ai repubblicani 50, grazie al voto del vicepresidente.'
-        : 'Il Cook Political Report considera in bilico ' + undec + ' dei 435 collegi; ' + dTotal + ' sono sicuri o favorevoli ai democratici, ' + rTotal + ' ai repubblicani. Nella media dei sondaggi di Silver Bulletin, i democratici sono avanti ai repubblicani di ' + (PL.GB ? (Math.round(PL.GB.c[0][2] * 10) / 10 - Math.round(PL.GB.c[1][2] * 10) / 10).toFixed(1).replace('.', ',') : '') + ' punti nel voto generico.',
+        ? 'A pochi giorni dal voto, il Cook Political Report considera in bilico ' + undec + ' delle 35 corse. Contando i seggi non in palio, ' + dTotal + ' seggi sono classificati come sicuri, probabili o tendenti ai democratici e ' + rTotal + ' ai repubblicani. Ai democratici servono 51 seggi per la maggioranza, ai repubblicani 50, grazie al voto del vicepresidente.'
+        : 'Il Cook Political Report considera in bilico ' + undec + ' dei 435 collegi; ' + dTotal + ' sono classificati come sicuri, probabili o tendenti ai democratici, ' + rTotal + ' ai repubblicani. Nella media dei sondaggi di Silver Bulletin, i democratici sono avanti ai repubblicani di ' + (PL.GB ? (Math.round(PL.GB.c[0][2] * 10) / 10 - Math.round(PL.GB.c[1][2] * 10) / 10).toFixed(1).replace('.', ',') : '') + ' punti nel voto generico.',
       showMockTag: false,
       liveCls: '', liveDot: '#b9b6b0', updatedLabel: 'Rating al 30 ott. - sondaggi al 29 ott.',
       dTotal, rTotal,
@@ -880,6 +880,8 @@ class Component extends DCLogic {
     const lf = window.__lastFocus;
     rove();
     if (lf) { const el = document.querySelector('[aria-label="' + CSS.escape(lf) + '"]'); if (el) el.focus({ preventScroll: true }); }
+    // fiche ouverte au clavier : le focus passe dans la fiche (Échap ou × le rendent à l’État)
+    if (window.__kbOpen) { window.__kbOpen = false; const pd = document.querySelector('.pop:not(.pv), .popm .pop'); if (pd) { pd.tabIndex = -1; pd.focus({ preventScroll: true }); } }
   };
   // Sur ordinateur, la fiche s’ouvre au survol de la carte ; un clic l’épingle (comme avant)
   const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -945,6 +947,7 @@ class Component extends DCLogic {
     // clic sur la case survolée : la fiche déjà affichée est épinglée au lieu d’être refermée
     if (id === hoverId && comp.state.sel && comp.state.sel !== window.__pinned) { hoverId = null; window.__render(); return; }
     hoverId = null;
+    window.__kbOpen = e.detail === 0 && !b.closest('.pop'); // activation au clavier (Entrée, Espace)
     const fn = handlers[id]; if (fn) fn();
     // État choisi dans le calendrier à côté de la carte : sélection « souple », qui disparaît quand le curseur quitte la carte et le calendrier
     window.__soft = b.closest('.tl-side') && comp.state.sel ? comp.state.sel : null;

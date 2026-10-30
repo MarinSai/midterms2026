@@ -562,7 +562,7 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Partielle' ? 'Élection partielle' : race[0] === 'Siège ouvert' ? 'Siège ouvert' : race[0] === 'Sortant battu' ? 'Sortant battu à la primaire' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain') + ' - ' + statusText(sRes[st]), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], ({ 'Siège ouvert': { D: 'Siège démocrate ouvert', R: 'Siège républicain ouvert' }, 'Élection partielle': { D: 'Élection partielle (siège démocrate)', R: 'Élection partielle (siège républicain)' }, 'Sortant battu à la primaire': { D: 'Siège démocrate - sortant battu à la primaire', R: 'Siège républicain - sortant battu à la primaire' } }[kind] || { D: 'Siège démocrate', R: 'Siège républicain' })[race[1] === 'D' ? 'D' : 'R'] + ' - ' + statusText(sRes[st]), EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
       selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), ({ D: 'Siège détenu par les démocrates', R: 'Siège détenu par les républicains' }[(hRes[id].cands.find((c) => c.inc) || {}).p || m.holder] || 'Siège détenu par un indépendant') + ' - ' + statusText(hRes[id]) + (m.favor ? ' - circonscription redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), '', () => this.setState({ sel: 'HS:' + st }));
@@ -698,8 +698,8 @@ class Component extends DCLogic {
       isSenate, isHouse: !isSenate,
       headline: isSenate ? 'Sénat : l’état des courses' : 'Chambre : l’état des courses',
       dek: isSenate
-        ? 'À quelques jours du scrutin, le Cook Political Report classe ' + undec + ' des 35 courses comme indécises. En comptant les sièges hors scrutin, ' + dTotal + ' sièges sont acquis ou favorables aux démocrates et ' + rTotal + ' aux républicains. Les démocrates ont besoin de 51 sièges pour la majorité, les républicains de 50, grâce à la voix du vice-président.'
-        : 'Le Cook Political Report classe ' + undec + ' des 435 circonscriptions comme indécises ; ' + dTotal + ' sont acquises ou favorables aux démocrates, ' + rTotal + ' aux républicains. Dans la moyenne des sondages de Silver Bulletin, les démocrates devancent les républicains de ' + (PL.GB ? (Math.round(PL.GB.c[0][2] * 10) / 10 - Math.round(PL.GB.c[1][2] * 10) / 10).toFixed(1).replace('.', ',') : '') + ' points sur le vote générique.',
+        ? 'À quelques jours du scrutin, le Cook Political Report classe ' + undec + ' des 35 courses comme indécises. En comptant les sièges hors scrutin, ' + dTotal + ' sièges sont classés sûrs, probables ou penchant pour les démocrates et ' + rTotal + ' aux républicains. Les démocrates ont besoin de 51 sièges pour la majorité, les républicains de 50, grâce à la voix du vice-président.'
+        : 'Le Cook Political Report classe ' + undec + ' des 435 circonscriptions comme indécises ; ' + dTotal + ' sont classées sûres, probables ou penchant pour les démocrates, ' + rTotal + ' aux républicains. Dans la moyenne des sondages de Silver Bulletin, les démocrates devancent les républicains de ' + (PL.GB ? (Math.round(PL.GB.c[0][2] * 10) / 10 - Math.round(PL.GB.c[1][2] * 10) / 10).toFixed(1).replace('.', ',') : '') + ' points sur le vote générique.',
       showMockTag: false,
       liveCls: '', liveDot: '#b9b6b0', updatedLabel: 'Classements au 30 oct. - sondages au 29 oct.',
       dTotal, rTotal,

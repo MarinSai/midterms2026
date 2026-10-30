@@ -330,7 +330,7 @@ class Component extends DCLogic {
       if (r.status === 'runoff') return 'Second tour';
       if (r.status === 'too_close') return 'Trop serré';
       if (r.status === 'final') return 'Dépouillement terminé';
-      if (r.winner) return 'Vainqueur désigné';
+      if (r.winner) return 'Élu : ' + ({ D: 'Dém.', R: 'Rép.', I: 'Ind.' }[r.winner] || 'Autre');
       if (r.status === 'counting') return r.eevp + ' % dépouillé';
       return 'Premiers résultats à ' + closeParis(res);
     };
@@ -503,7 +503,7 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Partielle' ? 'Élection partielle' : race[0] === 'Siège ouvert' ? 'Siège ouvert' : race[0] === 'Sortant battu' ? 'Sortant battu à la primaire' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], ({ 'Siège ouvert': { D: 'Siège démocrate ouvert', R: 'Siège républicain ouvert' }, 'Élection partielle': { D: 'Élection partielle (siège démocrate)', R: 'Élection partielle (siège républicain)' }, 'Sortant battu à la primaire': { D: 'Siège démocrate - sortant battu à la primaire', R: 'Siège républicain - sortant battu à la primaire' } }[kind] || { D: 'Siège démocrate', R: 'Siège républicain' })[race[1] === 'D' ? 'D' : 'R'], EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
       selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), ({ D: 'Siège détenu par les démocrates', R: 'Siège détenu par les républicains' }[(hRes[id].cands.find((c) => c.inc) || {}).p || m.holder] || 'Siège détenu par un indépendant') + ' - ' + ['Démocrate sûr (Cook)', 'Démocrate probable (Cook)', 'Penche démocrate (Cook)', 'Indécis (Cook)', 'Penche républicain (Cook)', 'Républicain probable (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' - circonscription redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP).', () => this.setState({ sel: 'HS:' + st }));
@@ -623,7 +623,7 @@ class Component extends DCLogic {
       liveCls: live ? 'live' : '', liveDot: live ? '#e85462' : '#b9b6b0', updatedLabel: updated,
       dTotal, rTotal,
       dCheck: dCtrl ? '✓' : '', rCheck: rCtrl ? '✓' : '',
-      dVotes: isSenate ? 'dont 34 hors scrutin' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voix' : '') : (T.dV ? this.fmtN(T.dV) + ' voix' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voix - ' : '') + 'dont 31 hors scrutin' : (T.rV ? this.fmtN(T.rV) + ' voix' : '—'),
+      dVotes: isSenate ? 'dont 34 hors scrutin' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voix (total des courses)' : '') : (T.dV ? this.fmtN(T.dV) + ' voix (total des courses)' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voix (total des courses) - ' : '') + 'dont 31 hors scrutin' : (T.rV ? this.fmtN(T.rV) + ' voix (total des courses)' : '—'),
       pendingLabel: before ? (isSenate ? '35 sièges en jeu' : '435 sièges en jeu') : (undec > 0 ? undec + ' sièges non attribués' : ''),
       markLabel: markAt + ' SIÈGES',
       markStyle: 'position: absolute; left: ' + mPct + '%; bottom: calc(100% + 14px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',
