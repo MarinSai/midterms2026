@@ -71,8 +71,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
   <section aria-label="Répartition des sièges">
     <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 4px;">
-        <span class="mono" style="font-weight: 400; font-size: clamp(40px, 5vw, 56px); line-height: .9; color: #3b8ee6; letter-spacing: -.02em;">{{dTotal}}</span>
-        <span class="mono" style="font-weight: 600; font-size: 15px; letter-spacing: .02em; color: #1f6fc4;">Démocrates {{dCheck}}</span>
+        <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-variant-numeric: lining-nums tabular-nums; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: #3b8ee6; letter-spacing: -.02em;">{{dTotal}}</span>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-weight: 600; font-size: 16px; color: #1f6fc4;">Démocrates {{dCheck}}</span>
       </div>
       <div style="flex: 1; position: relative; align-self: stretch;">
         <div class="mono" style="{{markStyle}}">
@@ -81,12 +81,12 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
         </div>
       </div>
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
-        <span class="mono" style="font-weight: 400; font-size: clamp(40px, 5vw, 56px); line-height: .9; color: #e85462; letter-spacing: -.02em;">{{rTotal}}</span>
-        <span class="mono" style="font-weight: 600; font-size: 15px; letter-spacing: .02em; color: #c62f3f;">{{rCheck}} Républicains</span>
+        <span style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 700; font-variant-numeric: lining-nums tabular-nums; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: #e85462; letter-spacing: -.02em;">{{rTotal}}</span>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-weight: 600; font-size: 16px; color: #c62f3f;">{{rCheck}} Républicains</span>
       </div>
     </div>
 
-    <div style="position: relative; height: 18px; margin-top: 12px;">
+    <div style="position: relative; margin-top: 12px; {{barBox}}">
       <div role="img" aria-label="{{barAria}}" style="position: absolute; inset: 0;">
         <sc-for list="{{pills}}" as="g" hint-placeholder-count="8"><span class="pill" title="{{g.title}}" style="{{g.style}}"></span></sc-for>
       </div>
@@ -220,7 +220,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                 <button class="cell" aria-label="{{c.aria}}" onClick="{{c.pick}}" style="{{c.style}}"><sc-if value="{{c.gain}}" hint-placeholder-val="{{ false }}"><span style="width: 32%; height: 32%; border-radius: 50%; background: {{c.dot}};"></span></sc-if></button>
               </sc-for>
               <svg aria-hidden="true" viewBox="{{hView}}" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4;">
-                <path d="{{hOutline}}" fill="none" stroke="#141414" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linecap="square"></path>
+                <path d="{{hOutline}}" fill="none" stroke="#141414" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="square"></path>
               </svg>
               <sc-for list="{{hLabels}}" as="l" hint-placeholder-count="50"><span class="hlbl" style="{{l.style}}">{{l.t}}<br>{{l.n}}</span></sc-for>
               <sc-if value="{{hasSel}}" hint-placeholder-val="{{ false }}">
@@ -284,7 +284,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
         <div style="flex: 1 0 92px; display: flex; flex-direction: column; gap: 10px;">
           <span style="{{s.lineStyle}}"></span>
           <span style="display: flex; flex-direction: column; gap: 1px;">
-            <span class="mono" style="font-size: 17px; font-weight: 500; color: {{s.timeColor}};">{{s.time}}</span>
+            <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-variant-numeric: tabular-nums; font-size: 17px; font-weight: 600; color: {{s.timeColor}};">{{s.time}}</span>
             <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">{{s.n}}</span>
           </span>
           <span style="display: flex; flex-wrap: wrap; gap: 5px;">
@@ -466,7 +466,7 @@ class Component extends DCLogic {
     const PNAME = { D: 'Démocrate', R: 'Républicain', I: 'Indépendant', O: '' };
     const PENDING = '#dcd9d4';
     const closeParis = (et) => { const h = (Math.floor(et) + 6) % 24; return String(h).padStart(2, '0') + ' h ' + (et % 1 ? '30' : '00'); };
-    const hatch = (c) => 'repeating-linear-gradient(-45deg, ' + c + ' 0 3px, #ffffff 3px 6px)';
+    const hatch = (c) => 'repeating-linear-gradient(-45deg, ' + c + ' 0 2px, #ffffff 2px 4px)';
     const leaderOf = (res) => { const s = res.cands.filter((c) => c.p !== 'O').slice().sort((a, b) => b.v - a.v); return s[0] && s[0].v > 0 ? s[0] : null; };
     const fillOf = (r) => r.winner ? SOLID[r.winner] : (leaderOf(r) ? TINT[leaderOf(r).p] : PENDING);
     const txtOf = (r) => r.winner ? '#ffffff' : '#141414';
@@ -521,7 +521,8 @@ class Component extends DCLogic {
     const markAt = isSenate ? 50 : 218;
     const pct = (n) => n / total * 100;
     const pills = [];
-    const put = (from, n, bg, title) => { if (n > 0) pills.push({ title, style: 'left: calc(' + pct(from) + '% + 1.5px); width: calc(' + pct(n) + '% - 3px); background: ' + bg + ';' }); };
+    const seatBg = new Array(total).fill('#e4e2de'), seatT = new Array(total).fill('Siège non attribué');
+    const put = (from, n, bg, title) => { for (let i = from; i < from + n && i < total; i++) { seatBg[i] = bg; seatT[i] = title; } };
     let x = 0;
     if (dBase) { put(x, dBase, hatch(SOLID.D), dBase + ' sièges démocrates hors scrutin'); x += dBase; }
     put(x, T.won.D, SOLID.D, T.won.D + ' sièges gagnés par les démocrates'); x += T.won.D;
@@ -533,7 +534,14 @@ class Component extends DCLogic {
     y -= T.won.R; put(y, T.won.R, SOLID.R, T.won.R + ' sièges gagnés par les républicains');
     y -= T.led.R; put(y, T.led.R, TINT.R, T.led.R + ' courses où le républicain est en tête');
     if (y - x > 0) put(x, y - x, '#f0eeea', (y - x) + ' courses sans résultat');
-    const mPct = pct(markAt);
+// Un carré par siège, rangés par colonnes (2 rangées pour le Sénat, 5 pour la Chambre)
+    const ROWS = isSenate ? 2 : 5, COLS = Math.ceil(total / ROWS), FILL = isSenate ? .86 : .8;
+    for (let i = 0; i < total; i++) {
+      const c = Math.floor(i / ROWS), r = i % ROWS;
+      pills.push({ title: seatT[i], style: 'left: ' + (c / COLS * 100) + '%; top: ' + (r / ROWS * 100) + '%; width: ' + (100 / COLS * FILL) + '%; height: ' + (100 / ROWS * FILL) + '%; border-radius: 2px; background: ' + seatBg[i] + ';' });
+    }
+    const barBox = 'aspect-ratio: ' + COLS + ' / ' + ROWS + ';';
+    const mPct = (isSenate ? 25 : markAt / ROWS) / COLS * 100 - (1 - FILL) * 50 / COLS;
 
     // ---------- Carte du Sénat ----------
     const geo = this.state.geo;
@@ -754,7 +762,7 @@ class Component extends DCLogic {
       markLabel: markAt + ' SIÈGES',
       markStyle: 'position: absolute; left: ' + mPct + '%; bottom: 2px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',
       markLine: 'position: absolute; left: ' + mPct + '%; top: -5px; bottom: -5px; width: 2px; margin-left: -1px; background: #141414;',
-      pills, barAria: 'Démocrates ' + dTotal + ' sièges, républicains ' + rTotal + ' sièges, ' + undec + ' non attribués',
+      pills, barBox, barAria: 'Démocrates ' + dTotal + ' sièges, républicains ' + rTotal + ' sièges, ' + undec + ' non attribués',
       legendParties: [
         { name: 'Dém.', tint: TINT.D, solid: SOLID.D },
         { name: 'Rép.', tint: TINT.R, solid: SOLID.R },
