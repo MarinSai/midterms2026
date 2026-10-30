@@ -601,7 +601,7 @@ class Component extends DCLogic {
       dVotes: T.dV ? this.fmtN(T.dV) + ' voix' : '—', rVotes: T.rV ? this.fmtN(T.rV) + ' voix' : '—',
       pendingLabel: before ? (isSenate ? '35 sièges en jeu' : '435 sièges en jeu') : (undec > 0 ? undec + ' sièges non attribués' : ''),
       markLabel: markAt + ' SIÈGES',
-      markStyle: 'position: absolute; left: ' + mPct + '%; bottom: 2px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',
+      markStyle: 'position: absolute; left: ' + mPct + '%; bottom: calc(100% + 14px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',
       markLine: 'position: absolute; left: ' + mPct + '%; top: -5px; bottom: -5px; width: 2px; margin-left: -1px; background: #141414;',
       pills, barBox, barAria: 'Démocrates ' + dTotal + ' sièges, républicains ' + rTotal + ' sièges, ' + undec + ' non attribués',
       legendParties: [
