@@ -598,7 +598,7 @@ class Component extends DCLogic {
       liveCls: live ? 'live' : '', liveDot: live ? '#e85462' : '#b9b6b0', updatedLabel: updated,
       dTotal, rTotal,
       dCheck: dCtrl ? '✓' : '', rCheck: rCtrl ? '✓' : '',
-      dVotes: T.dV ? this.fmtN(T.dV) + ' voix' : '—', rVotes: T.rV ? this.fmtN(T.rV) + ' voix' : '—',
+      dVotes: isSenate ? 'dont 34 hors scrutin' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voix' : '') : (T.dV ? this.fmtN(T.dV) + ' voix' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voix - ' : '') + 'dont 31 hors scrutin' : (T.rV ? this.fmtN(T.rV) + ' voix' : '—'),
       pendingLabel: before ? (isSenate ? '35 sièges en jeu' : '435 sièges en jeu') : (undec > 0 ? undec + ' sièges non attribués' : ''),
       markLabel: markAt + ' SIÈGES',
       markStyle: 'position: absolute; left: ' + mPct + '%; bottom: calc(100% + 14px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',

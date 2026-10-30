@@ -605,7 +605,7 @@ class Component extends DCLogic {
       liveCls: live ? 'live' : '', liveDot: live ? '#e85462' : '#b9b6b0', updatedLabel: updated,
       dTotal, rTotal,
       dCheck: dCtrl ? '✓' : '', rCheck: rCtrl ? '✓' : '',
-      dVotes: T.dV ? this.fmtN(T.dV) + ' voti' : '—', rVotes: T.rV ? this.fmtN(T.rV) + ' voti' : '—',
+      dVotes: isSenate ? 'di cui 34 non in palio' + (T.dV ? ' - ' + this.fmtN(T.dV) + ' voti' : '') : (T.dV ? this.fmtN(T.dV) + ' voti' : '—'), rVotes: isSenate ? (T.rV ? this.fmtN(T.rV) + ' voti - ' : '') + 'di cui 31 non in palio' : (T.rV ? this.fmtN(T.rV) + ' voti' : '—'),
       pendingLabel: before ? (isSenate ? '35 seggi in palio' : '435 seggi in palio') : (undec > 0 ? undec + ' seggi non assegnati' : ''),
       markLabel: markAt + ' SEGGI',
       markStyle: 'position: absolute; left: ' + mPct + '%; bottom: calc(100% + 14px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;',
@@ -722,7 +722,7 @@ class Component extends DCLogic {
         + '</div><span style="font-size:13.5px;color:#828282;">Ogni esagono rappresenta un collegio, raggruppato per Stato; la sua posizione all’interno dello Stato è indicativa.</span></div>';
     }
 
-    const legend2 = (v.isSenate ? '<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:16px;height:16px;box-sizing:border-box;border:1px solid #8c8a85;background:repeating-linear-gradient(-45deg,#b9b6b0 0 1px,transparent 1px 4px)"></span>Nessuna elezione</span><span style="display:inline-flex;align-items:center;gap:8px"><span style="width:32px;height:12px;border-radius:999px;background:repeating-linear-gradient(-45deg,#3b8ee6 0 3px,#fff 3px 6px)"></span>Non in palio</span>' : '')
+    const legend2 = (v.isSenate ? '<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:16px;height:16px;box-sizing:border-box;border:1px solid #8c8a85;background:repeating-linear-gradient(-45deg,#b9b6b0 0 1px,transparent 1px 4px)"></span>Nessuna elezione</span>' : '')
       + '<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:2px;background:#dcd9d4"></span>Ancora nessun risultato</span><span>* Uscente</span><span>✓ Vincitore</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#141414"></span>Conquista</span>';
 
     window.__pinned = comp.state.sel || null;
@@ -735,7 +735,7 @@ class Component extends DCLogic {
       + '<div style="flex:1;position:relative;align-self:stretch"></div>'
       + '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span style="font-family:\'GC Sanomat\', Georgia, serif;font-weight:600;font-variant-numeric:lining-nums tabular-nums;font-size:clamp(42px,5vw,60px);line-height:1;color:#e85462;letter-spacing:-.02em">' + v.rTotal + '</span><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-weight:600;font-size:16px;color:#c62f3f">' + v.rCheck + ' Repubblicani</span></div></div>'
       + '<div style="position:relative;margin-top:12px;' + v.barBox + '"><div class="mono" style="' + v.markStyle + '"><span style="font-size:11.5px;font-weight:500;letter-spacing:.1em;margin-right:-.1em;white-space:nowrap">' + v.markLabel + '</span><svg width="10" height="7" viewBox="0 0 10 7" aria-hidden="true"><path d="M0 0h10L5 7z" fill="#141414"></path></svg></div><div role="img" aria-label="' + esc(v.barAria) + '" style="position:absolute;inset:0">' + pills + '</div><div aria-hidden="true" style="' + v.markLine + '"></div></div>'
-      + '<div class="mono" style="display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:12.5px;color:#828282;"><span>' + v.dVotes + '</span><span style="text-align:center">' + v.pendingLabel + '</span><span style="text-align:right">' + v.rVotes + '</span></div>'
+      + '<div class="mono" style="display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:12.5px;color:#828282;"><span>' + (v.isSenate ? '<span aria-hidden="true" style="display:inline-block;width:22px;height:9px;border-radius:999px;vertical-align:-1px;margin-right:6px;background:repeating-linear-gradient(-45deg,#3b8ee6 0 2.5px,#fff 2.5px 5px)"></span>' : '') + v.dVotes + '</span><span style="text-align:center">' + v.pendingLabel + '</span><span style="text-align:right">' + v.rVotes + (v.isSenate ? '<span aria-hidden="true" style="display:inline-block;width:22px;height:9px;border-radius:999px;vertical-align:-1px;margin-left:6px;background:repeating-linear-gradient(-45deg,#e85462 0 2.5px,#fff 2.5px 5px)"></span>' : '') + '</span></div>'
       + '<div class="lgd" style="display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:30px"><div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c">' + legend + '</div><div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c">' + legend2 + '</div></div></section>'
       + '<section id="cartes" style="scroll-margin-top:16px;display:flex;flex-wrap:wrap;gap:28px 40px;padding-top:34px;margin-top:34px;"><div style="flex:999 1 640px;min-width:0;display:flex;flex-direction:column;gap:14px"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px"><h2 style="' + H2 + '">' + v.mapTitle + '</h2><span class="mono" style="' + MONO_S + '">' + v.mapHint + '</span></div>'
       + '<div style="display:flex;flex-wrap:wrap;gap:18px 24px;align-items:flex-start">' + thumbs + '<div class="mapside">' + mapHtml + tlSide + '</div>' + (mob && pop ? '<div class="popm">' + pop + '</div>' : '') + '</div>'
@@ -792,8 +792,9 @@ class Component extends DCLogic {
   });
   app.addEventListener('mouseover', (e) => {
     if (!canHover.matches || window.matchMedia('(max-width: 600px)').matches) return;
-    const b = e.target.closest('.mapbox [data-h]');
+    let b = e.target.closest('.mapbox [data-h]');
     if (b && b.closest('.pop')) return;
+    if (b && (b.disabled || !handlers[b.getAttribute('data-h')])) b = null; // État sans élection : comme un fond de carte
     if (!b) {
       // curseur sur un fond de la carte (État sans élection, mer, interstice) : la fiche de survol s’efface après un court délai
       if (hoverId !== null && e.target.closest('.mapbox')) { clearTimeout(hideT); hideT = setTimeout(clearHover, 90); }
