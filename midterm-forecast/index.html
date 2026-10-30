@@ -823,15 +823,16 @@ class Component extends DCLogic {
     if (v.isSenate) {
       mapHtml = '<div class="mapbox" style="flex:1 1 480px;min-width:0;position:relative;aspect-ratio:975/610">' + (v.geoReady
         ? v.states.map((s) => '<button class="st"' + (s.disabled ? ' aria-disabled="true" tabindex="-1" data-off="1"' : '') + ' data-h="' + h(s.pick) + '" aria-label="' + esc(s.aria) + '"><svg viewBox="0 0 975 610"><path d="' + s.d + '" fill="' + s.fill + '" stroke="' + s.stroke + '" stroke-width="' + s.sw + '" stroke-linejoin="round"></path></svg></button>').join('')
-          + '<svg aria-hidden="true" viewBox="0 0 975 610" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"><path d="' + v.selD + '" fill="none" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"></path>' + v.coLines.map((l) => '<path d="' + l.d + '" fill="none" stroke="#141414" stroke-width=".8"></path>').join('') + '</svg>'
+          + '<svg aria-hidden="true" viewBox="0 0 975 610" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"><path d="' + v.selD + '" fill="none" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"></path>' + (mob ? [] : v.coLines).map((l) => '<path d="' + l.d + '" fill="none" stroke="#141414" stroke-width=".8"></path>').join('') + '</svg>'
           + v.labels.map((l) => '<span class="lbl" style="' + l.style + '">' + l.t + dotH(l.gain, l.dot) + '</span>').join('')
-          + v.callouts.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + '">' + c.t + dotH(c.gain, c.dot) + '</button>').join('') + (mob ? '' : pop)
+          + (mob ? '' : v.callouts.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + '">' + c.t + dotH(c.gain, c.dot) + '</button>').join('')) + (mob ? '' : pop)
         : '<div class="mono" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;' + MONO_S + '">Chargement de la carte…</div>') + '</div>';
+      if (mob && v.geoReady && v.callouts.length) mapHtml = '<div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:8px">' + mapHtml.replace('flex:1 1 480px;', 'flex:none;width:100%;') + '<div class="costrip" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="mono" style="' + MONO_S + '">Nord-Est</span>' + v.callouts.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + ';position:static;transform:none;min-height:30px;padding:0 12px">' + c.t + dotH(c.gain, c.dot) + '</button>').join('') + '</div></div>';
     } else {
       mapHtml = '<div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:10px"><div class="mapbox" style="position:relative;width:100%;aspect-ratio:' + v.hAspect + '">'
         + v.cells.map((c) => '<button class="cell" data-h="' + h(mob && c.pickState ? c.pickState : c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + '">' + dotH(c.gain, c.dot, '32%') + '</button>').join('')
         + '<svg aria-hidden="true" viewBox="' + v.hView + '" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4"><path d="' + v.hOutline + '" fill="none" stroke="#141414" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="square"></path></svg>'
-        + v.hLabels.map((l) => '<span class="hlbl" style="' + l.style + '">' + l.t + (l.n ? '<br>' + l.n : '') + '</span>').join('') + (mob ? '' : pop)
+        + (mob ? v.hLabels.filter((l) => +l.n >= 6) : v.hLabels).map((l) => '<span class="hlbl" style="' + l.style + '">' + l.t + (l.n && !mob ? '<br>' + l.n : '') + '</span>').join('') + (mob ? '' : pop)
         + '</div><span style="font-size:13.5px;color:#6b6965;">Chaque hexagone représente une circonscription, regroupée par État ; sa position dans l’État est indicative.</span></div>';
     }
 

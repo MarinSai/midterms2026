@@ -284,6 +284,7 @@ T = [
 ('Rép.', 'Rep.', 'Rep.'),
 ('Autre', 'Otro', 'Altro'),
 ('Sans adversaire', 'Sin rival', 'Senza avversari'),
+('>Nord-Est<', '>Noreste<', '>Nord-est<'),
 ('Div.', 'Otr.', 'Altri'),
 
 # --- États
@@ -309,6 +310,7 @@ T = [
 # Remplacements de code (pluriels, formats), appliqués avant les fragments
 CODE = {
  'es': [
+  ("ordinal(c.id) + ' : ' +", "ordinal(c.id) + ': ' +"),
   ("const closeParis = (et) => { const h = (Math.floor(et) + 6) % 24, m = et % 1 ? '30' : ''; return h === 0 && !m ? 'minuit' : h + ' h' + (m ? ' ' + m : ''); };", "const closeParis = (et) => { const h = (Math.floor(et) + 6) % 24; return String(h).padStart(2, '0') + ':' + (et % 1 ? '30' : '00'); };"),
   ("' circonscription' + (ids.length > 1 ? 's' : '')", "(ids.length > 1 ? ' distritos' : ' distrito')"),
   ("' course' + (nSeats > 1 ? 's' : '')", "(nSeats > 1 ? ' contiendas' : ' contienda')"),
@@ -320,6 +322,7 @@ CODE = {
   ('lang="fr"', 'lang="es"'),
  ],
  'it': [
+  ("ordinal(c.id) + ' : ' +", "ordinal(c.id) + ': ' +"),
   ("const closeParis = (et) => { const h = (Math.floor(et) + 6) % 24, m = et % 1 ? '30' : ''; return h === 0 && !m ? 'minuit' : h + ' h' + (m ? ' ' + m : ''); };", "const closeParis = (et) => { const h = (Math.floor(et) + 6) % 24; return String(h).padStart(2, '0') + ':' + (et % 1 ? '30' : '00'); };"),
   ("' circonscription' + (ids.length > 1 ? 's' : '')", "(ids.length > 1 ? ' collegi' : ' collegio')"),
   ("' course' + (nSeats > 1 ? 's' : '')", "(nSeats > 1 ? ' corse' : ' corsa')"),
