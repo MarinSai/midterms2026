@@ -62,7 +62,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
   </header>
 
   <!-- Bandeau de navigation -->
-  <nav aria-label="Dans cette page" style="background: #f4f4f2; margin: 4px 0 30px; padding: 16px 22px 0; display: flex; flex-wrap: wrap; gap: 14px 44px; align-items: flex-end;">
+  <nav aria-label="Dans cette page" style="background: #f4f4f2; margin: 4px 0 30px; padding: 16px 22px 16px; display: flex; flex-wrap: wrap; gap: 14px 44px; align-items: flex-end;">
     <sc-for list="{{navGroups}}" as="g" hint-placeholder-count="2">
       <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
         <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #828282;">{{g.label}}</span>
@@ -318,11 +318,11 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 24px 48px;">
       <figure style="margin: 0; flex: 1 1 300px; max-width: 520px; display: flex; flex-direction: column; gap: 6px;">
-        <figcaption style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Sénat</figcaption>
+        <figcaption style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Sénat</figcaption>
         <svg viewBox="0 0 400 240" role="img" aria-label="Sénat : {{scn.sD}} démocrates, {{scn.sR}} républicains" style="width: 100%; height: auto; display: block; overflow: visible;">
-          <text x="200" y="11" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;" fill="#1c1b1c">Majorité : 51 sièges</text>
-          <line x1="200" y1="16" x2="200" y2="27" stroke="#1c1b1c" stroke-width="1"></line>
-          <path d="{{blockS}}" fill="#ffffff" stroke="#1c1b1c" stroke-width="1.3" stroke-linejoin="round"></path>
+          <text x="{{tkS.lx}}" y="11" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;" fill="#1c1b1c">Majorité : 51 sièges</text>
+          <line x1="{{tkS.tx}}" y1="16" x2="{{tkS.tx}}" y2="{{tkS.ty}}" stroke="#1c1b1c" stroke-width="1"></line>
+          <path d="{{blockS}}" fill="#ffffff" stroke="#1c1b1c" stroke-width="0.9" stroke-linejoin="round"></path>
           <sc-for list="{{dotsS}}" as="d" hint-placeholder-count="100"><circle cx="{{d.cx}}" cy="{{d.cy}}" r="{{d.r}}" fill="{{d.fill}}"></circle></sc-for>
           <text x="200" y="212" text-anchor="middle" style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 30px; font-variant-numeric: lining-nums tabular-nums;"><tspan fill="#3b8ee6">{{scn.sD}}</tspan><tspan fill="#b9b6b0"> – </tspan><tspan fill="#e85462">{{scn.sR}}</tspan></text>
           <text x="200" y="233" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; font-weight: 600;" fill="{{scn.sCtlColor}}">{{scn.sShort}}</text>
@@ -330,11 +330,11 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
         <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; line-height: 1.45; color: #828282;">{{scn.sNote}}Courses indécises remportées par les démocrates : {{scn.flips}}.</span>
       </figure>
       <figure style="margin: 0; flex: 1 1 300px; max-width: 520px; display: flex; flex-direction: column; gap: 6px;">
-        <figcaption style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Chambre des représentants</figcaption>
+        <figcaption style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Chambre des représentants</figcaption>
         <svg viewBox="0 0 400 240" role="img" aria-label="Chambre des représentants : {{scn.hD}} démocrates, {{scn.hR}} républicains" style="width: 100%; height: auto; display: block; overflow: visible;">
-          <text x="200" y="11" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;" fill="#1c1b1c">Majorité : 218 sièges</text>
-          <line x1="200" y1="16" x2="200" y2="27" stroke="#1c1b1c" stroke-width="1"></line>
-          <path d="{{blockH}}" fill="#ffffff" stroke="#1c1b1c" stroke-width="1.3" stroke-linejoin="round"></path>
+          <text x="{{tkH.lx}}" y="11" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;" fill="#1c1b1c">Majorité : 218 sièges</text>
+          <line x1="{{tkH.tx}}" y1="16" x2="{{tkH.tx}}" y2="{{tkH.ty}}" stroke="#1c1b1c" stroke-width="1"></line>
+          <path d="{{blockH}}" fill="#ffffff" stroke="#1c1b1c" stroke-width="0.9" stroke-linejoin="round"></path>
           <sc-for list="{{dotsH}}" as="d" hint-placeholder-count="435"><circle cx="{{d.cx}}" cy="{{d.cy}}" r="{{d.r}}" fill="{{d.fill}}"></circle></sc-for>
           <text x="200" y="212" text-anchor="middle" style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 30px; font-variant-numeric: lining-nums tabular-nums;"><tspan fill="#3b8ee6">{{scn.hD}}</tspan><tspan fill="#b9b6b0"> – </tspan><tspan fill="#e85462">{{scn.hR}}</tspan></text>
           <text x="200" y="233" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; font-weight: 600;" fill="{{scn.hCtlColor}}">{{scn.hCtl}}</text>
@@ -567,23 +567,61 @@ class Component extends DCLogic {
 
   fmtP(v) { return v.toFixed(1).replace('.', ',') + ' %'; }
 
-  // Hémicycle : positions des sièges, de gauche à droite (rangées concentriques)
-  hemi(n, rows) {
-    const key = n + ':' + rows; this._hemi = this._hemi || {};
-    if (this._hemi[key]) return this._hemi[key];
-    const r0 = 0.52, r1 = 1, radii = [], seatsPer = [];
-    for (let i = 0; i < rows; i++) radii.push(r0 + (r1 - r0) * i / (rows - 1));
-    const tot = radii.reduce((a, b) => a + b, 0);
-    let left = n;
-    radii.forEach((r, i) => { const k = i === rows - 1 ? left : Math.round(n * r / tot); seatsPer.push(k); left -= k; });
-    const pts = [];
-    radii.forEach((r, i) => { const k = seatsPer[i]; for (let j = 0; j < k; j++) { const a = Math.PI - (k === 1 ? Math.PI / 2 : Math.PI * j / (k - 1)); pts.push({ a, x: 1 + r * Math.cos(a), y: 1 - r * Math.sin(a) }); } });
-    pts.sort((p, q) => q.a - p.a || q.y - p.y);
-    let gap = (r1 - r0) / (rows - 1);
-    radii.forEach((r, i) => { if (seatsPer[i] > 1) gap = Math.min(gap, Math.PI * r / (seatsPer[i] - 1)); });
-    const dot = gap * 0.4;
-    this._hemiGap = gap;
-    return (this._hemi[key] = { pts, dot });
+  // Hémicycle : rangées concentriques ; chaque parti occupe un secteur aux bords droits, séparé de l’autre par un couloir.
+  // Dans chaque rangée, les sièges d’un parti sont répartis régulièrement, du sol jusqu’au bord du couloir.
+  hemiLayout(n, rows, d, maj, W, top) {
+    const key = [n, rows, d, maj, W, top].join(':'); this._hl = this._hl || {};
+    if (this._hl[key]) return this._hl[key];
+    const r0 = 0.5, radii = [], per = [];
+    for (let i = 0; i < rows; i++) radii.push(r0 + (1 - r0) * i / (rows - 1));
+    const sr = radii.reduce((a, b) => a + b, 0);
+    // sièges par rangée, proportionnels au rayon (plus grands restes)
+    let raw = radii.map((r) => n * r / sr), fl = raw.map(Math.floor), left = n - fl.reduce((a, b) => a + b, 0);
+    raw.map((x, i) => [x - fl[i], i]).sort((a, b) => b[0] - a[0]).slice(0, left).forEach(([, i]) => { fl[i]++; });
+    per.push(...fl);
+    // sièges démocrates par rangée, dans la même proportion partout (plus grands restes)
+    let rd = per.map((k) => k * d / n), fd = rd.map(Math.floor), ld = d - fd.reduce((a, b) => a + b, 0);
+    rd.map((x, i) => [x - fd[i], i]).sort((a, b) => b[0] - a[0]).slice(0, ld).forEach(([, i]) => { fd[i]++; });
+    const step = Math.min((1 - r0) / (rows - 1), ...radii.map((r, i) => Math.PI * r / Math.max(1, per[i] - 1)));
+    const dot = step * 0.4, G = step * 1.15, pad = dot * 1.75;
+    const k = (W / 2) / (1 + pad + dot * 0.2), cx = W / 2, cy = top + k * (1 + pad);
+    const theta = Math.PI * (1 - d / n);            // bord commun des deux secteurs
+    const P = (r, a) => [cx + r * Math.cos(a) * k, cy - r * Math.sin(a) * k];
+    const dots = [];
+    radii.forEach((r, i) => {
+      const nd = fd[i], nr = per[i] - nd, g = G / r;
+      const place = (cnt, a0, a1, fill) => { for (let j = 0; j < cnt; j++) { const a = cnt === 1 ? a0 : a0 + (a1 - a0) * j / (cnt - 1); const [x, y] = P(r, a); dots.push({ cx: x.toFixed(1), cy: y.toFixed(1), r: (dot * k).toFixed(2), fill }); } };
+      if (d > 0 && d < n) { place(nd, Math.PI, theta + g, '#3b8ee6'); place(nr, theta - g, 0, '#e85462'); }
+      else place(per[i], Math.PI, 0, d >= n ? '#3b8ee6' : '#e85462');
+    });
+    // contour du bloc majoritaire (secteur de couronne, coins arrondis)
+    let block = '';
+    const dMaj = d >= maj;
+    if (d > 0 && d < n) {
+      const Ro = 1 + pad, Ri = r0 - pad, e = (G - pad), ext = pad;
+      const a0o = dMaj ? Math.PI + ext / Ro : theta - e / Ro, a1o = dMaj ? theta + e / Ro : -ext / Ro;
+      const a0i = dMaj ? theta + e / Ri : -ext / Ri, a1i = dMaj ? Math.PI + ext / Ri : theta - e / Ri;
+      const c = pad * 0.9;                           // rayon des coins
+      const arcPts = (R, a0, a1, m) => { const o = []; for (let j = 0; j <= m; j++) o.push(P(R, a0 + (a1 - a0) * j / m)); return o; };
+      const so = c / Ro, si = c / Ri;
+      const outer = arcPts(Ro, a0o + Math.sign(a1o - a0o) * so, a1o - Math.sign(a1o - a0o) * so, 64);
+      const inner = arcPts(Ri, a0i + Math.sign(a1i - a0i) * si, a1i - Math.sign(a1i - a0i) * si, 40);
+      const cO0 = P(Ro, a0o), cO1 = P(Ro, a1o), cI0 = P(Ri, a0i), cI1 = P(Ri, a1i);
+      const f = (p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+      // le long de chaque bord droit, on s’arrête à c du coin
+      const toward = (p, q, dd) => { const L = Math.hypot(q[0] - p[0], q[1] - p[1]) || 1; return [p[0] + (q[0] - p[0]) * dd / L, p[1] + (q[1] - p[1]) * dd / L]; };
+      const ck = c * k;
+      block = 'M' + f(outer[0]) + outer.slice(1).map((p) => 'L' + f(p)).join('')
+        + 'Q' + f(cO1) + ' ' + f(toward(cO1, cI0, ck))
+        + 'L' + f(toward(cI0, cO1, ck)) + 'Q' + f(cI0) + ' ' + f(inner[0])
+        + inner.slice(1).map((p) => 'L' + f(p)).join('')
+        + 'Q' + f(cI1) + ' ' + f(toward(cI1, cO0, ck))
+        + 'L' + f(toward(cO0, cI1, ck)) + 'Q' + f(cO0) + ' ' + f(outer[0]) + 'Z';
+    }
+    // repère de majorité : au seuil, sur le bord extérieur
+    const am = Math.PI * (1 - maj / n), tp = P(1 + pad, dMaj ? am : am);
+    const out = { dots, block, tx: tp[0].toFixed(1), ty: (tp[1] - 2).toFixed(1), lx: Math.min(W - 70, Math.max(70, tp[0])).toFixed(1), hy: cy };
+    return (this._hl[key] = out);
   }
 
   // Scénarios de Nate Cohn (New York Times, 29 octobre 2026), appliqués aux classements Cook et aux moyennes Silver Bulletin
@@ -903,38 +941,14 @@ class Component extends DCLogic {
     const hIds = Object.keys(HDS);
     const hWin = (lvl) => hIds.filter((id) => { const c = HDS[id][1], m = dLead(PLS['H:' + id]); if (c <= 2) return true; if (c === 3) return lvl >= 3 || (lvl === 2 && m != null && m > 0) || (lvl === 1 && m != null && m >= 4.1); if (c === 4) return lvl >= 4; return false; }).length;
     const hD = hWin(sc.house), sD = sc.sen;
-    // Points de l’hémicycle : les deux blocs sont écartés d’un couloir, le bloc majoritaire est cerné
-    const TOPM = 30;
-    const hemiDots = (n, rows, d, W) => {
-      const H = this.hemi(n, rows), k = (W / 2) / (1 + H.dot), o = H.dot * k, P = H.pts;
-      const ab = d > 0 && d < n ? (P[d - 1].a + P[d].a) / 2 : -1, G = H.dot * 4.2;
-      return P.map((p, i) => {
-        const rr = Math.hypot(p.x - 1, 1 - p.y); let a = p.a;
-        if (ab > 0) { const g = G / rr; a = a >= ab ? ab + g + (a - ab) * (Math.PI - ab - g) / (Math.PI - ab) : a * (ab - g) / ab; }
-        return { cx: (o + (1 + rr * Math.cos(a)) * k).toFixed(1), cy: (TOPM + o + (1 - rr * Math.sin(a)) * k).toFixed(1), r: (H.dot * k).toFixed(2), r1: (H.dot * k * 1.55).toFixed(2), r2: (H.dot * k * 1.55 + 1.3).toFixed(2), fill: i < d ? SOLID.D : SOLID.R, d: i < d };
-      });
-    };
-    // Contour du bloc majoritaire : un secteur de couronne, décalé du couloir central
-    const blockPath = (n, rows, d, W, left) => {
-      const H = this.hemi(n, rows), k = (W / 2) / (1 + H.dot), o = H.dot * k, P = H.pts;
-      if (!(d > 0 && d < n)) return '';
-      const ab = (P[d - 1].a + P[d].a) / 2, G = H.dot * 4.2, p = H.dot * 1.7, Ro = 1 + p, Ri = 0.52 - p;
-      const X = (r, a) => (o + (1 + r * Math.cos(a)) * k).toFixed(1), Y = (r, a) => (TOPM + o + (1 - r * Math.sin(a)) * k).toFixed(1);
-      const arc = (r, a0, a1) => { const pts = []; for (let j = 0; j <= 48; j++) { const a = a0 + (a1 - a0) * j / 48; pts.push(X(r, a) + ' ' + Y(r, a)); } return pts; };
-      const ext = p * 0.9;
-      const outer = left ? arc(Ro, Math.PI + ext / Ro, ab + (G - p) / Ro) : arc(Ro, ab - (G - p) / Ro, -ext / Ro);
-      const inner = left ? arc(Ri, ab + (G - p) / Ri, Math.PI + ext / Ri) : arc(Ri, -ext / Ri, ab - (G - p) / Ri);
-      return 'M' + outer.join('L') + 'L' + inner.join('L') + 'Z';
-    };
-
     const fmtR = (d, n) => d + ' – ' + (n - d);
-    const _dS = hemiDots(100, 5, sD, 400), _dH = hemiDots(435, 12, hD, 400);
+    const LS = this.hemiLayout(100, 5, sD, 51, 400, 30), LH = this.hemiLayout(435, 10, hD, 218, 400, 30);
     const scnV = {
       scnTabs: SCN.map((x, i) => ({ n: String(i + 1), t: x.t, pick: () => this.setState({ scn: i }), cur: i === si ? 'true' : 'false', style: 'display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 12px 14px; border-radius: 10px; min-height: 44px; box-sizing: border-box; flex: 1 1 180px; ' + (i === si ? 'background: #1c1b1c; color: #ffffff;' : 'background: #f4f4f2; color: #1c1b1c;') })),
       scn: { sD, sR: 100 - sD, hD, hR: 435 - hD, sShort: sD >= 51 ? 'Majorité démocrate' : 'Majorité républicaine', sNote: sD === 50 ? 'À égalité, la voix du vice-président J. D. Vance donne la majorité aux républicains. ' : '', wave: sc.wave, err: sc.err, out: sc.out, flips: flips.length ? flips.join(', ') : 'aucune', sTxt: fmtR(sD, 100), hTxt: fmtR(hD, 435),
         sCtl: sD >= 51 ? 'Majorité démocrate' : (sD === 50 ? 'Majorité républicaine grâce à la voix du vice-président' : 'Majorité républicaine'), sCtlColor: sD >= 51 ? '#1f6fc4' : '#c62f3f',
         hCtl: hD >= 218 ? 'Majorité démocrate' : 'Majorité républicaine', hCtlColor: hD >= 218 ? '#1f6fc4' : '#c62f3f' },
-      dotsS: _dS, dotsH: _dH, blockS: blockPath(100, 5, sD, 400, sD >= 51), blockH: blockPath(435, 12, hD, 400, hD >= 218)
+      dotsS: LS.dots, dotsH: LH.dots, blockS: LS.block, blockH: LH.block, tkS: LS, tkH: LH
     };
 
     const navBar = (on) => 'display: block; height: 5px; width: 100%; background: ' + (on ? '#1c1b1c' : '#d9d7d2') + ';';
