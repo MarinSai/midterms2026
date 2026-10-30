@@ -64,6 +64,19 @@ window.__gcScroll = function (el, block) {
   }
   try { el.scrollIntoView({ behavior: 'smooth', block: block || 'start' }); } catch (e) { el.scrollIntoView(); }
 };
+// Fiche ouverte sous la carte (téléphone) : on cale le haut de la carte en haut de l’écran,
+// la fiche apparaît juste en dessous ; on ne descend pas plus bas.
+window.__gcReveal = function (el) {
+  if (!el) return;
+  const box = document.querySelector('.mapbox') || el;
+  const p = window.parentIframe || window.parentIFrame, inFrame = p && window.top !== window.self && typeof p.scrollToOffset === 'function';
+  const y = Math.max(0, box.getBoundingClientRect().top + window.scrollY - 12);
+  if (inFrame) { try { p.scrollToOffset(0, y); return; } catch (e) {} }
+  // hors iframe : on remonte juste assez pour montrer la fiche, sans jamais faire passer le haut de la carte hors de l’écran
+  const t = box.getBoundingClientRect().top, pb = el.getBoundingClientRect().bottom;
+  const d = t < 0 ? t - 12 : Math.min(t - 12, pb - window.innerHeight + 12);
+  if (Math.abs(d) > 4) window.scrollTo({ top: window.scrollY + d, behavior: 'smooth' });
+};
 </script>
 <script>
 // Petit adaptateur : même logique que la maquette du canevas
@@ -827,7 +840,7 @@ class Component extends DCLogic {
       if (dx || dy) pd.style.translate = Math.round(dx) + 'px ' + Math.round(dy) + 'px'; }
     // Sur téléphone : la fiche ouverte vient sous la carte, on la fait entrer à l’écran
     const pm = document.querySelector('.popm');
-    if (pm) { const key = pm.textContent.slice(0, 60); if (window.__popKey !== key) { window.__popKey = key; window.__gcScroll(pm, 'nearest'); } } else window.__popKey = null;
+    if (pm) { const key = pm.textContent.slice(0, 60); if (window.__popKey !== key) { window.__popKey = key; window.__gcReveal(pm); } } else window.__popKey = null;
     // Repère de défilement du calendrier
     const sl = document.querySelector('.slots'), sb = document.querySelector('.sbar');
     if (sl && sb) {
@@ -867,15 +880,25 @@ class Component extends DCLogic {
   });
   app.addEventListener('mouseover', (e) => {
     if (!canHover.matches || window.matchMedia('(max-width: 600px)').matches) return;
-    const b = e.target.closest('.mapbox [data-h]'); if (!b || b.closest('.pop')) return;
+    const b = e.target.closest('.mapbox [data-h]');
+    if (b && b.closest('.pop')) return;
+    if (!b) {
+      // curseur sur un fond de la carte (État sans élection, mer, interstice) : la fiche de survol s’efface après un court délai
+      if (hoverId !== null && e.target.closest('.mapbox')) { clearTimeout(hideT); hideT = setTimeout(clearHover, 90); }
+      return;
+    }
+    clearTimeout(hideT);
     const id = b.getAttribute('data-h'); if (id === hoverId) return;
     hoverId = id; cancelAnimationFrame(raf); raf = requestAnimationFrame(() => preview(id));
   });
+  const clearHover = () => { if (hoverId === null) return; hoverId = null; cancelAnimationFrame(raf); raf = requestAnimationFrame(() => preview(null)); };
+  let hideT = 0;
   app.addEventListener('mouseout', (e) => {
     if (hoverId === null || !e.target.closest('.mapbox')) return;
     const to = e.relatedTarget; if (to && to.closest && to.closest('.mapbox')) return;
-    hoverId = null; cancelAnimationFrame(raf); raf = requestAnimationFrame(() => preview(null));
+    clearTimeout(hideT); clearHover();
   });
+  document.addEventListener('mouseleave', () => { clearTimeout(hideT); clearHover(); });
   app.addEventListener('click', (e) => {
     const b = e.target.closest('[data-h]'); if (!b) return;
     window.__lastFocus = b.getAttribute('aria-label');
