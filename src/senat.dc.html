@@ -112,7 +112,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
 
     <!-- Légende -->
     <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 30px;">
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 36px; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">
         <sc-for list="{{legendParties}}" as="p" hint-placeholder-count="3">
           <div style="display: grid; grid-template-columns: auto 54px 54px; grid-template-rows: auto auto; row-gap: 6px; align-items: center;">
             <span></span><span style="text-align: center;">En tête</span><span style="text-align: center;">Gagné</span>
@@ -596,7 +596,7 @@ class Component extends DCLogic {
         if (isSenate) continue;
         cells.push({
           aria: NAMES[c.st] + ', ' + ordinal(c.id) + ' : ' + statusText(r, HOURS[c.st][2]),
-          pick: pickSel('H:' + c.id), gain: hGain(c.id), dot: txtOf(r),
+          pick: pickSel('H:' + c.id), pickState: pickSel('HS:' + c.st), gain: hGain(c.id), dot: txtOf(r),
           style: box + ' background: ' + f + ';' + (house.hex ? ' transform: scale(.955);' + (isSel ? ' filter: brightness(.72); z-index: 3;' : '') : ' border: 1.5px solid #ffffff;' + (isSel ? ' box-shadow: inset 0 0 0 2px #141414; z-index: 3;' : ''))
         });
       }
