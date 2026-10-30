@@ -112,12 +112,12 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
 
     <!-- Légende -->
     <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 30px;">
-      <div class="mono" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #141414;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">
         <sc-for list="{{rateLegend}}" as="p" hint-placeholder-count="7">
           <span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 22px; height: 12px; border-radius: 999px; background: {{p.f}};"></span>{{p.l}}</span>
         </sc-for>
       </div>
-      <div class="mono" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #141414;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">
         <sc-if value="{{isSenate}}" hint-placeholder-val="{{ true }}">
           <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 16px; height: 16px; box-sizing: border-box; border: 1px solid #8c8a85; background: repeating-linear-gradient(-45deg, #b9b6b0 0 1px, transparent 1px 4px);"></span>Pas d’élection</span>
           <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 32px; height: 12px; border-radius: 999px; background: repeating-linear-gradient(-45deg, #3b8ee6 0 3px, #ffffff 3px 6px);"></span>Hors scrutin</span>
