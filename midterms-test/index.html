@@ -278,7 +278,7 @@ class Component extends DCLogic {
   fmtP(v) { return v.toFixed(1).replace('.', ',') + ' %'; }
 
   goTo(id) { try { const el = document.getElementById(id); if (!el) return; if (window.__gcScroll) window.__gcScroll(el); else el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} }
-  goChamber(c) { this.setState({ chamber: c, sel: null }); setTimeout(() => this.goTo('cartes'), 30); }
+  goChamber(c) { this.setState({ chamber: c, sel: null }); }
 
   renderVals() {
     const scenario = this.props.scenario ?? 'Soirée électorale';
