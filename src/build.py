@@ -32,7 +32,7 @@ import subprocess; subprocess.run(['node', str(d / 'export_csv.js')], check=True
 import re, sys
 sys.path.insert(0, str(d)); from i18n import translate
 for lang in ('es', 'it'):
-    for page in ('midterms', 'midterm-forecast'):
+    for page in ('midterms', 'midterm-forecast', 'carte-chambre', 'carte-chambre-resultats'):
         s = (d.parent / page / 'index.html').read_text()
         s = re.sub(r'(["\'(])\.\./', r'\1../../', translate(s, lang))
         p = d.parent / lang / page / 'index.html'; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(s)
