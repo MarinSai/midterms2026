@@ -145,7 +145,7 @@ class Component extends DCLogic {
       }
     }
     let counts = this.bbgTsv(await get('counts.tsv')), calls = this.bbgTsv(await get('calls.tsv'));
-    if (!counts.length) {                     // format 2024 : tout dans results.tsv
+    if (!counts.length && key !== '2026-11-03') { // format 2024 (essais) : tout dans results.tsv ; inutile pour 2026, où ce fichier n’existe pas
       const res = this.bbgTsv(await get('results.tsv'));
       counts = res; calls = res.filter((r) => r.winner === 'X').map((r) => ({ raceKey: r.raceKey, winnerCandidateID: r.candidateID }));
     }
