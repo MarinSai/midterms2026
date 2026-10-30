@@ -1,0 +1,73 @@
+2026_AK-1|House|2026-10-29|11|8|Hafner:D:7.18;Begich:R:49.49;Hill:I:39.39;McDermott:I:3.05
+2026_AK-S2|Senate|2026-10-29|20|10|Peltola:D:48.24;Sullivan:R:44.54;Sullivan Jr.:R:2.95;Heikes:R:2.22
+2026_AL-2|House|2026-10-29|4|4|Figures:D:46.15;Marques:R:48.2
+2026_AL-S2|Senate|2026-10-29|5|5|Wess:D:36.81;Moore:R:50.71
+2026_AR-2|House|2026-10-29|3|3|Jones:D:48.37;Hill:R:50.16
+2026_AR-S2|Senate|2026-10-29|6|4|Shoffner:D:39.41;Cotton:R:50.8
+2026_AZ-2|House|2026-10-29|3|2|Nez:D:48.06;Crane:R:48.1
+2026_CA-11|House|2026-10-29|3|3|Wiener:D:50.76;Chan:D:44.05
+2026_CA-34|House|2026-10-29|3|3|Gomez:D:42.5;Gonzales-Torres:D:48.87
+2026_CA-40|House|2026-10-29|3|3|Calvert:R:34.22;Kim:R:36.96
+2026_CA-48|House|2026-10-29|4|3|Von Wilpert:D:48.31;Desmond:R:41.23
+2026_CO-5|House|2026-10-29|3|2|Killin:D:44.36;Crank:R:46.14
+2026_FL-13|House|2026-10-29|5|4|Gray:D:45.62;Luna:R:47.84
+2026_FL-22|House|2026-10-29|3|3|Dandiya:D:48.1;Askar:R:48.05
+2026_FL-25|House|2026-10-29|3|2|Moskowitz:D:45.01;Singer:R:44.23
+2026_FL-S3|Senate|2026-10-29|21|14|Nixon:D:43.44;Moody:R:49.98
+2026_GA-S2|Senate|2026-10-29|14|10|Ossoff:D:52.47;Collins:R:42.14
+2026_IA-2|House|2026-10-29|3|3|James:D:48.48;Mitchell:R:46.43
+2026_IA-S2|Senate|2026-10-29|35|21|Turek:D:46.81;Hinson:R:45.96
+2026_ID-1|House|2026-10-29|3|3|Peterson:D:28.35;Fulcher:R:51.95
+2026_ID-S2|Senate|2026-10-29|8|5|Risch:R:50.81;Achilles:I:34.79
+2026_IN-5|House|2026-10-29|3|3|Ford:D:45.23;Spartz:R:48.1
+2026_KS-S2|Senate|2026-10-29|14|11|Hamilton:D:47.42;Marshall:R:46.07
+2026_KY-6|House|2026-10-29|9|5|Dembo:D:44.74;Alvarado:R:42.19
+2026_MA-S2|Senate|2026-10-29|13|6|Markey:D:57.23;Deaton:R:29.7
+2026_ME-2|House|2026-10-29|8|5|Dunlap:D:49.88;LePage:R:48.29
+2026_ME-S2|Senate|2026-10-29|28|20|Jackson:D:49.4;Collins:R:46.91
+2026_MI-4|House|2026-10-29|4|3|McCann:D:46.85;Huizenga:R:47.43
+2026_MI-7|House|2026-10-29|3|3|Lawrence:D:51.81;Barrett:R:46.39
+2026_MI-S2|Senate|2026-10-29|53|30|El-Sayed:D:49.29;Rogers:R:45.61
+2026_MN-1|House|2026-10-29|5|4|Johnson:D:44.89;Finstad:R:45.23
+2026_MN-S2|Senate|2026-10-29|17|14|Flanagan:D:49.37;Tafoya:R:42.89
+2026_MO-2|House|2026-10-29|3|3|Wellman:D:47.21;Wagner:R:46
+2026_MS-S2|Senate|2026-10-29|3|3|Colom:D:38.86;Hyde-Smith:R:45.45
+2026_MT-1|House|2026-10-29|8|6|Forstag:D:47.75;Flint:R:46.26
+2026_MT-S2|Senate|2026-10-29|15|11|Bankhead:D:15.19;Alme:R:42.05;Bodnar:I:33.65
+2026_NC-1|House|2026-10-29|7|4|Davis:D:47.66;Buckhout:R:41.72
+2026_NC-S2|Senate|2026-10-29|42|17|Cooper:D:52.15;Whatley:R:41.96
+2026_NE-1|House|2026-10-29|3|3|Backemeyer:D:44.22;Flood:R:47.16
+2026_NE-S2|Senate|2026-10-29|15|9|Ricketts:R:46.43;Osborn:I:46.72
+2026_NH-2|House|2026-10-29|7|2|Goodlander:D:55.67;Williams:R:37.5
+2026_NH-S2|Senate|2026-10-29|25|16|Pappas:D:49.81;Sununu:R:42.58
+2026_NM-2|House|2026-10-29|3|3|Vasquez:D:48.64;Cunningham:R:44.16
+2026_NM-S2|Senate|2026-10-29|3|2|Luján:D:54.28;Marker:R:37.25
+2026_NV-2|House|2026-10-29|3|3|Benitez-Thompson:D:41.34;Flippo:R:45.82
+2026_NY-17|House|2026-10-29|4|4|Conley:D:48.73;Lawler:R:47.79
+2026_NY-21|House|2026-10-29|8|5|Gendebien:D:44.65;Constantino:R:46.85
+2026_OH-1|House|2026-10-29|4|3|Landsman:D:48.1;Conroy:R:43.61
+2026_OH-10|House|2026-10-29|3|3|Knickerbocker:D:43.93;Turner:R:47.46
+2026_OH-15|House|2026-10-21|4|1|Leonard:D:45.02;Carey:R:46.55
+2026_OH-7|House|2026-10-29|3|3|Poindexter:D:48.92;Miller:R:42.76
+2026_OH-S3|Senate|2026-10-29|35|22|Brown:D:48.26;Husted:R:45.19
+2026_PA-1|House|2026-10-29|6|4|Harvie:D:47.18;Fitzpatrick:R:47.3
+2026_PA-10|House|2026-10-29|5|5|Stelson:D:48.58;Perry:R:47.42
+2026_PA-7|House|2026-10-29|3|3|Brooks:D:48.8;Mackenzie:R:43.83
+2026_PA-8|House|2026-10-29|4|4|Cognetti:D:51.19;Bresnahan:R:47.41
+2026_RI-S2|Senate|2026-10-29|6|3|Reed:D:57.79;McKay:R:29.05
+2026_SC-1|House|2026-10-29|4|3|Lacore:D:44.3;Honeycutt:R:46.17
+2026_SC-S2|Senate|2026-10-29|11|8|Andrews:D:45.11;Graham:R:46.6
+2026_SD-S2|Senate|2026-10-29|13|9|Rounds:R:53.72;Bengs:I:41.3
+2026_TX-15|House|2026-10-29|5|3|Pulido:D:52.02;De La Cruz:R:43.91
+2026_TX-28|House|2026-10-29|3|3|Cuellar:D:50.75;Tijerina:R:35.98
+2026_TX-34|House|2026-10-29|4|4|Gonzalez:D:49.09;Flores:R:42.98
+2026_TX-35|House|2026-10-29|4|3|Garcia:D:48.23;De La Cruz:R:48.49
+2026_TX-9|House|2026-10-29|3|3|Gutierrez:D:44.08;Mealer:R:49.18
+2026_TX-S2|Senate|2026-10-29|61|28|Talarico:D:48.99;Paxton:R:46.04
+2026_US-GB|Generic ballot|2026-10-29|455|66|Democrats:D:52.36;Republicans:R:43.21
+2026_VA-1|House|2026-10-29|5|4|Taylor:D:47.01;Wittman:R:47.64
+2026_VA-5|House|2026-10-29|3|2|Perriello:D:45.45;McGuire:R:50.72
+2026_VT-1|House|2026-10-29|4|2|Balint:D:55.93;Malloy:R:31.42
+2026_WA-3|House|2026-10-29|4|4|Gluesenkamp Pérez:D:45.38;Braun:R:46.51
+2026_WI-1|House|2026-10-29|4|3|Berman:D:47.06;Steil:R:50.04
+2026_WI-3|House|2026-10-29|3|2|Cooke:D:49.93;Van Orden:R:48.38
