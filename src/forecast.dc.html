@@ -321,7 +321,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
         <figcaption style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Sénat</figcaption>
         <svg viewBox="0 0 400 240" role="img" aria-label="Sénat : {{scn.sD}} démocrates, {{scn.sR}} républicains" style="width: 100%; height: auto; display: block; overflow: visible;">
           <text x="{{tkS.lx}}" y="11" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;" fill="#1c1b1c">Majorité : 51 sièges</text>
-          <line x1="{{tkS.tx}}" y1="16" x2="{{tkS.tx}}" y2="{{tkS.ty}}" stroke="#1c1b1c" stroke-width="1"></line>
+          
           <path d="{{blockS}}" fill="#ffffff" stroke="#1c1b1c" stroke-width="0.9" stroke-linejoin="round"></path>
           <sc-for list="{{dotsS}}" as="d" hint-placeholder-count="100"><circle cx="{{d.cx}}" cy="{{d.cy}}" r="{{d.r}}" fill="{{d.fill}}"></circle></sc-for>
           <text x="200" y="212" text-anchor="middle" style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 30px; font-variant-numeric: lining-nums tabular-nums;"><tspan fill="#3b8ee6">{{scn.sD}}</tspan><tspan fill="#b9b6b0"> – </tspan><tspan fill="#e85462">{{scn.sR}}</tspan></text>
@@ -333,7 +333,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
         <figcaption style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Chambre des représentants</figcaption>
         <svg viewBox="0 0 400 240" role="img" aria-label="Chambre des représentants : {{scn.hD}} démocrates, {{scn.hR}} républicains" style="width: 100%; height: auto; display: block; overflow: visible;">
           <text x="{{tkH.lx}}" y="11" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;" fill="#1c1b1c">Majorité : 218 sièges</text>
-          <line x1="{{tkH.tx}}" y1="16" x2="{{tkH.tx}}" y2="{{tkH.ty}}" stroke="#1c1b1c" stroke-width="1"></line>
+          
           <path d="{{blockH}}" fill="#ffffff" stroke="#1c1b1c" stroke-width="0.9" stroke-linejoin="round"></path>
           <sc-for list="{{dotsH}}" as="d" hint-placeholder-count="435"><circle cx="{{d.cx}}" cy="{{d.cy}}" r="{{d.r}}" fill="{{d.fill}}"></circle></sc-for>
           <text x="200" y="212" text-anchor="middle" style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 30px; font-variant-numeric: lining-nums tabular-nums;"><tspan fill="#3b8ee6">{{scn.hD}}</tspan><tspan fill="#b9b6b0"> – </tspan><tspan fill="#e85462">{{scn.hR}}</tspan></text>
