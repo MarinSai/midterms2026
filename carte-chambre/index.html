@@ -52,6 +52,7 @@ body{font-family:'GC National','Helvetica Neue',sans-serif;font-size:16px;line-h
 #app{height:100%}
 .frame{height:100%;display:flex;align-items:center;justify-content:center;padding:8px;box-sizing:border-box}
 .wrap{position:relative;aspect-ratio:var(--a);width:min(100%,calc((100vh - 16px) * var(--a)))}
+@media (max-width:600px){.pop .x{width:44px!important;height:44px!important;margin:-10px -10px 0 0!important}}
 .sheet{position:fixed;left:8px;right:8px;bottom:8px;width:auto!important;z-index:20;max-height:70vh;overflow-y:auto}
 .sheet .pop{position:static!important;left:auto!important;right:auto!important;width:100%!important;max-width:none!important;transform:none!important;translate:none!important}
 </style>
@@ -375,9 +376,9 @@ class Component extends DCLogic {
     const hatch = (c) => 'repeating-linear-gradient(-45deg, ' + c + ' 0 2px, #ffffff 2px 4px)';
     const leaderOf = (res) => { const s = res.cands.filter((c) => c.p !== 'O').slice().sort((a, b) => b.v - a.v); return s[0] && s[0].v > 0 ? s[0] : null; };
     const RATE = [
-      { l: 'Démocrate sûr', f: '#3b8ee6', t: '#ffffff' }, { l: 'Démocrate probable', f: '#86bdf1' }, { l: 'Penche démocrate', f: '#c6e1fb' },
+      { l: 'Démocrate sûr', f: '#3b8ee6', t: '#141414' }, { l: 'Démocrate probable', f: '#86bdf1' }, { l: 'Penche démocrate', f: '#c6e1fb' },
       { l: 'Indécis', f: '#b49ce0' },
-      { l: 'Penche républicain', f: '#f8c9ce' }, { l: 'Républicain probable', f: '#f19ca5' }, { l: 'Républicain sûr', f: '#e85462', t: '#ffffff' }
+      { l: 'Penche républicain', f: '#f8c9ce' }, { l: 'Républicain probable', f: '#f19ca5' }, { l: 'Républicain sûr', f: '#e85462', t: '#141414' }
     ];
     const sideOf = (rt) => rt < 3 ? 'D' : rt > 3 ? 'R' : null;
     const fillOf = (r) => RATE[r.rating].f;
@@ -451,7 +452,7 @@ class Component extends DCLogic {
       const g = geo.states[st], has = !!RACES[st];
       miniS.push({ d: g.d, fill: has ? sFill(st) : '#ecebe8' });
       if (!isSenate) continue;
-      states.push({ d: g.d, fill: sFill(st), stroke: has ? '#ffffff' : '#c9c6c0', sw: has ? 1.2 : .6, disabled: !has, pick: has ? pickSel('S:' + st) : null, aria: has ? NAMES[st] + ' : voir les résultats' : NAMES[st] });
+      states.push({ d: g.d, fill: sFill(st), stroke: has ? '#ffffff' : '#c9c6c0', sw: has ? 1.2 : .6, disabled: !has, pick: has ? pickSel('S:' + st) : null, aria: has ? NAMES[st] + ' : voir la fiche' : NAMES[st] });
       if (has && !SMALL[st]) {
         const nd = NUDGE[st] || [0, 0];
         labels.push({ t: st, gain: sGain(st), dot: sTxt(st), style: 'left: ' + ((g.cx + nd[0]) / 9.75) + '%; top: ' + ((g.cy + nd[1]) / 6.1) + '%; color: ' + sTxt(st) + ';' });
@@ -462,7 +463,7 @@ class Component extends DCLogic {
     if (geo && isSenate) for (const st in CO_Y) {
       const g = geo.states[st], yy = CO_Y[st];
       coLines.push({ d: 'M' + g.cx + ',' + g.cy + 'L922,' + yy + 'L930,' + yy });
-      callouts.push({ t: st, gain: sGain(st), dot: sTxt(st), aria: NAMES[st] + ' : voir les résultats', pick: pickSel('S:' + st), style: 'left: ' + (930 / 9.75) + '%; top: ' + (yy / 6.1) + '%; background: ' + sFill(st) + '; color: ' + sTxt(st) + ';' + (sel === 'S:' + st ? ' box-shadow: 0 0 0 2px #141414;' : '') });
+      callouts.push({ t: st, gain: sGain(st), dot: sTxt(st), aria: NAMES[st] + ' : voir la fiche', pick: pickSel('S:' + st), style: 'left: ' + (930 / 9.75) + '%; top: ' + (yy / 6.1) + '%; background: ' + sFill(st) + '; color: ' + sTxt(st) + ';' + (sel === 'S:' + st ? ' box-shadow: 0 0 0 2px #141414;' : '') });
     }
 
     // ---------- Carte de la Chambre ----------
@@ -522,7 +523,7 @@ class Component extends DCLogic {
             pn: p && c.avg != null ? this.fmtP(c.avg) : '—',
             rowStyle: 'box-shadow: inset 3px 0 0 ' + (SOLID[c.p] || '#8c8a85') + ';'
           })),
-          foot: p ? 'Silver Bulletin, 29 oct. - ' + p.n + ' sondages, ' + p.f + ' instituts' : 'Pas de moyenne de sondages (il en faut au moins trois, de deux instituts)',
+          foot: p ? 'Silver Bulletin, 29 oct. - ' + p.n + ' sondages, ' + p.f + ' instituts' : r.cands.length < 2 ? 'Sans adversaire' : 'Pas de moyenne de sondages (il en faut au moins trois, de deux instituts)',
           note: extra || '',
           hasBack: !!back, back,
           ...this.pollGap(lead, sec, SOLID, TINT, TEXT, !back)
@@ -652,7 +653,7 @@ class Component extends DCLogic {
     const thumb = (on, key) => ({
       on, pick: () => this.setState({ chamber: key, sel: null }),
       style: 'width: 116px; display: flex; flex-direction: column; gap: 8px; padding: 8px; border-radius: 10px; box-sizing: border-box; border: 1.5px solid ' + (on ? '#141414' : '#e9e7e3') + '; opacity: ' + (on ? 1 : .62) + ';',
-      labelStyle: "font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:" + (on ? '#1c1b1c' : '#828282') + ';'
+      labelStyle: "font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:" + (on ? '#1c1b1c' : '#6b6965') + ';'
     });
 
     // ---------- Scénarios ----------
@@ -740,7 +741,8 @@ class Component extends DCLogic {
   const props = { scenario: 'Soirée électorale', startChamber: 'Chambre', feedUrl: q.get('feed') || '', pollSeconds: +q.get('poll') || 60 };
   const BLOBS = { '/_blob/f5daacb54191c2cd0829267503940ad3': '../senat-geo.json', '/_blob/19ac7c08defee7891e746fcc1210398e': '../house-grid.json' };
   const realFetch = window.fetch.bind(window);
-  window.fetch = (u, o) => realFetch(typeof u === 'string' && BLOBS[u] ? BLOBS[u] : u, o);
+  // la carte seule de la Chambre n’a pas besoin du fond de carte du Sénat
+  window.fetch = (u, o) => (typeof u === 'string' && BLOBS[u] && /senat-geo/.test(BLOBS[u])) ? Promise.reject(new Error('inutile')) : realFetch(typeof u === 'string' && BLOBS[u] ? BLOBS[u] : u, o);
   const comp = new Component(props);
   let handlers = {};
   const h = (fn) => { if (!fn) return ''; const id = 'h' + Object.keys(handlers).length; handlers[id] = fn; return id; };
@@ -748,7 +750,7 @@ class Component extends DCLogic {
   window.__isRes = typeof Component !== 'undefined' && typeof Component.prototype.pollGap !== 'function';
   const popHtml = (v) => {
     let pop = '';
-    const popHead = (kicker, name) => '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="mono" style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">' + esc(kicker) + '</span><span style="font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:18px;line-height:1.1">' + esc(name) + '</span></div><button aria-label="Fermer" data-h="' + h(v.clearSel) + '" style="flex:none;width:32px;height:32px;margin:-6px -6px 0 0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#6b6965"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button></div>';
+    const popHead = (kicker, name) => '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="mono" style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">' + esc(kicker) + '</span><span style="font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:18px;line-height:1.1">' + esc(name) + '</span></div><button class="x" aria-label="Fermer" data-h="' + h(v.clearSel) + '" style="flex:none;width:32px;height:32px;margin:-6px -6px 0 0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#6b6965"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button></div>';
     if (v.hasSel) {
       const s = v.sel;
       pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
@@ -757,9 +759,9 @@ class Component extends DCLogic {
         + (s.hasPoll ? '<div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px"><span>Écart - <b>' + esc(s.gapText) + '</b></span><span class="mono" style="font-size:10px;letter-spacing:.04em;white-space:nowrap;' + s.moeStyle + '">' + esc(s.moeText) + '</span></div>'
           + '<div aria-hidden="true" style="position:relative;height:14px;border-radius:999px;background:#f0eeea"><span style="position:absolute;top:0;bottom:0;border-radius:999px;' + s.bandStyle + '"></span><span style="position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#8c8a85"></span><span style="position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:#141414;' + s.tickStyle + '"></span></div>'
           + '<div class="mono" style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:.04em"><span style="' + s.endAStyle + '">← ' + esc(s.endA) + '</span><span style="color:#6b6965">0</span><span style="' + s.endBStyle + '">' + esc(s.endB) + ' →</span></div>'
-          + '<span style="font-size:11.5px;line-height:1.35;color:#828282;">' + esc(s.moeNote) + '</span></div>' : '')
+          + '<span style="font-size:11.5px;line-height:1.35;color:#6b6965;">' + esc(s.moeNote) + '</span></div>' : '')
         + (s.note ? '<span style="font-size:12.5px;line-height:1.4;color:#3a3936">' + esc(s.note) + '</span>' : '')
-        + '<div class="mono" style="display:flex;justify-content:space-between;gap:8px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11.5px;color:#828282;"><span>' + esc(s.foot) + '</span><span>* Sortant</span></div>'
+        + '<div class="mono" style="display:flex;justify-content:space-between;gap:8px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11.5px;color:#6b6965;"><span>' + esc(s.foot) + '</span><span>* Sortant</span></div>'
         + (s.hasBack ? '<button class="mono" data-h="' + h(s.back) + '" style="align-self:flex-start;min-height:28px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#141414;border-bottom:1px solid #141414">Tout l’État →</button>' : '')
         + '</div>';
     } else if (v.hasStateSel) {

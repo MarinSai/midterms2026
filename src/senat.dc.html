@@ -65,7 +65,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
   <nav aria-label="Dans cette page" style="background: #f4f4f2; margin: 4px 0 30px; padding: 16px 22px 16px; display: flex; flex-wrap: wrap; gap: 14px 44px; align-items: flex-end;">
     <sc-for list="{{navGroups}}" as="g" hint-placeholder-count="2">
       <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
-        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #828282;">{{g.label}}</span>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #6b6965;">{{g.label}}</span>
         <div style="display: flex; flex-wrap: wrap; gap: 0 28px;">
           <sc-for list="{{g.items}}" as="it" hint-placeholder-count="2">
             <button onClick="{{it.pick}}" aria-current="{{it.cur}}" style="display: flex; flex-direction: column; gap: 12px; text-align: left; min-height: 44px; padding: 0; font-family: 'GC National', 'Helvetica Neue', sans-serif;">
@@ -105,7 +105,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
       <div aria-hidden="true" style="{{markLine}}"></div>
     </div>
 
-    <div class="mono" style="display: flex; justify-content: space-between; gap: 12px; margin-top:12px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;color:#828282;">
+    <div class="mono" style="display: flex; justify-content: space-between; gap: 12px; margin-top:12px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;color:#6b6965;">
       <span>{{dVotes}}</span>
       <span style="text-align: center;">{{pendingLabel}}</span>
       <span style="text-align: right;">{{rVotes}}</span>
@@ -198,7 +198,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                     <div class="prow" style="border-bottom: 1px solid #efedea; {{c.rowStyle}}"><span style="font-weight: 600; line-height: 1.2;">{{c.check}}{{c.n}}{{c.star}}</span><span style="font-size: 12px; opacity: .85;">{{c.ps}}</span><span class="mono" style="text-align: right; font-size: 12px;">{{c.vn}}</span><span class="mono" style="text-align: right; font-weight: 600;">{{c.pn}}</span></div>
                   </sc-for>
                 </div>
-                <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#828282;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
+                <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#6b6965;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
                 <sc-if value="{{sel.hasBack}}" hint-placeholder-val="{{ false }}">
                   <button class="mono" onClick="{{sel.back}}" style="align-self: flex-start; min-height: 28px; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #141414; border-bottom: 1px solid #141414;">Tout l’État →</button>
                 </sc-if>
@@ -250,7 +250,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                       <div class="prow" style="border-bottom: 1px solid #efedea; {{c.rowStyle}}"><span style="font-weight: 600; line-height: 1.2;">{{c.check}}{{c.n}}{{c.star}}</span><span style="font-size: 12px; opacity: .85;">{{c.ps}}</span><span class="mono" style="text-align: right; font-size: 12px;">{{c.vn}}</span><span class="mono" style="text-align: right; font-weight: 600;">{{c.pn}}</span></div>
                     </sc-for>
                   </div>
-                  <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#828282;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
+                  <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#6b6965;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
                   <sc-if value="{{sel.hasBack}}" hint-placeholder-val="{{ false }}">
                     <button class="mono" onClick="{{sel.back}}" style="align-self: flex-start; min-height: 28px; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #141414; border-bottom: 1px solid #141414;">Tout l’État →</button>
                   </sc-if>
@@ -274,12 +274,12 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                 </div>
               </sc-if>
             </div>
-            <span style="font-size:13.5px;color:#828282;">Chaque hexagone représente une circonscription, regroupée par État ; sa position dans l’État est indicative.</span>
+            <span style="font-size:13.5px;color:#6b6965;">Chaque hexagone représente une circonscription, regroupée par État ; sa position dans l’État est indicative.</span>
           </div>
         </sc-if>
       </div>
       <sc-if value="{{isSenate}}" hint-placeholder-val="{{ true }}">
-        <p style="margin: 0; font-size:13.5px;color:#828282;">Ohio et Floride : élections partielles pour les sièges laissés par J. D. Vance et Marco Rubio en 2025.</p>
+        <p style="margin: 0; font-size:13.5px;color:#6b6965;">Ohio et Floride : élections partielles pour les sièges laissés par J. D. Vance et Marco Rubio en 2025.</p>
       </sc-if>
     </div>
 
@@ -307,7 +307,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
     </div>
   </section>
 
-  <footer class="mono" style="margin-top:40px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;line-height:1.55;color:#828282; display: flex; flex-direction: column; gap: 2px;">
+  <footer class="mono" style="margin-top:40px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;line-height:1.55;color:#6b6965; display: flex; flex-direction: column; gap: 2px;">
     <span>{{sourceLine}}</span>
     <span>{{ruleLine}}</span>
     <span>Horaires : Associated Press, 2026 Poll Hours Report (27 octobre 2026) ; pour le Dakota du Nord, secrétariat d’État, convertis en heure de Paris (UTC+1, soit l’heure de l’Est + 6 h après le passage à l’heure d’hiver aux États-Unis le 1er novembre).</span>
@@ -541,7 +541,7 @@ class Component extends DCLogic {
     const hatch = (c) => 'repeating-linear-gradient(-45deg, ' + c + ' 0 2px, #ffffff 2px 4px)';
     const leaderOf = (res) => { const s = res.cands.filter((c) => c.p !== 'O').slice().sort((a, b) => b.v - a.v); return s[0] && s[0].v > 0 ? s[0] : null; };
     const fillOf = (r) => r.winner ? SOLID[r.winner] : (leaderOf(r) ? TINT[leaderOf(r).p] : PENDING);
-    const txtOf = (r) => r.winner ? '#ffffff' : '#141414';
+    const txtOf = (r) => '#141414';
     const statusText = (r, res) => {
       if (r.status === 'runoff') return 'Second tour';
       if (r.status === 'too_close') return 'Trop serré';
@@ -810,7 +810,7 @@ class Component extends DCLogic {
     const thumb = (on, key) => ({
       on, pick: () => this.setState({ chamber: key, sel: null }),
       style: 'width: 116px; display: flex; flex-direction: column; gap: 8px; padding: 8px; border-radius: 10px; box-sizing: border-box; border: 1.5px solid ' + (on ? '#141414' : '#e9e7e3') + '; opacity: ' + (on ? 1 : .62) + ';',
-      labelStyle: "font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:" + (on ? '#1c1b1c' : '#828282') + ';'
+      labelStyle: "font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:" + (on ? '#1c1b1c' : '#6b6965') + ';'
     });
 
     const navBar = (on) => 'display: block; height: 5px; width: 100%; background: ' + (on ? '#1c1b1c' : '#d9d7d2') + ';';

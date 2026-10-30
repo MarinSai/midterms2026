@@ -181,6 +181,7 @@ T = [
 
 # --- Fiches (popups)
 (' : voir les résultats', ': ver los resultados', ': vedi i risultati'),
+(' : voir la fiche', ': ver la ficha', ': vedi la scheda'),
 ('Tout l’État →', 'Todo el estado →', 'Tutto lo Stato →'),
 ('Silver Bulletin, 29 oct. - ', 'Silver Bulletin, 29 de oct. - ', 'Silver Bulletin, 29 ott. - '),
 (' sondages, ', ' encuestas, ', ' sondaggi, '),
@@ -282,6 +283,7 @@ T = [
 ('Dém.', 'Dem.', 'Dem.'),
 ('Rép.', 'Rep.', 'Rep.'),
 ('Autre', 'Otro', 'Altro'),
+('Sans adversaire', 'Sin rival', 'Senza avversari'),
 ('Div.', 'Otr.', 'Altri'),
 
 # --- États

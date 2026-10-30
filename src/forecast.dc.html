@@ -65,7 +65,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
   <nav aria-label="Dans cette page" style="background: #f4f4f2; margin: 4px 0 30px; padding: 16px 22px 16px; display: flex; flex-wrap: wrap; gap: 14px 44px; align-items: flex-end;">
     <sc-for list="{{navGroups}}" as="g" hint-placeholder-count="2">
       <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
-        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #828282;">{{g.label}}</span>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #6b6965;">{{g.label}}</span>
         <div style="display: flex; flex-wrap: wrap; gap: 0 28px;">
           <sc-for list="{{g.items}}" as="it" hint-placeholder-count="2">
             <button onClick="{{it.pick}}" aria-current="{{it.cur}}" style="display: flex; flex-direction: column; gap: 12px; text-align: left; min-height: 44px; padding: 0; font-family: 'GC National', 'Helvetica Neue', sans-serif;">
@@ -105,7 +105,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
       <div aria-hidden="true" style="{{markLine}}"></div>
     </div>
 
-    <div class="mono" style="display: flex; justify-content: space-between; gap: 12px; margin-top:12px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;color:#828282;">
+    <div class="mono" style="display: flex; justify-content: space-between; gap: 12px; margin-top:12px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;color:#6b6965;">
       <span>{{dVotes}}</span>
       <span style="text-align: center;">{{pendingLabel}}</span>
       <span style="text-align: right;">{{rVotes}}</span>
@@ -200,10 +200,10 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                       <span style="position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: #141414; {{sel.tickStyle}}"></span>
                     </div>
                     <div class="mono" style="display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .04em;"><span style="{{sel.endAStyle}}">← {{sel.endA}}</span><span style="color: #6b6965;">0</span><span style="{{sel.endBStyle}}">{{sel.endB}} →</span></div>
-                    <span style="font-size:11.5px;line-height:1.35;color:#828282;">{{sel.moeNote}}</span>
+                    <span style="font-size:11.5px;line-height:1.35;color:#6b6965;">{{sel.moeNote}}</span>
                   </div>
                 </sc-if>
-                <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#828282;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
+                <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#6b6965;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
                 <sc-if value="{{sel.hasBack}}" hint-placeholder-val="{{ false }}">
                   <button class="mono" onClick="{{sel.back}}" style="align-self: flex-start; min-height: 28px; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #141414; border-bottom: 1px solid #141414;">Tout l’État →</button>
                 </sc-if>
@@ -264,10 +264,10 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                       <span style="position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: #141414; {{sel.tickStyle}}"></span>
                     </div>
                     <div class="mono" style="display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .04em;"><span style="{{sel.endAStyle}}">← {{sel.endA}}</span><span style="color: #6b6965;">0</span><span style="{{sel.endBStyle}}">{{sel.endB}} →</span></div>
-                    <span style="font-size:11.5px;line-height:1.35;color:#828282;">{{sel.moeNote}}</span>
+                    <span style="font-size:11.5px;line-height:1.35;color:#6b6965;">{{sel.moeNote}}</span>
                   </div>
                 </sc-if>
-                <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#828282;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
+                <div class="mono" style="display: flex; justify-content: space-between; gap:8px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:11.5px;color:#6b6965;"><span>{{sel.foot}}</span><span>* Sortant</span></div>
                   <sc-if value="{{sel.hasBack}}" hint-placeholder-val="{{ false }}">
                     <button class="mono" onClick="{{sel.back}}" style="align-self: flex-start; min-height: 28px; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #141414; border-bottom: 1px solid #141414;">Tout l’État →</button>
                   </sc-if>
@@ -291,12 +291,12 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
                 </div>
               </sc-if>
             </div>
-            <span style="font-size:13.5px;color:#828282;">Chaque hexagone représente une circonscription, regroupée par État ; sa position dans l’État est indicative.</span>
+            <span style="font-size:13.5px;color:#6b6965;">Chaque hexagone représente une circonscription, regroupée par État ; sa position dans l’État est indicative.</span>
           </div>
         </sc-if>
       </div>
       <sc-if value="{{isSenate}}" hint-placeholder-val="{{ true }}">
-        <p style="margin: 0; font-size:13.5px;color:#828282;">Ohio et Floride : élections partielles pour les sièges laissés par J. D. Vance et Marco Rubio en 2025.</p>
+        <p style="margin: 0; font-size:13.5px;color:#6b6965;">Ohio et Floride : élections partielles pour les sièges laissés par J. D. Vance et Marco Rubio en 2025.</p>
       </sc-if>
     </div>
 
@@ -328,7 +328,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
           <text x="200" y="212" text-anchor="middle" style="font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 30px; font-variant-numeric: lining-nums tabular-nums;"><tspan fill="#3b8ee6">{{scn.sD}}</tspan><tspan fill="#b9b6b0"> – </tspan><tspan fill="#e85462">{{scn.sR}}</tspan></text>
           <text x="200" y="233" text-anchor="middle" style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; font-weight: 600;" fill="{{scn.sCtlColor}}">{{scn.sShort}}</text>
         </svg>
-        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; line-height: 1.45; color: #828282;">{{scn.sNote}}Courses indécises remportées par les démocrates : {{scn.flips}}.</span>
+        <span style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13px; line-height: 1.45; color: #6b6965;">{{scn.sNote}}Courses indécises remportées par les démocrates : {{scn.flips}}.</span>
       </figure>
       <figure style="margin: 0; flex: 1 1 300px; max-width: 520px; display: flex; flex-direction: column; gap: 6px;">
         <figcaption style="font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #1c1b1c;">Chambre des représentants</figcaption>
@@ -342,7 +342,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
         </svg>
       </figure>
     </div>
-    <p style="margin: 0; max-width: 90ch; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 12.5px; line-height: 1.55; color: #828282;">Scénarios : Nate Cohn, The New York Times, 29 octobre 2026. Les courses indécises sont attribuées dans l’ordre des moyennes Silver Bulletin. Chambre : calcul Le Grand Continent à partir des classements Cook et des moyennes Silver Bulletin.</p>
+    <p style="margin: 0; max-width: 90ch; font-family: 'GC National', 'Helvetica Neue', sans-serif; font-size: 12.5px; line-height: 1.55; color: #6b6965;">Scénarios : Nate Cohn, The New York Times, 29 octobre 2026. Les courses indécises sont attribuées dans l’ordre des moyennes Silver Bulletin. Chambre : calcul Le Grand Continent à partir des classements Cook et des moyennes Silver Bulletin.</p>
   </section>
 
   <!-- Calendrier de la nuit -->
@@ -367,7 +367,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
     </div>
   </section>
 
-  <footer class="mono" style="margin-top:40px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;line-height:1.55;color:#828282; display: flex; flex-direction: column; gap: 2px;">
+  <footer class="mono" style="margin-top:40px;font-family:'GC National','Helvetica Neue',sans-serif;font-size:12.5px;line-height:1.55;color:#6b6965; display: flex; flex-direction: column; gap: 2px;">
     <span>{{sourceLine}}</span>
     <span>{{ruleLine}}</span>
     <span>Horaires : Associated Press, 2026 Poll Hours Report (27 octobre 2026) ; pour le Dakota du Nord, secrétariat d’État, convertis en heure de Paris (UTC+1, soit l’heure de l’Est + 6 h après le passage à l’heure d’hiver aux États-Unis le 1er novembre).</span>
@@ -652,9 +652,9 @@ class Component extends DCLogic {
     const hatch = (c) => 'repeating-linear-gradient(-45deg, ' + c + ' 0 2px, #ffffff 2px 4px)';
     const leaderOf = (res) => { const s = res.cands.filter((c) => c.p !== 'O').slice().sort((a, b) => b.v - a.v); return s[0] && s[0].v > 0 ? s[0] : null; };
     const RATE = [
-      { l: 'Démocrate sûr', f: '#3b8ee6', t: '#ffffff' }, { l: 'Démocrate probable', f: '#86bdf1' }, { l: 'Penche démocrate', f: '#c6e1fb' },
+      { l: 'Démocrate sûr', f: '#3b8ee6', t: '#141414' }, { l: 'Démocrate probable', f: '#86bdf1' }, { l: 'Penche démocrate', f: '#c6e1fb' },
       { l: 'Indécis', f: '#b49ce0' },
-      { l: 'Penche républicain', f: '#f8c9ce' }, { l: 'Républicain probable', f: '#f19ca5' }, { l: 'Républicain sûr', f: '#e85462', t: '#ffffff' }
+      { l: 'Penche républicain', f: '#f8c9ce' }, { l: 'Républicain probable', f: '#f19ca5' }, { l: 'Républicain sûr', f: '#e85462', t: '#141414' }
     ];
     const sideOf = (rt) => rt < 3 ? 'D' : rt > 3 ? 'R' : null;
     const fillOf = (r) => RATE[r.rating].f;
@@ -728,7 +728,7 @@ class Component extends DCLogic {
       const g = geo.states[st], has = !!RACES[st];
       miniS.push({ d: g.d, fill: has ? sFill(st) : '#ecebe8' });
       if (!isSenate) continue;
-      states.push({ d: g.d, fill: sFill(st), stroke: has ? '#ffffff' : '#c9c6c0', sw: has ? 1.2 : .6, disabled: !has, pick: has ? pickSel('S:' + st) : null, aria: has ? NAMES[st] + ' : voir les résultats' : NAMES[st] });
+      states.push({ d: g.d, fill: sFill(st), stroke: has ? '#ffffff' : '#c9c6c0', sw: has ? 1.2 : .6, disabled: !has, pick: has ? pickSel('S:' + st) : null, aria: has ? NAMES[st] + ' : voir la fiche' : NAMES[st] });
       if (has && !SMALL[st]) {
         const nd = NUDGE[st] || [0, 0];
         labels.push({ t: st, gain: sGain(st), dot: sTxt(st), style: 'left: ' + ((g.cx + nd[0]) / 9.75) + '%; top: ' + ((g.cy + nd[1]) / 6.1) + '%; color: ' + sTxt(st) + ';' });
@@ -739,7 +739,7 @@ class Component extends DCLogic {
     if (geo && isSenate) for (const st in CO_Y) {
       const g = geo.states[st], yy = CO_Y[st];
       coLines.push({ d: 'M' + g.cx + ',' + g.cy + 'L922,' + yy + 'L930,' + yy });
-      callouts.push({ t: st, gain: sGain(st), dot: sTxt(st), aria: NAMES[st] + ' : voir les résultats', pick: pickSel('S:' + st), style: 'left: ' + (930 / 9.75) + '%; top: ' + (yy / 6.1) + '%; background: ' + sFill(st) + '; color: ' + sTxt(st) + ';' + (sel === 'S:' + st ? ' box-shadow: 0 0 0 2px #141414;' : '') });
+      callouts.push({ t: st, gain: sGain(st), dot: sTxt(st), aria: NAMES[st] + ' : voir la fiche', pick: pickSel('S:' + st), style: 'left: ' + (930 / 9.75) + '%; top: ' + (yy / 6.1) + '%; background: ' + sFill(st) + '; color: ' + sTxt(st) + ';' + (sel === 'S:' + st ? ' box-shadow: 0 0 0 2px #141414;' : '') });
     }
 
     // ---------- Carte de la Chambre ----------
@@ -799,7 +799,7 @@ class Component extends DCLogic {
             pn: p && c.avg != null ? this.fmtP(c.avg) : '—',
             rowStyle: 'box-shadow: inset 3px 0 0 ' + (SOLID[c.p] || '#8c8a85') + ';'
           })),
-          foot: p ? 'Silver Bulletin, 29 oct. - ' + p.n + ' sondages, ' + p.f + ' instituts' : 'Pas de moyenne de sondages (il en faut au moins trois, de deux instituts)',
+          foot: p ? 'Silver Bulletin, 29 oct. - ' + p.n + ' sondages, ' + p.f + ' instituts' : r.cands.length < 2 ? 'Sans adversaire' : 'Pas de moyenne de sondages (il en faut au moins trois, de deux instituts)',
           note: extra || '',
           hasBack: !!back, back,
           ...this.pollGap(lead, sec, SOLID, TINT, TEXT, !back)
@@ -929,7 +929,7 @@ class Component extends DCLogic {
     const thumb = (on, key) => ({
       on, pick: () => this.setState({ chamber: key, sel: null }),
       style: 'width: 116px; display: flex; flex-direction: column; gap: 8px; padding: 8px; border-radius: 10px; box-sizing: border-box; border: 1.5px solid ' + (on ? '#141414' : '#e9e7e3') + '; opacity: ' + (on ? 1 : .62) + ';',
-      labelStyle: "font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:" + (on ? '#1c1b1c' : '#828282') + ';'
+      labelStyle: "font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-align:center;color:" + (on ? '#1c1b1c' : '#6b6965') + ';'
     });
 
     // ---------- Scénarios ----------
