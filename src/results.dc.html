@@ -331,12 +331,68 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { clearInterval(this.timer); }
 
+  // Flux Bloomberg (données AP) : fichiers publics, CORS ouvert, mis à jour en continu le soir de l’élection.
+  //   candidates.tsv : raceKey (vide = même course que la ligne précédente), candidateID, partyCode, first, last, isIncumbent…
+  //   counts.tsv : raceKey, candidateID, voteCount, eevp (%), lastUpdated_epoch
+  //   calls.tsv : raceKey, winnerCandidateID, callDateTime_epoch, callType, network
+  // 2024 (pour les essais) : un seul results.tsv (raceKey, candidateID, voteCount, eevp, winner = X).
+  // Clés : SAK → Sénat AK ; SFLs → Sénat FL (partielle) ; HPA8 → PA-08 ; HAK1 → AK-AL pour les États à siège unique.
+  bbgTsv(txt) {
+    const L = (txt || '').split(/\r?\n/).filter((l) => l.length), H = L.length ? L[0].split('\t') : [];
+    return L.slice(1).map((l) => { const c = l.split('\t'), o = {}; H.forEach((h, i) => { o[h] = c[i] == null ? '' : c[i]; }); return o; });
+  }
+  bbgKey(rk) {
+    const AL = { AK: 1, DE: 1, ND: 1, SD: 1, VT: 1, WY: 1 };
+    let m = /^S([A-Z]{2})s?$/.exec(rk); if (m) return ['senate', m[1]];
+    m = /^H([A-Z]{2})(\d+)$/.exec(rk); if (m) return ['house', AL[m[1]] ? m[1] + '-AL' : m[1] + '-' + m[2].padStart(2, '0')];
+    return null;
+  }
+  async pullBloomberg(key) {
+    const base = 'https://www.bloomberg.com/bbg-gfx/election-data/usa/' + key + '/', t = '?t=' + Date.now();
+    const get = (f) => fetch(base + f + t).then((r) => (r.ok ? r.text() : ''));
+    if (!this._bbgCands || this._bbgKey !== key) {
+      let last = '';
+      this._bbgCands = new Map(); this._bbgKey = key;
+      for (const c of this.bbgTsv(await get('candidates.tsv'))) {
+        const rk = c.raceKey || last; last = rk;
+        const p = c.partyCode === 'Dem' ? 'D' : c.partyCode === 'Rep' ? 'R' : (c.partyCode === 'Ind' ? 'I' : 'O');
+        this._bbgCands.set(rk + ':' + c.candidateID, { n: ((c.nickname || c.first || '') + ' ' + (c.last || '')).trim(), p, inc: c.isIncumbent === '1' || c.isIncumbent === 'true' || c.isIncumbent === 'X' });
+      }
+    }
+    let counts = this.bbgTsv(await get('counts.tsv')), calls = this.bbgTsv(await get('calls.tsv'));
+    if (!counts.length) {                     // format 2024 : tout dans results.tsv
+      const res = this.bbgTsv(await get('results.tsv'));
+      counts = res; calls = res.filter((r) => r.winner === 'X').map((r) => ({ raceKey: r.raceKey, winnerCandidateID: r.candidateID }));
+    }
+    const out = { senate: {}, house: {}, source: 'Bloomberg (AP)' };
+    const races = new Map();
+    for (const r of counts) {
+      const k = this.bbgKey(r.raceKey); if (!k) continue;
+      let o = races.get(r.raceKey);
+      if (!o) { o = { k, eevp: +r.eevp || 0, cands: [], winnerId: null, runoff: false }; races.set(r.raceKey, o); }
+      const c = this._bbgCands.get(r.raceKey + ':' + r.candidateID) || { n: 'Candidat ' + r.candidateID, p: 'O', inc: false };
+      o.cands.push({ id: r.candidateID, n: c.n, p: c.p, inc: c.inc, v: +r.voteCount || 0 });
+    }
+    for (const c of calls) {
+      const o = races.get(c.raceKey); if (!o) continue;
+      if (c.callType && c.callType !== '') o.runoff = true; else o.winnerId = c.winnerCandidateID;
+    }
+    for (const o of races.values()) {
+      const w = o.cands.find((c) => c.id === o.winnerId);
+      o.cands.sort((a, b) => b.v - a.v);
+      out[o.k[0]][o.k[1]] = { eevp: o.eevp, winner: w ? w.p : null, status: w ? 'called' : (o.eevp > 0 || o.cands.some((c) => c.v > 0) ? 'counting' : 'pending'), cands: o.cands.map(({ n, p, inc, v }) => ({ n, p, inc, v })) };
+    }
+    return out;
+  }
+
   startFeed() {
     clearInterval(this.timer);
-    const url = (this.props.feedUrl || '').trim();
+    const url = (this.props.feedUrl || 'bloomberg').trim();
     if (!url) { if (this.state.feed) this.setState({ feed: null, feedErr: null }); return; }
-    const pull = () => fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now())
-      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    // « bloomberg » = fichiers de Bloomberg pour le 3 novembre 2026 ; « bloomberg:2024-11-05 » = essai sur 2024
+    const bbg = /^bloomberg(?::(.+))?$/.exec(url);
+    const pull = () => (bbg ? this.pullBloomberg(bbg[1] || '2026-11-03') : fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now())
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }))
       .then((j) => this.setState({ feed: j, feedErr: null }))
       .catch((e) => this.setState({ feedErr: String(e) }));
     pull();
