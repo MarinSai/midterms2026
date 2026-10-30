@@ -1,0 +1,991 @@
+Skip to main navigation
+
+Home
+Search by keyword
+Member links
+Find a race
+Login
+Login
+Home
+Main navigation
+Race Ratings
+Analysis
+Data & Tools
+Podcasts & Video
+Events
+About Us
+Breadcrumb
+Cook Political Report  Race Ratings  U.S. House
+HOUSE
+2026 CPR House Race Ratings
+Oct 30, 2026
+
+About CPR House Race Ratings
+The CPR House Race Ratings assess the competitiveness of all 435 House elections. Competitiveness is determined by several factors, including the district's political makeup, the candidates' strengths and weaknesses, the political environment in the state and nationally, and interviews with candidates and campaign professionals. When sourcing the CPR Race Ratings, please refer to our terms of use. To inquire about API access and licensing, please submit a request.
+
+Ratings Summary
+
+Current House Ratings
+Log in or subscribe to access the rating archive
+186
+18
+18
+18
+17
+14
+164
+218
+Solid Democrat (186)
+Likely Democrat (18)
+Lean Democrat (18)
+Toss Up (18)
+Lean Republican (17)
+Likely Republican (14)
+Solid Republican (164)
+Solid D (186)
+183 Dem  2 Rep
+AL-07
+Sewell
+AZ-03
+Ansari
+AZ-04
+Stanton
+AZ-07
+Grijalva
+CA-01
+Gallagher
+CA-02
+Huffman
+CA-03
+Bera
+CA-04
+Thompson
+CA-06
+Kiley
+CA-07
+Matsui
+CA-08
+Garamendi
+CA-09
+Harder
+CA-10
+DeSaulnier
+CA-11
+OPEN (Pelosi)
+CA-12
+Simon
+CA-14
+Wahab
+CA-15
+Mullin
+CA-16
+Liccardo
+CA-17
+Khanna
+CA-18
+Lofgren
+CA-19
+Panetta
+CA-21
+Costa
+CA-24
+Carbajal
+CA-25
+Ruiz
+CA-26
+OPEN (Brownley)
+CA-27
+Whitesides
+CA-28
+Chu
+CA-29
+Rivas
+CA-30
+Friedman
+CA-31
+Cisneros
+CA-32
+Sherman
+CA-33
+Aguilar
+CA-34
+Gomez
+CA-35
+Torres
+CA-36
+Lieu
+CA-37
+Kamlager-Dove
+CA-38
+OPEN (Sánchez)
+CA-39
+Takano
+CA-41
+Sánchez
+CA-42
+Garcia
+CA-43
+Waters
+CA-44
+Barragán
+CA-46
+Correa
+CA-47
+Min
+CA-49
+Levin
+CA-50
+Peters
+CA-51
+Jacobs
+CA-52
+Vargas
+CO-01
+OPEN (DeGette)
+CO-02
+Neguse
+CO-06
+Crow
+CO-07
+Pettersen
+CT-01
+OPEN (Larson)
+CT-02
+Courtney
+CT-03
+DeLauro
+CT-04
+Himes
+CT-05
+Hayes
+DE-AL
+McBride
+FL-10
+Frost
+FL-20
+VACANT
+FL-23
+Frankel
+FL-24
+OPEN (Wilson)
+GA-02
+Bishop
+GA-04
+Johnson
+GA-05
+Williams
+GA-06
+McBath
+GA-13
+OPEN (Blair)
+HI-01
+Case
+HI-02
+Tokuda
+IL-01
+Jackson
+IL-02
+OPEN (Kelly)
+IL-03
+Ramirez
+IL-04
+OPEN (García)
+IL-05
+Quigley
+IL-06
+Casten
+IL-07
+OPEN (Davis)
+IL-08
+OPEN (Krishnamoorthi)
+IL-09
+OPEN (Schakowsky)
+IL-10
+Schneider
+IL-11
+Foster
+IL-13
+Budzinski
+IL-14
+Underwood
+IL-17
+Sorensen
+IN-07
+Carson
+KS-03
+Davids
+KY-03
+McGarvey
+LA-02
+Carter
+MA-01
+Neal
+MA-02
+McGovern
+MA-03
+Trahan
+MA-04
+Auchincloss
+MA-05
+Clark
+MA-06
+OPEN (Moulton)
+MA-07
+Pressley
+MA-08
+Lynch
+MA-09
+Keating
+MD-02
+Olszewski
+MD-03
+Elfreth
+MD-04
+Ivey
+MD-05
+OPEN (Hoyer)
+MD-06
+McClain Delaney
+MD-07
+Mfume
+MD-08
+Raskin
+ME-01
+Pingree
+MI-03
+Scholten
+MI-06
+Dingell
+MI-11
+OPEN (Stevens)
+MI-12
+Tlaib
+MI-13
+OPEN (Thanedar)
+MN-03
+Morrison
+MN-04
+McCollum
+MN-05
+Omar
+MO-01
+Bell
+MO-05
+Cleaver
+MS-02
+Thompson
+NC-02
+Ross
+NC-04
+Foushee
+NC-12
+Adams
+NH-02
+Goodlander
+NJ-01
+Norcross
+NJ-03
+Conaway
+NJ-05
+Gottheimer
+NJ-06
+Pallone
+NJ-08
+Menendez
+NJ-10
+McIver
+NJ-11
+Mejia
+NJ-12
+OPEN (Watson Coleman)
+NM-01
+Stansbury
+NM-03
+Leger Fernández
+NY-05
+Meeks
+NY-06
+Meng
+NY-07
+OPEN (Velázquez)
+NY-08
+Jeffries
+NY-09
+Clarke
+NY-10
+OPEN (Goldman)
+NY-12
+OPEN (Nadler)
+NY-13
+OPEN (Espaillat)
+NY-14
+Ocasio-Cortez
+NY-15
+Torres
+NY-16
+Latimer
+NY-18
+Ryan
+NY-20
+Tonko
+NY-22
+Mannion
+NY-25
+Morelle
+NY-26
+Kennedy
+OH-03
+Beatty
+OH-11
+Brown
+OR-01
+Bonamici
+OR-03
+Dexter
+OR-04
+Hoyle
+OR-05
+Bynum
+OR-06
+Salinas
+PA-02
+Boyle
+PA-03
+OPEN (Evans)
+PA-04
+Dean
+PA-05
+Scanlon
+PA-06
+Houlahan
+PA-12
+Lee
+PA-17
+Deluzio
+RI-01
+Amo
+RI-02
+Magaziner
+SC-06
+Clyburn
+TX-07
+Fletcher
+TX-16
+Escobar
+TX-18
+Menefee
+TX-20
+Castro
+TX-29
+Garcia
+TX-30
+OPEN (Crockett)
+TX-33
+OPEN (Johnson)
+TX-37
+Casar
+UT-01
+OPEN (Moore)
+VA-03
+Scott
+VA-04
+McClellan
+VA-08
+Beyer
+VA-10
+Subramanyam
+VA-11
+Walkinshaw
+VT-AL
+Balint
+WA-01
+DelBene
+WA-02
+Larsen
+WA-06
+Randall
+WA-07
+Jayapal
+WA-08
+Schrier
+WA-09
+Smith
+WA-10
+Strickland
+WI-02
+Pocan
+WI-04
+Moore
+Likely D (18)
+17 Dem  1 Rep
+CA-13
+Gray
+CA-45
+Tran
+IN-01
+Mrvan
+MI-08
+McDonald Rivet
+MN-02
+OPEN (Craig)
+NE-02
+OPEN (Bacon)
+NH-01
+OPEN (Pappas)
+NJ-09
+Pou
+NV-01
+Titus
+NV-03
+Lee
+NV-04
+Horsford
+NY-03
+Suozzi
+NY-04
+Gillen
+NY-19
+Riley
+OH-01
+Landsman
+OH-13
+Sykes
+TX-28
+Cuellar
+VA-07
+Vindman
+Lean D (18)
+5 Dem  13 Rep
+AZ-01
+OPEN (Schweikert)
+AZ-06
+Ciscomani
+CA-48
+OPEN (Issa)
+CO-08
+Evans
+FL-25
+Moskowitz
+IA-01
+Miller-Meeks
+IA-03
+Nunn
+NC-11
+OPEN (Edwards)
+NJ-07
+Kean Jr.
+NM-02
+Vasquez
+OH-09
+Kaptur
+PA-07
+Mackenzie
+PA-08
+Bresnahan
+PA-10
+Perry
+TX-34
+Gonzalez
+VA-02
+Kiggans
+WA-03
+Perez
+WI-03
+Van Orden
+Toss Up (18)
+4 Dem  14 Rep
+CA-22
+Valadao
+CO-05
+Crank
+FL-14
+Castor
+FL-22
+OPEN (Frankel)
+IA-02
+OPEN (Hinson)
+KY-06
+OPEN (Barr)
+MI-04
+Huizenga
+MI-07
+Barrett
+MI-10
+OPEN (James)
+MT-01
+OPEN (Zinke)
+NC-01
+Davis
+NY-17
+Lawler
+OH-07
+Miller
+PA-01
+Fitzpatrick
+SC-01
+OPEN (Mace)
+TX-35
+OPEN (Casar)
+TX-15
+De La Cruz
+VA-01
+Wittman
+Lean R (17)
+3 Dem  14 Rep
+AK-AL
+Begich III
+AL-02
+Figures
+AZ-02
+Crane
+CO-04
+Boebert
+FL-07
+OPEN (Mills)
+FL-09
+Soto
+FL-13
+Luna
+FL-27
+Salazar
+IN-05
+Spartz
+ME-02
+OPEN (Golden)
+MN-01
+Finstad
+NV-02
+OPEN (Amodei)
+NY-21
+OPEN (Stefanik)
+OH-10
+Turner
+OH-15
+Carey
+TX-23
+VACANT
+WI-01
+Steil
+Likely R (14)
+1 Dem  13 Rep
+AR-02
+Hill
+CO-03
+Hurd
+FL-16
+OPEN (Buchanan)
+KS-02
+Schmidt
+MO-02
+Wagner
+NC-03
+Murphy
+NC-05
+Foxx
+NC-09
+Hudson
+NC-13
+Knott
+NE-01
+Flood
+NJ-02
+Van Drew
+TX-09
+OPEN (Green)
+VA-05
+McGuire
+WA-05
+Baumgartner
+Solid R (164)
+3 Dem  161 Rep
+AL-01
+OPEN (Moore)
+AL-03
+Rogers
+AL-04
+Aderholt
+AL-05
+Strong
+AL-06
+Palmer
+AR-01
+Crawford
+AR-03
+Womack
+AR-04
+Westerman
+AZ-05
+OPEN (Biggs)
+AZ-08
+Hamadeh
+AZ-09
+Gosar
+CA-05
+McClintock
+CA-20
+Fong
+CA-23
+Obernolte
+CA-40
+MERGED SEAT
+FL-01
+Patronis
+FL-02
+OPEN (Dunn)
+FL-03
+Cammack
+FL-04
+Bean
+FL-05
+Rutherford
+FL-06
+Fine
+FL-08
+Haridopolos
+FL-11
+OPEN (Webster)
+FL-12
+Bilirakis
+FL-15
+Lee
+FL-17
+Steube
+FL-18
+Franklin
+FL-19
+OPEN (Donalds)
+FL-21
+Mast
+FL-26
+Díaz-Balart
+FL-28
+Giménez
+GA-01
+OPEN (Carter)
+GA-03
+Jack
+GA-07
+McCormick
+GA-08
+Scott
+GA-09
+Clyde
+GA-10
+OPEN (Collins)
+GA-11
+OPEN (Loudermilk)
+GA-12
+Allen
+GA-14
+Fuller
+IA-04
+OPEN (Feenstra)
+ID-01
+Fulcher
+ID-02
+Simpson
+IL-12
+Bost
+IL-15
+Miller
+IL-16
+LaHood
+IN-02
+Yakym
+IN-03
+Stutzman
+IN-04
+Baird
+IN-06
+Shreve
+IN-08
+Messmer
+IN-09
+Houchin
+KS-01
+Mann
+KS-04
+Estes
+KY-01
+Comer
+KY-02
+Guthrie
+KY-04
+OPEN (Massie)
+KY-05
+Rogers
+LA-01
+Scalise
+LA-03
+Higgins
+LA-04
+Johnson
+LA-05
+OPEN (Letlow)
+LA-06
+OPEN (Fields)
+MD-01
+Harris
+MI-01
+Bergman
+MI-02
+Moolenaar
+MI-05
+Walberg
+MI-09
+McClain
+MN-06
+Emmer
+MN-07
+Fischbach
+MN-08
+Stauber
+MO-03
+Onder
+MO-04
+Alford
+MO-06
+OPEN (Graves)
+MO-07
+Burlison
+MO-08
+Smith
+MS-01
+Kelly
+MS-03
+Guest
+MS-04
+Ezell
+MT-02
+Downing
+NC-06
+McDowell
+NC-07
+Rouzer
+NC-08
+Harris
+NC-10
+Harrigan
+NC-14
+Moore
+ND-AL
+Fedorchak
+NE-03
+Smith
+NJ-04
+Smith
+NY-01
+LaLota
+NY-02
+Garbarino
+NY-11
+Malliotakis
+NY-23
+Langworthy
+NY-24
+Tenney
+OH-02
+Taylor
+OH-04
+Jordan
+OH-05
+Latta
+OH-06
+Rulli
+OH-08
+Davidson
+OH-12
+Balderson
+OH-14
+Joyce
+OK-01
+OPEN (Hern)
+OK-02
+Brecheen
+OK-03
+Lucas
+OK-04
+Cole
+OK-05
+Bice
+OR-02
+Bentz
+PA-09
+Meuser
+PA-11
+Smucker
+PA-13
+Joyce
+PA-14
+Reschenthaler
+PA-15
+Thompson
+PA-16
+Kelly
+SC-02
+Wilson
+SC-03
+Biggs
+SC-04
+Timmons
+SC-05
+OPEN (Norman)
+SC-07
+Fry
+SD-AL
+OPEN (Johnson)
+TN-01
+Harshbarger
+TN-02
+Burchett
+TN-03
+Fleischmann
+TN-04
+DesJarlais
+TN-05
+OPEN (Ogles)
+TN-06
+OPEN (Rose)
+TN-07
+Van Epps
+TN-08
+Kustoff
+TN-09
+OPEN (Cohen)
+TX-01
+Moran
+TX-02
+OPEN (Crenshaw)
+TX-03
+Self
+TX-04
+Fallon
+TX-05
+Gooden
+TX-06
+Ellzey
+TX-08
+OPEN (Luttrell)
+TX-10
+OPEN (McCaul)
+TX-11
+Pfluger
+TX-12
+Goldman
+TX-13
+Jackson
+TX-14
+Weber
+TX-17
+Sessions
+TX-19
+OPEN (Arrington)
+TX-21
+OPEN (Roy)
+TX-22
+OPEN (Nehls)
+TX-24
+Van Duyne
+TX-25
+Williams
+TX-26
+Gill
+TX-27
+Cloud
+TX-31
+Carter
+TX-32
+OPEN (Johnson)
+TX-36
+Babin
+TX-38
+OPEN (Hunt)
+UT-02
+Moore
+UT-03
+Maloy
+UT-04
+Kennedy
+VA-06
+Cline
+VA-09
+Griffith
+WA-04
+OPEN (Newhouse)
+WI-05
+Fitzgerald
+WI-06
+Grothman
+WI-07
+OPEN (Tiffany)
+WI-08
+Wied
+WV-01
+Miller
+WV-02
+Moore
+WY-AL
+OPEN (Hageman)
+Hover over chart segments or click columns to explore race details.
+
+Italicized name denotes a Freshman member.
+
+All races link to the at-a-glance race pages.
+
+Red text represents Republican-held seats and blue text represents Democrat-held seats.
+
+Terminology Guide
+Solid: These races are not considered competitive and are not likely to become closely contested.
+Likely: These races are not considered competitive at this point but have the potential to become engaged.
+Lean: These races are considered competitive races, but one party has an advantage.
+Toss Up: These races are the most competitive; either party has a good chance of winning.
+Subscribe Today
+Our subscribers have first access to individual race pages for each House, Senate and Governors race, which will include race ratings (each race is rated on a seven-point scale) and a narrative analysis pertaining to that race. 
+
+The Cook Political Report with Amy Walter
+Contact Us
+
+1655 Fort Myer Dr Suite 910, Arlington, VA 22209
+
+Footer menu
+About Us
+Team
+Press
+Jobs
+Contact
+Analysis
+U.S. Senate
+U.S. House
+National
+Governors
+Ratings
+U.S. Senate
+U.S. House
+Governors
+Electoral College
+Subscribe
+Groups
+Premium / PAC Plans
+In Brief (Free)
+Login
+Redistricting
+Redistricting Tracker
+2026 Mid-Decade Map
+Analysis
+CPR Projects
+Cook PVI
+CPR Archive
+Swingometer
+Popular Vote Tracker
+Toolbox
+API
+Charts
+Find A Race
+Survey Research
+Battleground Issue Tracker
+CPR+
+Events
+Podcasts
+Video
+Copyright © 2026 by Cook Political Report. All Rights Reserved. | Privacy Policy | Terms & Conditions
+
