@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elezioni di midterm 2026: sfide in bilico - Il Grand Continent</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<script async src="../../vendor/iframe-resizer-child-5.5.9.umd.js"></script>
 
 <style>
 @font-face{font-family:"GC Sanomat";src:url(../../fonts/sanomat-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
@@ -46,20 +46,17 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
 .live{animation:pulse 2s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.live{animation:none}.pill{transition:none}}
 
-html,body{height:100%;overflow:hidden}
 body{font-family:'GC National','Helvetica Neue',sans-serif;font-size:16px;line-height:1.45;color:#141414}
 @media (max-width:600px){.hlbl{font-size:9px;letter-spacing:0}}
-#app{height:100%}
 .frame{height:100%;display:flex;align-items:center;justify-content:center;padding:8px;box-sizing:border-box}
 .wrap{position:relative;aspect-ratio:var(--a);width:min(100%,calc((100vh - 16px) * var(--a)))}
 @media (max-width:600px){.pop .x{width:44px!important;height:44px!important;margin:-10px -10px 0 0!important}}
 .sheet{position:fixed;left:8px;right:8px;bottom:8px;width:auto!important;z-index:20;max-height:70vh;overflow-y:auto}
 .sheet .pop{position:static!important;left:auto!important;right:auto!important;width:100%!important;max-width:none!important;transform:none!important;translate:none!important}
-html,body{height:100%}
-.tframe{height:100%;display:flex;gap:18px;padding:8px;box-sizing:border-box}
-.tmap{flex:1 1 auto;min-width:0;display:flex;align-items:center;justify-content:center}
-.tmap .wrap{width:min(100%,calc((100vh - 16px) * var(--a)))}
-.tpanel{flex:0 0 clamp(250px,34%,330px);display:flex;flex-direction:column;gap:8px;overflow-y:auto;border-left:1px solid #e4e2de;padding:4px 2px 4px 18px;box-sizing:border-box}
+.tframe{display:flex;gap:22px;align-items:flex-start;padding:8px 0;box-sizing:border-box}
+.tmap{flex:1 1 auto;min-width:0;position:sticky;top:8px}
+.tmap .wrap{width:100%}
+.tpanel{flex:0 0 clamp(250px,34%,330px);display:flex;flex-direction:column;gap:8px;border-left:1px solid #e4e2de;padding:4px 2px 4px 18px;box-sizing:border-box}
 .trows{display:flex;flex-direction:column}
 .trow{display:flex;flex-direction:column;gap:1px;text-align:left;padding:6px 6px;border-top:1px solid #efede9;border-radius:4px;font-size:13px;line-height:1.3}
 .trow:hover{background:#f6f5f2}
@@ -69,7 +66,7 @@ html,body{height:100%}
 .hrow{padding:5px 4px!important;font-size:12.5px}
 .hd{display:inline-block;width:7px;height:7px;border-radius:50%;flex:none;align-self:center}
 @media (max-width:360px){.hgrid{grid-template-columns:1fr}}
-@media (max-width:600px){html,body{height:auto;overflow:auto}#app{height:auto}.tframe{flex-direction:column;height:auto}.tpanel{flex:none;border-left:0;border-top:1px solid #e4e2de;padding:12px 2px 4px;overflow:visible}.tmap .wrap{width:100%}}
+@media (max-width:600px){.tframe{flex-direction:column}.tmap{position:static;width:100%}.tpanel{flex:none;width:100%;border-left:0;border-top:1px solid #e4e2de;padding:12px 2px 4px}.popm{margin-top:6px}}
 </style>
 </head>
 <body>
@@ -858,7 +855,8 @@ class Component extends DCLogic {
       + '<div class="trows' + (CH === 'H' ? ' hgrid' : '') + '">' + rows + '</div>' + (CH === 'H' ? '<span class="tsub" style="display:flex;gap:12px"><span><span class="hd" style="background:#3b8ee6"></span> seggio democratico</span><span><span class="hd" style="background:#e85462"></span> seggio repubblicano</span></span><span class="tsub">In testa nei sondaggi e scarto in punti; —: nessuna media.</span>' : '')
       + '<span style="font-size:11px;line-height:1.4;color:#6b6965">Rating: Cook Political Report, 30 ottobre 2026. Sondaggi: medie di Silver Bulletin, 29 ottobre 2026 (scarto in punti). Grafico: Il Grand Continent.</span>'
       + '</aside>';
-    document.getElementById('app').innerHTML = '<div class="tframe"><div class="tmap">' + map + '</div>' + panel + '</div>' + (mob && pop ? '<div class="popm sheet">' + pop + '</div>' : '');
+    document.getElementById('app').innerHTML = '<div class="tframe"><div class="tmap">' + map + (mob && pop ? '<div class="popm">' + pop + '</div>' : '') + '</div>' + panel + '</div>';
+    const pm = mob && document.querySelector('.popm'); if (pm && window.__popKey !== comp.state.sel) window.__gcScroll(pm, 'nearest'); window.__popKey = comp.state.sel;
     window.__typo(document.getElementById('app'));
     const pd = !mob && document.querySelector('.wrap .pop');
     if (pd) { const bx = pd.closest('.wrap').getBoundingClientRect(), r = pd.getBoundingClientRect(); let dx = 0, dy = 0;
