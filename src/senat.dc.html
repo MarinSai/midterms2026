@@ -57,7 +57,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
     <h1 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: clamp(36px, 5.2vw, 62px); line-height: 1; letter-spacing: -.02em; max-width: 30ch; text-wrap: balance;">Observatoire des élections de mi-mandat 2026</h1>
     <p style="margin: 0; max-width: 64ch; font-size: 18px; line-height: 1.5; color: #3a3936;">Les électeurs américains se rendent aux urnes mardi 3 novembre pour renouveler la Chambre des représentants et plus d’un tiers du Sénat. Plusieurs milliers de scrutins ont également lieu au sein des États pour élire des gouverneurs, des procureurs généraux et des élus des législatures d’États notamment.</p>
     <sc-if value="{{showMockTag}}" hint-placeholder-val="{{ true }}">
-      <span class="mono" style="align-self: flex-start; font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #7a5600; background: #fbefcc; border-radius: 999px; padding: 4px 10px;">Maquette · résultats fictifs</span>
+      <span class="mono" style="align-self: flex-start; font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #7a5600; background: #fbefcc; border-radius: 999px; padding: 4px 10px;">Maquette - résultats fictifs</span>
     </sc-if>
   </header>
 
@@ -289,7 +289,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
   <section aria-label="Calendrier de la nuit électorale" style="padding-top: 34px; margin-top: 34px;  display: flex; flex-direction: column; gap: 18px;">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px;">
       <h2 style="margin: 0; font-family: 'GC Sanomat', Georgia, serif; font-weight: 600; font-size: 26px; letter-spacing: -.01em;">La nuit électorale, heure par heure</h2>
-      <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">Premiers résultats attendus · heure de Paris, 4 novembre</span>
+      <span class="mono" style="font-family:'GC National','Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">Premiers résultats attendus - heure de Paris, 4 novembre</span>
     </div>
     <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;">
       <sc-for list="{{slots}}" as="s" hint-placeholder-count="9">
@@ -691,7 +691,7 @@ class Component extends DCLogic {
       const gain = r.winner && r.winner !== holder, pending = r.status === 'pending';
       return {
         name: title, kicker,
-        status: statusText(r, HOURS[st][2]) + (gain ? ' · gain ' + (r.winner === 'D' ? 'démocrate' : r.winner === 'R' ? 'républicain' : 'indépendant') : ''),
+        status: statusText(r, HOURS[st][2]) + (gain ? ' - gain ' + (r.winner === 'D' ? 'démocrate' : r.winner === 'R' ? 'républicain' : 'indépendant') : ''),
         badgeStyle: r.winner ? 'background: ' + SOLID[r.winner] + '; color: #ffffff;' : (pending ? 'background: #f0eeea; color: #3a3936;' : 'background: #141414; color: #ffffff;'),
         cands: sorted.map((c) => {
           const share = pending || !tot ? 0 : c.v / tot * 100;
@@ -708,7 +708,7 @@ class Component extends DCLogic {
         }),
         eevpLabel: pending ? 'Aucun résultat pour l’instant' : '≈ ' + r.eevp + ' % des votes attendus dépouillés',
         eevpW: r.eevp + '%',
-        foot: pending ? statusText(r, HOURS[st][2]) : '≈ ' + r.eevp + ' % dépouillé' + (r.winner ? ' · désigné par AP' : ''),
+        foot: pending ? statusText(r, HOURS[st][2]) : '≈ ' + r.eevp + ' % dépouillé' + (r.winner ? ' - désigné par AP' : ''),
         note: (pending ? '' : (r.winner ? 'Vainqueur désigné par l’Associated Press ; les chiffres évoluent jusqu’à la certification. ' : 'Résultats partiels, course non tranchée. ')) + (extra || ''),
         hours: hoursRows(st),
         hasBack: !!back, back
@@ -718,10 +718,10 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Partielle' ? 'Élection partielle' : race[0] === 'Siège ouvert' ? 'Siège ouvert' : race[0] === 'Sortant battu' ? 'Sortant battu à la primaire' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' · siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
-      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant · ' + ['Démocrate sûr (Cook)', 'Plutôt démocrate (Cook)', 'Plutôt démocrate (Cook)', 'Indécis (Cook)', 'Plutôt républicain (Cook)', 'Plutôt républicain (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' · redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
+      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant - ' + ['Démocrate sûr (Cook)', 'Plutôt démocrate (Cook)', 'Plutôt démocrate (Cook)', 'Indécis (Cook)', 'Plutôt républicain (Cook)', 'Plutôt républicain (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' - redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
     } else if (sel && !isSenate && sel.startsWith('HS:') && house) {
       const st = sel.slice(3);
       const ids = house.cells.filter((c) => c.st === st).map((c) => c.id).sort();
@@ -734,7 +734,7 @@ class Component extends DCLogic {
         const barS = (p, party) => 'flex: 0 0 calc(' + p + '% - 3px); border-radius: 999px; background: ' + (res.winner ? (res.winner === party ? SOLID[party] : TINT[party]) : SOLID[party]) + ';' + (p ? '' : ' display: none;');
         return { name: id.replace('-AL', ' (unique)'), gainMark: hGain(id) ? ' ●' : '', pick: pickSel('H:' + id), aria: NAMES[st] + ', ' + ordinal(id), status: statusText(res, HOURS[st][2]), statusColor: res.winner ? TEXT[res.winner] : '#6b6965', aStyle: barS(pa, 'D'), bStyle: barS(pb, 'R') };
       });
-      stSel = { name: NAMES[st], kicker: 'Chambre · ' + ids.length + ' circonscription' + (ids.length > 1 ? 's' : ''), d, r, u, rows };
+      stSel = { name: NAMES[st], kicker: 'Chambre - ' + ids.length + ' circonscription' + (ids.length > 1 ? 's' : ''), d, r, u, rows };
     }
 
     let ax = 50, ay = 30;
@@ -765,7 +765,7 @@ class Component extends DCLogic {
     };
     const watch = isSenate
       ? ['OH', 'TX', 'IA', 'KS', 'ME', 'MI', 'AK', 'MN', 'NH', 'NC', 'SC'].map((st) => watchRow(NAMES[st], sRes[st], sRes[st].cands[0], sRes[st].cands[1], sGain(st), pickSel('S:' + st), HOURS[st][2]))
-      : (house ? ['IA-02', 'MI-04', 'MI-07', 'MI-10', 'MT-01', 'OH-07', 'OH-09', 'PA-08', 'AZ-01', 'AZ-06', 'CO-08', 'PA-07'].filter((id) => hRes[id]).map((id) => { const st = id.split('-')[0], r = hRes[id]; return watchRow(NAMES[st] + ' · ' + id, r, r.cands[0], r.cands[1], hGain(id), pickSel('H:' + id), HOURS[st][2]); }) : []);
+      : (house ? ['IA-02', 'MI-04', 'MI-07', 'MI-10', 'MT-01', 'OH-07', 'OH-09', 'PA-08', 'AZ-01', 'AZ-06', 'CO-08', 'PA-07'].filter((id) => hRes[id]).map((id) => { const st = id.split('-')[0], r = hRes[id]; return watchRow(NAMES[st] + ' - ' + id, r, r.cands[0], r.cands[1], hGain(id), pickSel('H:' + id), HOURS[st][2]); }) : []);
 
     // ---------- Calendrier ----------
     const NOW_ET = scenario === 'Avant le scrutin' ? 0 : scenario === 'Soirée électorale' ? 25.2 : 99;
@@ -855,7 +855,7 @@ class Component extends DCLogic {
       sel: selV || { cands: [], hours: [], hasBack: false }, stSel: stSel || { rows: [] },
       clearSel: () => this.setState({ sel: null }),
       watch, slots,
-      sourceLine: 'Source : ' + (feed ? 'Associated Press' : 'données fictives (maquette)') + ' · Graphique : Le Grand Continent',
+      sourceLine: 'Source : ' + (feed ? 'Associated Press' : 'données fictives (maquette)') + ' - Graphique : Le Grand Continent',
       ruleLine: isSenate
         ? 'Il faut 51 sièges pour la majorité ; à 50-50, la voix du vice-président J. D. Vance revient aux républicains. Les deux indépendants hors scrutin, qui siègent avec les démocrates, sont comptés avec eux.'
         : 'Il faut 218 sièges pour la majorité. Sièges sortants : House Press Gallery (dernière mise à jour le 2 septembre 2026, sans changement depuis selon The Green Papers) ; les deux sièges vacants (Floride et Texas) sont attribués à leur ancien parti.'

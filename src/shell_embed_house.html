@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mi-mandat 2026 — Chambre des représentants · Le Grand Continent</title>
+<title>Mi-mandat 2026 — Chambre des représentants - Le Grand Continent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <style>
@@ -101,7 +101,7 @@ class DCLogic {
       pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
         + '<div><div class="prow mono" style="padding-top:0;padding-bottom:4px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;border-bottom:1px solid #efedea"><span>Candidat</span><span>Parti</span><span style="text-align:right">Sondages</span></div>'
         + s.cands.map((c) => '<div class="prow" style="border-bottom:1px solid #efedea;' + c.rowStyle + '"><span style="font-weight:600;line-height:1.2">' + esc(c.check + c.n + c.star) + '</span><span style="font-size:12px;opacity:.85">' + c.ps + '</span><span class="mono" style="text-align:right;font-weight:600">' + c.pn + '</span></div>').join('') + '</div>'
-        + (s.hasPoll ? '<div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px"><span>Écart · <b>' + esc(s.gapText) + '</b></span><span class="mono" style="font-size:10px;letter-spacing:.04em;white-space:nowrap;' + s.moeStyle + '">' + esc(s.moeText) + '</span></div>'
+        + (s.hasPoll ? '<div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px"><span>Écart - <b>' + esc(s.gapText) + '</b></span><span class="mono" style="font-size:10px;letter-spacing:.04em;white-space:nowrap;' + s.moeStyle + '">' + esc(s.moeText) + '</span></div>'
           + '<div aria-hidden="true" style="position:relative;height:14px;border-radius:999px;background:#f0eeea"><span style="position:absolute;top:0;bottom:0;border-radius:999px;' + s.bandStyle + '"></span><span style="position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#8c8a85"></span><span style="position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:#141414;' + s.tickStyle + '"></span></div>'
           + '<div class="mono" style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:.04em"><span style="' + s.endAStyle + '">← ' + esc(s.endA) + '</span><span style="color:#6b6965">0</span><span style="' + s.endBStyle + '">' + esc(s.endB) + ' →</span></div>'
           + '<span style="font-size:11.5px;line-height:1.35;color:#828282;">' + esc(s.moeNote) + '</span></div>' : '')

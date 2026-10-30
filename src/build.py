@@ -25,7 +25,7 @@ def build_embed(dc, shell_for_blobs, out):
 build_embed('forecast.dc.html', 'shell_forecast.html', 'carte-chambre')
 build_embed('results.dc.html', 'shell.html', 'carte-chambre-resultats')
 # Racine : renvoi vers la page des résultats
-(d.parent / 'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Midterms 2026 · Le Grand Continent</title><meta http-equiv="refresh" content="0; url=midterms/"><link rel="canonical" href="midterms/"></head><body><a href="midterms/">Résultats des midterms 2026</a></body></html>\n')
+(d.parent / 'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Midterms 2026 - Le Grand Continent</title><meta http-equiv="refresh" content="0; url=midterms/"><link rel="canonical" href="midterms/"></head><body><a href="midterms/">Résultats des midterms 2026</a></body></html>\n')
 print('ok')
 import subprocess; subprocess.run(['node', str(d / 'export_csv.js')], check=True)
 # Versions espagnole et italienne des pages résultats et forecast : es/<page>/, it/<page>/

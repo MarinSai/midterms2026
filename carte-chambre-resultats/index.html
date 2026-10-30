@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mi-mandat 2026 — Chambre des représentants · Le Grand Continent</title>
+<title>Mi-mandat 2026 — Chambre des représentants - Le Grand Continent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <style>
@@ -454,7 +454,7 @@ class Component extends DCLogic {
       const gain = r.winner && r.winner !== holder, pending = r.status === 'pending';
       return {
         name: title, kicker,
-        status: statusText(r, HOURS[st][2]) + (gain ? ' · gain ' + (r.winner === 'D' ? 'démocrate' : r.winner === 'R' ? 'républicain' : 'indépendant') : ''),
+        status: statusText(r, HOURS[st][2]) + (gain ? ' - gain ' + (r.winner === 'D' ? 'démocrate' : r.winner === 'R' ? 'républicain' : 'indépendant') : ''),
         badgeStyle: r.winner ? 'background: ' + SOLID[r.winner] + '; color: #ffffff;' : (pending ? 'background: #f0eeea; color: #3a3936;' : 'background: #141414; color: #ffffff;'),
         cands: sorted.map((c) => {
           const share = pending || !tot ? 0 : c.v / tot * 100;
@@ -471,7 +471,7 @@ class Component extends DCLogic {
         }),
         eevpLabel: pending ? 'Aucun résultat pour l’instant' : '≈ ' + r.eevp + ' % des votes attendus dépouillés',
         eevpW: r.eevp + '%',
-        foot: pending ? statusText(r, HOURS[st][2]) : '≈ ' + r.eevp + ' % dépouillé' + (r.winner ? ' · désigné par AP' : ''),
+        foot: pending ? statusText(r, HOURS[st][2]) : '≈ ' + r.eevp + ' % dépouillé' + (r.winner ? ' - désigné par AP' : ''),
         note: (pending ? '' : (r.winner ? 'Vainqueur désigné par l’Associated Press ; les chiffres évoluent jusqu’à la certification. ' : 'Résultats partiels, course non tranchée. ')) + (extra || ''),
         hours: hoursRows(st),
         hasBack: !!back, back
@@ -481,10 +481,10 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Partielle' ? 'Élection partielle' : race[0] === 'Siège ouvert' ? 'Siège ouvert' : race[0] === 'Sortant battu' ? 'Sortant battu à la primaire' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' · siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
-      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant · ' + ['Démocrate sûr (Cook)', 'Plutôt démocrate (Cook)', 'Plutôt démocrate (Cook)', 'Indécis (Cook)', 'Plutôt républicain (Cook)', 'Plutôt républicain (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' · redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
+      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant - ' + ['Démocrate sûr (Cook)', 'Plutôt démocrate (Cook)', 'Plutôt démocrate (Cook)', 'Indécis (Cook)', 'Plutôt républicain (Cook)', 'Plutôt républicain (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' - redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
     } else if (sel && !isSenate && sel.startsWith('HS:') && house) {
       const st = sel.slice(3);
       const ids = house.cells.filter((c) => c.st === st).map((c) => c.id).sort();
@@ -497,7 +497,7 @@ class Component extends DCLogic {
         const barS = (p, party) => 'flex: 0 0 calc(' + p + '% - 3px); border-radius: 999px; background: ' + (res.winner ? (res.winner === party ? SOLID[party] : TINT[party]) : SOLID[party]) + ';' + (p ? '' : ' display: none;');
         return { name: id.replace('-AL', ' (unique)'), gainMark: hGain(id) ? ' ●' : '', pick: pickSel('H:' + id), aria: NAMES[st] + ', ' + ordinal(id), status: statusText(res, HOURS[st][2]), statusColor: res.winner ? TEXT[res.winner] : '#6b6965', aStyle: barS(pa, 'D'), bStyle: barS(pb, 'R') };
       });
-      stSel = { name: NAMES[st], kicker: 'Chambre · ' + ids.length + ' circonscription' + (ids.length > 1 ? 's' : ''), d, r, u, rows };
+      stSel = { name: NAMES[st], kicker: 'Chambre - ' + ids.length + ' circonscription' + (ids.length > 1 ? 's' : ''), d, r, u, rows };
     }
 
     let ax = 50, ay = 30;
@@ -528,7 +528,7 @@ class Component extends DCLogic {
     };
     const watch = isSenate
       ? ['OH', 'TX', 'IA', 'KS', 'ME', 'MI', 'AK', 'MN', 'NH', 'NC', 'SC'].map((st) => watchRow(NAMES[st], sRes[st], sRes[st].cands[0], sRes[st].cands[1], sGain(st), pickSel('S:' + st), HOURS[st][2]))
-      : (house ? ['IA-02', 'MI-04', 'MI-07', 'MI-10', 'MT-01', 'OH-07', 'OH-09', 'PA-08', 'AZ-01', 'AZ-06', 'CO-08', 'PA-07'].filter((id) => hRes[id]).map((id) => { const st = id.split('-')[0], r = hRes[id]; return watchRow(NAMES[st] + ' · ' + id, r, r.cands[0], r.cands[1], hGain(id), pickSel('H:' + id), HOURS[st][2]); }) : []);
+      : (house ? ['IA-02', 'MI-04', 'MI-07', 'MI-10', 'MT-01', 'OH-07', 'OH-09', 'PA-08', 'AZ-01', 'AZ-06', 'CO-08', 'PA-07'].filter((id) => hRes[id]).map((id) => { const st = id.split('-')[0], r = hRes[id]; return watchRow(NAMES[st] + ' - ' + id, r, r.cands[0], r.cands[1], hGain(id), pickSel('H:' + id), HOURS[st][2]); }) : []);
 
     // ---------- Calendrier ----------
     const NOW_ET = scenario === 'Avant le scrutin' ? 0 : scenario === 'Soirée électorale' ? 25.2 : 99;
@@ -618,7 +618,7 @@ class Component extends DCLogic {
       sel: selV || { cands: [], hours: [], hasBack: false }, stSel: stSel || { rows: [] },
       clearSel: () => this.setState({ sel: null }),
       watch, slots,
-      sourceLine: (feed ? 'Source : Associated Press' : 'Premiers résultats attendus le 4 novembre à minuit, heure de Paris') + ' · Graphique : Le Grand Continent',
+      sourceLine: (feed ? 'Source : Associated Press' : 'Premiers résultats attendus le 4 novembre à minuit, heure de Paris') + ' - Graphique : Le Grand Continent',
       ruleLine: isSenate
         ? 'Il faut 51 sièges pour la majorité ; à 50-50, la voix du vice-président J. D. Vance revient aux républicains. Les deux indépendants hors scrutin, qui siègent avec les démocrates, sont comptés avec eux.'
         : 'Il faut 218 sièges pour la majorité. Sièges sortants : House Press Gallery (dernière mise à jour le 2 septembre 2026, sans changement depuis selon The Green Papers) ; les deux sièges vacants (Floride et Texas) sont attribués à leur ancien parti.'
@@ -647,7 +647,7 @@ class Component extends DCLogic {
       pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
         + '<div><div class="prow mono" style="padding-top:0;padding-bottom:4px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;border-bottom:1px solid #efedea"><span>Candidat</span><span>Parti</span><span style="text-align:right">Sondages</span></div>'
         + s.cands.map((c) => '<div class="prow" style="border-bottom:1px solid #efedea;' + c.rowStyle + '"><span style="font-weight:600;line-height:1.2">' + esc(c.check + c.n + c.star) + '</span><span style="font-size:12px;opacity:.85">' + c.ps + '</span><span class="mono" style="text-align:right;font-weight:600">' + c.pn + '</span></div>').join('') + '</div>'
-        + (s.hasPoll ? '<div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px"><span>Écart · <b>' + esc(s.gapText) + '</b></span><span class="mono" style="font-size:10px;letter-spacing:.04em;white-space:nowrap;' + s.moeStyle + '">' + esc(s.moeText) + '</span></div>'
+        + (s.hasPoll ? '<div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px"><span>Écart - <b>' + esc(s.gapText) + '</b></span><span class="mono" style="font-size:10px;letter-spacing:.04em;white-space:nowrap;' + s.moeStyle + '">' + esc(s.moeText) + '</span></div>'
           + '<div aria-hidden="true" style="position:relative;height:14px;border-radius:999px;background:#f0eeea"><span style="position:absolute;top:0;bottom:0;border-radius:999px;' + s.bandStyle + '"></span><span style="position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#8c8a85"></span><span style="position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:#141414;' + s.tickStyle + '"></span></div>'
           + '<div class="mono" style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:.04em"><span style="' + s.endAStyle + '">← ' + esc(s.endA) + '</span><span style="color:#6b6965">0</span><span style="' + s.endBStyle + '">' + esc(s.endB) + ' →</span></div>'
           + '<span style="font-size:11.5px;line-height:1.35;color:#828282;">' + esc(s.moeNote) + '</span></div>' : '')

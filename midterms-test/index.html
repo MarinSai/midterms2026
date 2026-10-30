@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mi-mandat 2026 — Sénat et Chambre · Le Grand Continent</title>
+<title>Mi-mandat 2026 — Sénat et Chambre - Le Grand Continent</title>
 <script async src="../vendor/iframe-resizer-child-5.5.9.umd.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -447,7 +447,7 @@ class Component extends DCLogic {
       const gain = r.winner && r.winner !== holder, pending = r.status === 'pending';
       return {
         name: title, kicker,
-        status: statusText(r, HOURS[st][2]) + (gain ? ' · gain ' + (r.winner === 'D' ? 'démocrate' : r.winner === 'R' ? 'républicain' : 'indépendant') : ''),
+        status: statusText(r, HOURS[st][2]) + (gain ? ' - gain ' + (r.winner === 'D' ? 'démocrate' : r.winner === 'R' ? 'républicain' : 'indépendant') : ''),
         badgeStyle: r.winner ? 'background: ' + SOLID[r.winner] + '; color: #ffffff;' : (pending ? 'background: #f0eeea; color: #3a3936;' : 'background: #141414; color: #ffffff;'),
         cands: sorted.map((c) => {
           const share = pending || !tot ? 0 : c.v / tot * 100;
@@ -464,7 +464,7 @@ class Component extends DCLogic {
         }),
         eevpLabel: pending ? 'Aucun résultat pour l’instant' : '≈ ' + r.eevp + ' % des votes attendus dépouillés',
         eevpW: r.eevp + '%',
-        foot: pending ? statusText(r, HOURS[st][2]) : '≈ ' + r.eevp + ' % dépouillé' + (r.winner ? ' · désigné par AP' : ''),
+        foot: pending ? statusText(r, HOURS[st][2]) : '≈ ' + r.eevp + ' % dépouillé' + (r.winner ? ' - désigné par AP' : ''),
         note: (pending ? '' : (r.winner ? 'Vainqueur désigné par l’Associated Press ; les chiffres évoluent jusqu’à la certification. ' : 'Résultats partiels, course non tranchée. ')) + (extra || ''),
         hours: hoursRows(st),
         hasBack: !!back, back
@@ -474,10 +474,10 @@ class Component extends DCLogic {
     if (sel && isSenate && sel.startsWith('S:')) {
       const st = sel.slice(2), race = RACES[st];
       const kind = race[0] === 'Partielle' ? 'Élection partielle' : race[0] === 'Siège ouvert' ? 'Siège ouvert' : race[0] === 'Sortant battu' ? 'Sortant battu à la primaire' : '';
-      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' · siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
+      selV = panelFor(sRes[st], race[1], st, NAMES[st], (kind ? kind + ' - siège ' : 'Siège ') + (race[1] === 'D' ? 'démocrate' : 'républicain'), EXTRA[st], null);
     } else if (sel && !isSenate && sel.startsWith('H:') && hRes[sel.slice(2)]) {
       const id = sel.slice(2), st = id.split('-')[0], m = hMeta[id];
-      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant · ' + ['Démocrate sûr (Cook)', 'Plutôt démocrate (Cook)', 'Plutôt démocrate (Cook)', 'Indécis (Cook)', 'Plutôt républicain (Cook)', 'Plutôt républicain (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' · redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
+      selV = panelFor(hRes[id], m.holder, st, NAMES[st] + ', ' + ordinal(id), 'Siège ' + (m.holder === 'D' ? 'démocrate' : 'républicain') + ' sortant - ' + ['Démocrate sûr (Cook)', 'Plutôt démocrate (Cook)', 'Plutôt démocrate (Cook)', 'Indécis (Cook)', 'Plutôt républicain (Cook)', 'Plutôt républicain (Cook)', 'Républicain sûr (Cook)'][m.cook] + (m.favor ? ' - redécoupée en faveur des ' + (m.favor === 'R' ? 'républicains' : 'démocrates') : ''), 'Candidats : Bloomberg (données AP) ; résultats fictifs.', () => this.setState({ sel: 'HS:' + st }));
     } else if (sel && !isSenate && sel.startsWith('HS:') && house) {
       const st = sel.slice(3);
       const ids = house.cells.filter((c) => c.st === st).map((c) => c.id).sort();
@@ -490,7 +490,7 @@ class Component extends DCLogic {
         const barS = (p, party) => 'flex: 0 0 calc(' + p + '% - 3px); border-radius: 999px; background: ' + (res.winner ? (res.winner === party ? SOLID[party] : TINT[party]) : SOLID[party]) + ';' + (p ? '' : ' display: none;');
         return { name: id.replace('-AL', ' (unique)'), gainMark: hGain(id) ? ' ●' : '', pick: pickSel('H:' + id), aria: NAMES[st] + ', ' + ordinal(id), status: statusText(res, HOURS[st][2]), statusColor: res.winner ? TEXT[res.winner] : '#6b6965', aStyle: barS(pa, 'D'), bStyle: barS(pb, 'R') };
       });
-      stSel = { name: NAMES[st], kicker: 'Chambre · ' + ids.length + ' circonscription' + (ids.length > 1 ? 's' : ''), d, r, u, rows };
+      stSel = { name: NAMES[st], kicker: 'Chambre - ' + ids.length + ' circonscription' + (ids.length > 1 ? 's' : ''), d, r, u, rows };
     }
 
     let ax = 50, ay = 30;
@@ -521,7 +521,7 @@ class Component extends DCLogic {
     };
     const watch = isSenate
       ? ['OH', 'TX', 'IA', 'KS', 'ME', 'MI', 'AK', 'MN', 'NH', 'NC', 'SC'].map((st) => watchRow(NAMES[st], sRes[st], sRes[st].cands[0], sRes[st].cands[1], sGain(st), pickSel('S:' + st), HOURS[st][2]))
-      : (house ? ['IA-02', 'MI-04', 'MI-07', 'MI-10', 'MT-01', 'OH-07', 'OH-09', 'PA-08', 'AZ-01', 'AZ-06', 'CO-08', 'PA-07'].filter((id) => hRes[id]).map((id) => { const st = id.split('-')[0], r = hRes[id]; return watchRow(NAMES[st] + ' · ' + id, r, r.cands[0], r.cands[1], hGain(id), pickSel('H:' + id), HOURS[st][2]); }) : []);
+      : (house ? ['IA-02', 'MI-04', 'MI-07', 'MI-10', 'MT-01', 'OH-07', 'OH-09', 'PA-08', 'AZ-01', 'AZ-06', 'CO-08', 'PA-07'].filter((id) => hRes[id]).map((id) => { const st = id.split('-')[0], r = hRes[id]; return watchRow(NAMES[st] + ' - ' + id, r, r.cands[0], r.cands[1], hGain(id), pickSel('H:' + id), HOURS[st][2]); }) : []);
 
     // ---------- Calendrier ----------
     const NOW_ET = scenario === 'Avant le scrutin' ? 0 : scenario === 'Soirée électorale' ? 25.2 : 99;
@@ -611,7 +611,7 @@ class Component extends DCLogic {
       sel: selV || { cands: [], hours: [], hasBack: false }, stSel: stSel || { rows: [] },
       clearSel: () => this.setState({ sel: null }),
       watch, slots,
-      sourceLine: 'Source : ' + (feed ? 'Associated Press' : 'données fictives (maquette)') + ' · Graphique : Le Grand Continent',
+      sourceLine: 'Source : ' + (feed ? 'Associated Press' : 'données fictives (maquette)') + ' - Graphique : Le Grand Continent',
       ruleLine: isSenate
         ? 'Il faut 51 sièges pour la majorité ; à 50-50, la voix du vice-président J. D. Vance revient aux républicains. Les deux indépendants hors scrutin, qui siègent avec les démocrates, sont comptés avec eux.'
         : 'Il faut 218 sièges pour la majorité. Sièges sortants : House Press Gallery (dernière mise à jour le 2 septembre 2026, sans changement depuis selon The Green Papers) ; les deux sièges vacants (Floride et Texas) sont attribués à leur ancien parti.'
@@ -713,7 +713,7 @@ class Component extends DCLogic {
     document.getElementById('app').innerHTML =
       '<div style="background:#fff;color:#141414;font-family:\'GC National\',Georgia,serif;font-size:16px;line-height:1.45"><div style="max-width:1200px;margin:0 auto;padding:32px clamp(16px,3vw,40px) 56px;box-sizing:border-box">'
       + '<header style="display:flex;flex-direction:column;gap:14px;padding-bottom:26px"><h1 style="margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:clamp(36px,5.2vw,62px);line-height:1;letter-spacing:-.02em;max-width:30ch;text-wrap:balance">Observatoire des élections de mi-mandat 2026</h1><p style="margin:0;max-width:64ch;font-size:18px;line-height:1.5;color:#3a3936">Les électeurs américains se rendent aux urnes mardi 3 novembre pour renouveler la Chambre des représentants et plus d’un tiers du Sénat. Plusieurs milliers de scrutins ont également lieu au sein des États pour élire des gouverneurs, des procureurs généraux et des élus des législatures d’États notamment.</p>'
-      + (v.showMockTag ? '<span class="mono" style="align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7a5600;background:#fbefcc;border-radius:999px;padding:4px 10px">Maquette · résultats fictifs</span>' : '') + '</header>'
+      + (v.showMockTag ? '<span class="mono" style="align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7a5600;background:#fbefcc;border-radius:999px;padding:4px 10px">Maquette - résultats fictifs</span>' : '') + '</header>'
       + '<nav aria-label="Dans cette page" style="background:#f4f4f2;margin:4px 0 30px;padding:16px 22px 16px;display:flex;flex-wrap:wrap;gap:14px 44px;align-items:flex-end">' + v.navGroups.map((g) => '<div style="display:flex;flex-direction:column;gap:10px;min-width:0"><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#828282">' + esc(g.label) + '</span><div style="display:flex;flex-wrap:wrap;gap:0 28px">' + g.items.map((it) => '<button data-h="' + h(it.pick) + '" aria-current="' + it.cur + '" aria-label="' + esc(it.label) + '" style="display:flex;flex-direction:column;gap:12px;text-align:left;min-height:44px;padding:0;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;"><span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:16px;font-weight:600;line-height:1.25;color:#1c1b1c">' + esc(it.label) + '<span style="font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:' + it.tagBg + ';border-radius:999px;padding:2px 7px">' + esc(it.tag) + '</span></span><span aria-hidden="true" style="' + it.barStyle + '"></span></button>').join('') + '</div></div>').join('') + '</nav>'
       + '<section aria-label="Répartition des sièges"><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px"><h2 style="margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:30px;line-height:1.05;letter-spacing:-.01em">' + esc(v.headline) + '</h2><p style="margin:0;max-width:70ch;font-size:16px;line-height:1.5;color:#3a3936">' + esc(v.dek) + '</p></div><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:\'GC Sanomat\', Georgia, serif;font-weight:600;font-variant-numeric:lining-nums tabular-nums;font-size:clamp(42px,5vw,60px);line-height:1;color:#3b8ee6;letter-spacing:-.02em">' + v.dTotal + '</span><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-weight:600;font-size:16px;color:#1f6fc4">Démocrates ' + v.dCheck + '</span></div>'
       + '<div style="flex:1;position:relative;align-self:stretch"></div>'
@@ -725,7 +725,7 @@ class Component extends DCLogic {
       + '<div style="display:flex;flex-wrap:wrap;gap:18px 24px;align-items:flex-start">' + thumbs + mapHtml + (mob && pop ? '<div class="popm">' + pop + '</div>' : '') + '</div>'
       + (v.isSenate ? '<p style="margin:0;font-size:13.5px;color:#828282;">Ohio et Floride : élections partielles pour les sièges laissés par J. D. Vance et Marco Rubio en 2025.</p>' : '') + '</div>'
       + '</section>'
-      + '<section aria-label="Calendrier de la nuit électorale" style="padding-top:34px;margin-top:34px;display:flex;flex-direction:column;gap:18px"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px"><h2 style="' + H2 + '">La nuit électorale, heure par heure</h2><span class="mono" style="' + MONO_S + '">Premiers résultats attendus · heure de Paris, 4 novembre</span></div><div class="slots" style="display:flex;gap:6px;overflow-x:auto;padding-bottom:6px">' + slots + '</div><div class="sbar" aria-hidden="true"><span></span></div></section>'
+      + '<section aria-label="Calendrier de la nuit électorale" style="padding-top:34px;margin-top:34px;display:flex;flex-direction:column;gap:18px"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px"><h2 style="' + H2 + '">La nuit électorale, heure par heure</h2><span class="mono" style="' + MONO_S + '">Premiers résultats attendus - heure de Paris, 4 novembre</span></div><div class="slots" style="display:flex;gap:6px;overflow-x:auto;padding-bottom:6px">' + slots + '</div><div class="sbar" aria-hidden="true"><span></span></div></section>'
       + '<footer class="mono" style="margin-top:40px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:12.5px;line-height:1.55;color:#828282;display:flex;flex-direction:column;gap:2px"><span>' + esc(v.sourceLine) + '</span><span>' + esc(v.ruleLine) + '</span><span>Horaires : Associated Press, 2026 Poll Hours Report (27 octobre 2026) ; pour le Dakota du Nord, secrétariat d’État, convertis en heure de Paris (UTC+1, soit l’heure de l’Est + 6 h après le passage à l’heure d’hiver aux États-Unis le 1er novembre).</span></footer>'
       + '</div></div>';
     // Sur téléphone : la fiche ouverte vient sous la carte, on la fait entrer à l’écran
@@ -787,6 +787,8 @@ class Component extends DCLogic {
     if (id === hoverId && comp.state.sel && comp.state.sel !== window.__pinned) { hoverId = null; window.__render(); return; }
     hoverId = null;
     const fn = handlers[id]; if (fn) fn();
+    // clic dans le calendrier de la nuit électorale : on remonte jusqu’à la carte
+    if (b.closest('.slots')) requestAnimationFrame(() => { const box = document.querySelector('.mapbox'); if (box) window.__gcScroll(box, 'start'); });
   });
   window.__render();
   comp.componentDidMount();
