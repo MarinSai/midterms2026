@@ -4,7 +4,7 @@
 
 T = [
 # --- En-tête, navigation
-('Observatoire des élections de mi-mandat 2026', 'Observatorio de las elecciones de mitad de mandato de 2026', 'Osservatorio delle elezioni di metà mandato 2026'),
+('Observatoire des élections de mi-mandat 2026', 'Observatorio de las elecciones de mitad de mandato de 2026', 'Osservatorio delle elezioni di metà mandato 2026'),
 ('Les électeurs américains se rendent aux urnes mardi 3 novembre pour renouveler la Chambre des représentants et plus d’un tiers du Sénat. Plusieurs milliers de scrutins ont également lieu au sein des États pour élire des gouverneurs, des procureurs généraux et des élus des législatures d’États notamment.',
  'Los electores estadounidenses acuden a las urnas el martes 3 de noviembre para renovar la Cámara de Representantes y más de un tercio del Senado. También se celebran varios miles de votaciones en los estados para elegir, entre otros, a gobernadores, fiscales generales y legisladores estatales.',
  'Gli elettori americani si recano alle urne martedì 3 novembre per rinnovare la Camera dei rappresentanti e più di un terzo del Senato. Negli Stati si tengono inoltre diverse migliaia di votazioni per eleggere, tra gli altri, governatori, procuratori generali e membri delle assemblee legislative statali.'),
