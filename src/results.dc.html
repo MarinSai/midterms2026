@@ -349,7 +349,7 @@ class Component extends DCLogic {
   }
   async pullBloomberg(key) {
     const base = 'https://www.bloomberg.com/bbg-gfx/election-data/usa/' + key + '/', t = '?t=' + Date.now();
-    const get = (f) => fetch(base + f + t).then((r) => (r.ok ? r.text() : ''));
+    const get = (f) => fetch(base + f + t).then((r) => (r.ok ? r.text() : '')).catch(() => '');   // fichier absent = vide
     if (!this._bbgCands || this._bbgKey !== key) {
       let last = '';
       this._bbgCands = new Map(); this._bbgKey = key;
