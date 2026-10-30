@@ -62,6 +62,26 @@ body{font-family:'GC National','Helvetica Neue',sans-serif;font-size:16px;line-h
 <script>
 // Défilement compatible iframe : dans une iframe redimensionnée par iframe-resizer, c’est la page parente qui défile
 // (Safari ne propage pas scrollIntoView d’une iframe d’un autre domaine vers la page qui l’accueille).
+// Typographie appliquée au texte affiché : espaces insécables (français), apostrophe typographique, initiales espacées, titres en italique
+window.__typo = function (root) {
+  if (!root) return;
+  const fr = (document.documentElement.lang || 'fr').startsWith('fr');
+  const TIT = /((?:The )?New York Times|Cook Political Report|2026 Poll Hours Report)/;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), list = [];
+  while (w.nextNode()) list.push(w.currentNode);
+  for (const n of list) {
+    const p = n.parentNode; if (!p || p.nodeName === 'SCRIPT' || p.nodeName === 'STYLE' || p.nodeName === 'I') continue;
+    let t = n.nodeValue, o = t;
+    t = t.replace(/(\w)'(\w)/g, '$1’$2').replace(/\b([A-Z])\.([A-Z])\./g, '$1. $2.');
+    if (fr) t = t.replace(/ ([;!?])/g, ' $1').replace(/ :/g, ' :').replace(/« /g, '« ').replace(/ »/g, ' »');
+    if (t !== o) n.nodeValue = t;
+    if (TIT.test(t) && p.closest && !p.closest('i')) {
+      const f = document.createDocumentFragment();
+      for (const part of t.split(TIT)) { if (!part) continue; if (TIT.test(part)) { const i = document.createElement('i'); i.textContent = part; f.appendChild(i); } else f.appendChild(document.createTextNode(part)); }
+      p.replaceChild(f, n);
+    }
+  }
+};
 window.__gcScroll = function (el, block) {
   if (!el) return;
   const p = window.parentIframe || window.parentIFrame;
@@ -130,9 +150,11 @@ class DCLogic {
       + v.hLabels.map((l) => '<span class="hlbl" style="' + l.style + '">' + l.t + (l.n ? '<br>' + l.n : '') + '</span>').join('')
       + (mob ? '' : pop) + '</div>';
     document.getElementById('app').innerHTML = '<div class="frame">' + (v.cells.length ? map : '') + '</div>' + (mob && pop ? '<div class="popm sheet">' + pop + '</div>' : '');
+    window.__typo(document.getElementById('app'));
   };
   document.getElementById('app').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-h]'); if (!b) return;
+    const b = e.target.closest('[data-h]');
+    if (!b || b.dataset.off || !handlers[b.getAttribute('data-h')]) { if (comp.state.sel && !e.target.closest('.pop, .popm')) comp.setState({ sel: null }); return; }
     const fn = handlers[b.getAttribute('data-h')]; if (fn) fn();
   });
   window.addEventListener('resize', () => window.__render());

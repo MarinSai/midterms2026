@@ -21,8 +21,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
 .st{position:absolute;inset:0;pointer-events:none;outline:none}
 .st svg{width:100%;height:100%;display:block}
 .st path{pointer-events:visiblePainted;transition:opacity .15s}
-.st:not(:disabled) path{cursor:pointer}
-.st:not(:disabled) path:hover{opacity:.78}
+.st:not([data-off]) path{cursor:pointer}
+.st:not([data-off]) path:hover{opacity:.78}
 .st:focus-visible path{stroke:#111;stroke-width:2.5}
 .lbl{position:absolute;transform:translate(-50%,-50%);font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;font-size:10.5px;font-weight:500;letter-spacing:.04em;pointer-events:none;white-space:nowrap;display:flex;align-items:center;gap:3px}
 .co{position:absolute;transform:translateY(-50%);height:20px;padding:0 7px;border-radius:999px;box-sizing:border-box;font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;font-size:10.5px;font-weight:500;letter-spacing:.04em;display:flex;align-items:center;gap:3px}
@@ -56,6 +56,26 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
 <script>
 // Défilement compatible iframe : dans une iframe redimensionnée par iframe-resizer, c’est la page parente qui défile
 // (Safari ne propage pas scrollIntoView d’une iframe d’un autre domaine vers la page qui l’accueille).
+// Typographie appliquée au texte affiché : espaces insécables (français), apostrophe typographique, initiales espacées, titres en italique
+window.__typo = function (root) {
+  if (!root) return;
+  const fr = (document.documentElement.lang || 'fr').startsWith('fr');
+  const TIT = /((?:The )?New York Times|Cook Political Report|2026 Poll Hours Report)/;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), list = [];
+  while (w.nextNode()) list.push(w.currentNode);
+  for (const n of list) {
+    const p = n.parentNode; if (!p || p.nodeName === 'SCRIPT' || p.nodeName === 'STYLE' || p.nodeName === 'I') continue;
+    let t = n.nodeValue, o = t;
+    t = t.replace(/(\w)'(\w)/g, '$1’$2').replace(/\b([A-Z])\.([A-Z])\./g, '$1. $2.');
+    if (fr) t = t.replace(/ ([;!?])/g, ' $1').replace(/ :/g, ' :').replace(/« /g, '« ').replace(/ »/g, ' »');
+    if (t !== o) n.nodeValue = t;
+    if (TIT.test(t) && p.closest && !p.closest('i')) {
+      const f = document.createDocumentFragment();
+      for (const part of t.split(TIT)) { if (!part) continue; if (TIT.test(part)) { const i = document.createElement('i'); i.textContent = part; f.appendChild(i); } else f.appendChild(document.createTextNode(part)); }
+      p.replaceChild(f, n);
+    }
+  }
+};
 window.__gcScroll = function (el, block) {
   if (!el) return;
   const p = window.parentIframe || window.parentIFrame;
@@ -154,17 +174,18 @@ class DCLogic {
       const box = document.querySelector('.mapbox'); if (!box) return;
       const old = box.querySelector('.pop');
       if (!pop || mob) { if (old) old.remove(); return; }
-      if ((comp.state.sel || null) === window.__pinned) { if (old) old.remove(); box.insertAdjacentHTML('beforeend', pop); return; }
+      if ((comp.state.sel || null) === window.__pinned) { if (old) old.remove(); box.insertAdjacentHTML('beforeend', pop); window.__typo(box.querySelector('.pop')); return; }
       const tmp = document.createElement('div'); tmp.innerHTML = pop; const el = tmp.firstElementChild;
       if (old && old.classList.contains('pv')) { old.innerHTML = el.innerHTML; old.setAttribute('aria-label', el.getAttribute('aria-label') || ''); }
       else { if (old) old.remove(); el.classList.add('pv', 'pv-in'); el.removeAttribute('style'); box.appendChild(el); }
+      window.__typo(box.querySelector('.pop'));
       window.__placePv && window.__placePv();
       return;
     }
     let mapHtml;
     if (v.isSenate) {
       mapHtml = '<div class="mapbox" style="flex:1 1 480px;min-width:0;position:relative;aspect-ratio:975/610">' + (v.geoReady
-        ? v.states.map((s) => '<button class="st"' + (s.disabled ? ' disabled' : '') + ' data-h="' + h(s.pick) + '" aria-label="' + esc(s.aria) + '"><svg viewBox="0 0 975 610"><path d="' + s.d + '" fill="' + s.fill + '" stroke="' + s.stroke + '" stroke-width="' + s.sw + '" stroke-linejoin="round"></path></svg></button>').join('')
+        ? v.states.map((s) => '<button class="st"' + (s.disabled ? ' aria-disabled="true" tabindex="-1" data-off="1"' : '') + ' data-h="' + h(s.pick) + '" aria-label="' + esc(s.aria) + '"><svg viewBox="0 0 975 610"><path d="' + s.d + '" fill="' + s.fill + '" stroke="' + s.stroke + '" stroke-width="' + s.sw + '" stroke-linejoin="round"></path></svg></button>').join('')
           + '<svg aria-hidden="true" viewBox="0 0 975 610" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"><path d="' + v.selD + '" fill="none" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"></path>' + v.coLines.map((l) => '<path d="' + l.d + '" fill="none" stroke="#141414" stroke-width=".8"></path>').join('') + '</svg>'
           + v.labels.map((l) => '<span class="lbl" style="' + l.style + '">' + l.t + dotH(l.gain, l.dot) + '</span>').join('')
           + v.callouts.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + '">' + c.t + dotH(c.gain, c.dot) + '</button>').join('') + (mob ? '' : pop)
@@ -199,6 +220,7 @@ class DCLogic {
       + '<section class="tl-below" aria-label="Calendrier de la nuit électorale" style="padding-top:34px;margin-top:34px;display:flex;flex-direction:column;gap:18px"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px"><h2 style="' + H2 + '">La nuit électorale, heure par heure</h2><span class="mono" style="' + MONO_S + '">Premiers résultats attendus - heure de Paris, 4 novembre</span></div><div class="slots" style="display:flex;gap:6px;overflow-x:auto;padding-bottom:6px">' + slots + '</div><div class="sbar" aria-hidden="true"><span></span></div></section>'
       + '<footer class="mono" style="margin-top:40px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:12.5px;line-height:1.55;color:#828282;display:flex;flex-direction:column;gap:2px"><span>' + esc(v.sourceLine) + '</span><span>' + esc(v.ruleLine) + '</span><span>Horaires : Associated Press, 2026 Poll Hours Report (27 octobre 2026) ; pour le Dakota du Nord, secrétariat d’État, convertis en heure de Paris (UTC+1, soit l’heure de l’Est + 6 h après le passage à l’heure d’hiver aux États-Unis le 1er novembre).</span></footer>'
       + '</div></div>';
+    window.__typo(document.getElementById('app'));
     // Ordinateur : la fiche épinglée reste dans le cadre de la carte (plus étroite à côté du calendrier)
     const pd = !mob && document.querySelector('.mapbox .pop:not(.pv)');
     if (pd) { const bx = pd.closest('.mapbox').getBoundingClientRect(), r = pd.getBoundingClientRect(); let dx = 0, dy = 0;
@@ -249,7 +271,7 @@ class DCLogic {
     if (!canHover.matches || window.matchMedia('(max-width: 600px)').matches) return;
     let b = e.target.closest('.mapbox [data-h]');
     if (b && b.closest('.pop')) return;
-    if (b && (b.disabled || !handlers[b.getAttribute('data-h')])) b = null; // État sans élection : comme un fond de carte
+    if (b && (b.dataset.off || !handlers[b.getAttribute('data-h')])) b = null; // État sans élection : comme un fond de carte
     if (!b) {
       // curseur sur un fond de la carte (État sans élection, mer, interstice) : la fiche de survol s’efface après un court délai
       if (hoverId !== null && e.target.closest('.mapbox')) { clearTimeout(hideT); hideT = setTimeout(clearHover, 90); }
@@ -275,7 +297,8 @@ class DCLogic {
   });
   document.addEventListener('mouseleave', () => { if (window.__soft) dropSoft(); });
   app.addEventListener('click', (e) => {
-    const b = e.target.closest('[data-h]'); if (!b) return;
+    const b = e.target.closest('[data-h]');
+    if (!b || b.dataset.off || !handlers[b.getAttribute('data-h')]) { if (comp.state.sel && !e.target.closest('.pop, .popm')) { window.__soft = null; window.__pinned = null; hoverId = null; comp.setState({ sel: null }); } return; }
     window.__lastFocus = b.getAttribute('aria-label');
     const id = b.getAttribute('data-h');
     // clic sur la case survolée : la fiche déjà affichée est épinglée au lieu d’être refermée
