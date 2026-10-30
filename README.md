@@ -1,7 +1,11 @@
 # Midterms 2026 — Le Grand Continent
 
-Page de résultats en direct des élections de mi-mandat américaines du 3 novembre 2026 (Sénat et Chambre).
+Pages des élections de mi-mandat américaines du 3 novembre 2026 (Sénat et Chambre) :
 
-- Page : `index.html` (générée par `src/build.py` à partir de `src/senat.dc.html` et `src/shell.html`)
-- Grille de la Chambre : `house-grid.json`
-- Candidats et classements Cook de la Chambre : `data/` (Bloomberg, données AP, 29 octobre 2026)
+| Adresse | Contenu |
+|---|---|
+| `midterms/` | Résultats du scrutin. Vide tant qu'aucun flux de résultats réel n'est branché : aucun résultat fictif. |
+| `midterms-test/` | Maquette avec résultats fictifs (`?scenario=avant`, `soiree` ou `final` ; `?chambre=chambre`). |
+| `midterm-forecast/` | État des courses : classements Cook Political Report et moyennes de sondages Silver Bulletin. |
+
+La racine renvoie vers `midterms/`. Les pages sont générées par `src/build.py` à partir des maquettes `src/*.dc.html`. Données sources : `data/`.

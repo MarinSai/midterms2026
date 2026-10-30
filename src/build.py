@@ -1,13 +1,18 @@
-# Construit index.html (résultats) et midterm-forecast/index.html (état des courses)
-# à partir des maquettes du canevas (src/senat.dc.html, src/forecast.dc.html)
+# Construit les trois pages du site à partir des maquettes du canevas :
+#   midterms/           résultats du scrutin (vide tant qu'aucun flux réel n'est branché)
+#   midterms-test/      maquette avec résultats fictifs (scénarios ?scenario=avant|soiree|final)
+#   midterm-forecast/   état des courses (classements Cook, moyennes Silver Bulletin)
 import pathlib
 d = pathlib.Path(__file__).parent
-def build(dc, shell, outs):
+def build(dc, shell, out):
     s = (d / dc).read_text()
     comp = s[s.index('class Component'):s.rindex('</script>')]
     page = (d / shell).read_text().replace('/*__COMPONENT__*/', comp)
-    for o in outs:
-        p = d.parent / o; p.parent.mkdir(exist_ok=True); p.write_text(page)
-build('senat.dc.html', 'shell.html', ['index.html', 'senat.html'])
-build('forecast.dc.html', 'shell_forecast.html', ['midterm-forecast/index.html'])
+    page = page.replace('url(fonts/', 'url(../fonts/').replace("'senat-geo.json'", "'../senat-geo.json'").replace("'house-grid.json'", "'../house-grid.json'")
+    p = d.parent / out / 'index.html'; p.parent.mkdir(exist_ok=True); p.write_text(page)
+build('results.dc.html', 'shell.html', 'midterms')
+build('senat.dc.html', 'shell.html', 'midterms-test')
+build('forecast.dc.html', 'shell_forecast.html', 'midterm-forecast')
+# Racine : renvoi vers la page des résultats
+(d.parent / 'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Midterms 2026 · Le Grand Continent</title><meta http-equiv="refresh" content="0; url=midterms/"><link rel="canonical" href="midterms/"></head><body><a href="midterms/">Résultats des midterms 2026</a></body></html>\n')
 print('ok')

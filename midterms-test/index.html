@@ -8,10 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-@font-face{font-family:"GC Sanomat";src:url(fonts/sanomat-regular.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"GC Sanomat";src:url(fonts/sanomat-bold.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"GC National";src:url(fonts/national-regular.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"GC National";src:url(fonts/national-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"GC Sanomat";src:url(../fonts/sanomat-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GC Sanomat";src:url(../fonts/sanomat-bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"GC National";src:url(../fonts/national-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GC National";src:url(../fonts/national-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
 body{margin:0;background:#ffffff}
 a{color:#c62f3f}a:hover{color:#8e1a27}
 button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;margin:0}
@@ -540,7 +540,7 @@ class Component extends DCLogic {
     pollSeconds: +q.get('poll') || 60
   };
   // Les fichiers de la carte sont servis à côté de la page
-  const BLOBS = { '/_blob/887bfdd2f68fc724fc9240ab6081605d': 'senat-geo.json', '/_blob/ba93beb33d7fdf13da21a8fc3e035859': 'house-grid.json' };
+  const BLOBS = { '/_blob/887bfdd2f68fc724fc9240ab6081605d': '../senat-geo.json', '/_blob/ba93beb33d7fdf13da21a8fc3e035859': '../house-grid.json' };
   const realFetch = window.fetch.bind(window);
   window.fetch = (u, o) => realFetch(typeof u === 'string' && BLOBS[u] ? BLOBS[u] : u, o);
   const comp = new Component(props);
