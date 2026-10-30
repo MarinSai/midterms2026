@@ -15,15 +15,19 @@ build('senat.dc.html', 'shell.html', 'midterms-test')
 build('forecast.dc.html', 'shell_forecast.html', 'midterm-forecast')
 
 # Carte de la Chambre seule, pour la page d'accueil (iframe) : carte-chambre/ (état des courses), carte-chambre-resultats/ (résultats)
-def build_embed(dc, shell_for_blobs, out):
+def build_embed(dc, shell_for_blobs, out, tpl='shell_embed_house.html', chamber=None):
     blobs = next(l for l in (d / shell_for_blobs).read_text().split('\n') if 'const BLOBS' in l).strip()
-    t = (d / 'shell_embed_house.html').read_text().replace('/*__BLOBS__*/', blobs)
+    t = (d / tpl).read_text().replace('/*__BLOBS__*/', blobs)
+    if chamber: t = t.replace("/*__CHAMBER__*/'S'", repr(chamber))
     (d / '_embed_tmp.html').write_text(t)
     build(dc, '_embed_tmp.html', out); (d / '_embed_tmp.html').unlink()
     p = d.parent / out / 'index.html'
     p.write_text(p.read_text().replace("'../../", "'../"))
 build_embed('forecast.dc.html', 'shell_forecast.html', 'carte-chambre')
 build_embed('results.dc.html', 'shell.html', 'carte-chambre-resultats')
+# Courses indécises seules + panneau récapitulatif, une iframe par chambre
+build_embed('forecast.dc.html', 'shell_forecast.html', 'indecis-senat', 'shell_embed_tossup.html', 'S')
+build_embed('forecast.dc.html', 'shell_forecast.html', 'indecis-chambre', 'shell_embed_tossup.html', 'H')
 # Racine : renvoi vers la page des résultats
 (d.parent / 'index.html').write_text('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Midterms 2026 - Le Grand Continent</title><meta http-equiv="refresh" content="0; url=midterms/"><link rel="canonical" href="midterms/"></head><body><a href="midterms/">Résultats des midterms 2026</a></body></html>\n')
 print('ok')
@@ -32,7 +36,7 @@ import subprocess; subprocess.run(['node', str(d / 'export_csv.js')], check=True
 import re, sys
 sys.path.insert(0, str(d)); from i18n import translate
 for lang in ('es', 'it'):
-    for page in ('midterms', 'midterm-forecast', 'carte-chambre', 'carte-chambre-resultats'):
+    for page in ('midterms', 'midterm-forecast', 'carte-chambre', 'carte-chambre-resultats', 'indecis-senat', 'indecis-chambre'):
         s = (d.parent / page / 'index.html').read_text()
         s = re.sub(r'(["\'(])\.\./', r'\1../../', translate(s, lang))
         p = d.parent / lang / page / 'index.html'; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(s)
