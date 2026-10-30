@@ -222,9 +222,9 @@ class Component extends DCLogic {
     this._pl = POLLS; return POLLS;
   }
 
-  // Classements du Cook Political Report pour le Senato (20 octobre 2026) : 0 democratico sûr … 3 indécis … 6 repubblicano sûr
+  // Classements du Cook Political Report pour le Senato (30 octobre 2026) : 0 democratico sûr … 3 indécis … 6 repubblicano sûr
   cookSenate() {
-    return { CO: 0, DE: 0, IL: 0, MA: 0, NJ: 0, NM: 0, OR: 0, RI: 0, VA: 0, GA: 1, NC: 1, MN: 2, NH: 2, AK: 3, IA: 3, KS: 3, ME: 3, MI: 3, OH: 3, TX: 3, SC: 4, MS: 5, NE: 5, AL: 6, AR: 6, FL: 6, ID: 6, KY: 6, LA: 6, MT: 6, OK: 6, SD: 6, TN: 6, WV: 6, WY: 6 };
+    return { CO: 0, DE: 0, IL: 0, MA: 0, NJ: 0, NM: 0, OR: 0, RI: 0, VA: 0, GA: 1, NC: 1, MN: 2, NH: 2, AK: 3, IA: 3, KS: 3, ME: 3, MI: 3, OH: 3, TX: 3, NE: 4, SC: 4, FL: 5, MS: 5, AL: 6, AR: 6, ID: 6, KY: 6, LA: 6, MT: 6, OK: 6, SD: 6, TN: 6, WV: 6, WY: 6 };
   }
 
   // Sortant, candidats et marge simulée (déterministe) à partir du classement Cook
@@ -684,7 +684,7 @@ class Component extends DCLogic {
         ? 'A pochi giorni dal voto, il Cook Political Report considera in bilico ' + undec + ' delle 35 corse. Contando i seggi non in palio, ' + dTotal + ' seggi sono sicuri o favorevoli ai democratici e ' + rTotal + ' ai repubblicani. Ai democratici servono 51 seggi per la maggioranza, ai repubblicani 50, grazie al voto del vicepresidente.'
         : 'Il Cook Political Report considera in bilico ' + undec + ' dei 435 collegi; ' + dTotal + ' sono sicuri o favorevoli ai democratici, ' + rTotal + ' ai repubblicani. Nella media dei sondaggi di Silver Bulletin, i democratici sono avanti ai repubblicani di ' + (PL.GB ? (Math.round(PL.GB.c[0][2] * 10) / 10 - Math.round(PL.GB.c[1][2] * 10) / 10).toFixed(1).replace('.', ',') : '') + ' punti nel voto generico.',
       showMockTag: false,
-      liveCls: '', liveDot: '#b9b6b0', updatedLabel: 'Rating al 20 e 23 ott. - sondaggi al 29 ott.',
+      liveCls: '', liveDot: '#b9b6b0', updatedLabel: 'Classements au 23 et 30 oct. - sondages au 29 oct.',
       dTotal, rTotal,
       dCheck: '', rCheck: '',
       dVotes: isSenate ? 'di cui 34 non in palio' : (PL.GB ? 'Voto generico: ' + this.fmtP(PL.GB.c[0][2]) : ''), rVotes: isSenate ? 'di cui 31 non in palio' : (PL.GB ? this.fmtP(PL.GB.c[1][2]) : ''),
@@ -708,7 +708,7 @@ class Component extends DCLogic {
       sel: selV || { cands: [], hours: [], hasBack: false }, stSel: stSel || { rows: [] },
       clearSel: () => this.setState({ sel: null }),
       watch, slots,
-      sourceLine: 'Rating: Cook Political Report (Senato, 20 ottobre 2026; Camera, 23 ottobre 2026). Sondaggi: medie di Silver Bulletin al 29 ottobre 2026, sulla base dei sondaggi del New York Times; hanno una media solo le corse con almeno tre sondaggi di due istituti. Margine di errore indicativo (±4,1 punti al Senato, ±4,4 punti alla Camera): scarto medio, dal 1998, tra la media dei sondaggi pubblicati nelle ultime tre settimane e il risultato, calcolato da Il Grand Continent sulla base dei sondaggi di Silver Bulletin. Grafico: Il Grand Continent.',
+      sourceLine: 'Rating: Cook Political Report (Senato, 30 ottobre 2026; Camera, 23 ottobre 2026). Sondaggi: medie di Silver Bulletin al 29 ottobre 2026, sulla base dei sondaggi del New York Times; hanno una media solo le corse con almeno tre sondaggi di due istituti. Margine di errore indicativo (±4,1 punti al Senato, ±4,4 punti alla Camera): scarto medio, dal 1998, tra la media dei sondaggi pubblicati nelle ultime tre settimane e il risultato, calcolato da Il Grand Continent sulla base dei sondaggi di Silver Bulletin. Grafico: Il Grand Continent.',
       ruleLine: isSenate
         ? 'Per la maggioranza servono 51 seggi; in caso di parità 50-50, il voto del vicepresidente J. D. Vance va ai repubblicani. I due indipendenti non in palio, che siedono con i democratici, sono contati con loro.'
         : 'Per la maggioranza servono 218 seggi. Seggi uscenti: House Press Gallery (2 settembre 2026) e 270toWin; i due seggi vacanti (Florida e Texas) sono attribuiti al partito che li deteneva.'

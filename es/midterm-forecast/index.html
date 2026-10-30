@@ -222,9 +222,9 @@ class Component extends DCLogic {
     this._pl = POLLS; return POLLS;
   }
 
-  // Classements du Cook Political Report pour le Senado (20 octobre 2026) : 0 demócrata sûr … 3 indécis … 6 republicano sûr
+  // Classements du Cook Political Report pour le Senado (30 octobre 2026) : 0 demócrata sûr … 3 indécis … 6 republicano sûr
   cookSenate() {
-    return { CO: 0, DE: 0, IL: 0, MA: 0, NJ: 0, NM: 0, OR: 0, RI: 0, VA: 0, GA: 1, NC: 1, MN: 2, NH: 2, AK: 3, IA: 3, KS: 3, ME: 3, MI: 3, OH: 3, TX: 3, SC: 4, MS: 5, NE: 5, AL: 6, AR: 6, FL: 6, ID: 6, KY: 6, LA: 6, MT: 6, OK: 6, SD: 6, TN: 6, WV: 6, WY: 6 };
+    return { CO: 0, DE: 0, IL: 0, MA: 0, NJ: 0, NM: 0, OR: 0, RI: 0, VA: 0, GA: 1, NC: 1, MN: 2, NH: 2, AK: 3, IA: 3, KS: 3, ME: 3, MI: 3, OH: 3, TX: 3, NE: 4, SC: 4, FL: 5, MS: 5, AL: 6, AR: 6, ID: 6, KY: 6, LA: 6, MT: 6, OK: 6, SD: 6, TN: 6, WV: 6, WY: 6 };
   }
 
   // Sortant, candidats et marge simulée (déterministe) à partir du classement Cook
@@ -684,7 +684,7 @@ class Component extends DCLogic {
         ? 'A pocos días de la votación, el Cook Political Report considera indecisas ' + undec + ' de las 35 contiendas. Contando los escaños que no se renuevan, ' + dTotal + ' escaños son seguros o favorables a los demócratas y ' + rTotal + ' a los republicanos. Los demócratas necesitan 51 escaños para la mayoría; los republicanos, 50, gracias al voto del vicepresidente.'
         : 'El Cook Political Report considera indecisos ' + undec + ' de los 435 distritos; ' + dTotal + ' son seguros o favorables a los demócratas, ' + rTotal + ' a los republicanos. En la media de encuestas de Silver Bulletin, los demócratas aventajan a los republicanos en ' + (PL.GB ? (Math.round(PL.GB.c[0][2] * 10) / 10 - Math.round(PL.GB.c[1][2] * 10) / 10).toFixed(1).replace('.', ',') : '') + ' puntos en el voto genérico.',
       showMockTag: false,
-      liveCls: '', liveDot: '#b9b6b0', updatedLabel: 'Clasificaciones del 20 y 23 de oct. - encuestas del 29 de oct.',
+      liveCls: '', liveDot: '#b9b6b0', updatedLabel: 'Classements au 23 et 30 oct. - sondages au 29 oct.',
       dTotal, rTotal,
       dCheck: '', rCheck: '',
       dVotes: isSenate ? 'de ellos, 34 no se renuevan' : (PL.GB ? 'Voto genérico: ' + this.fmtP(PL.GB.c[0][2]) : ''), rVotes: isSenate ? 'de ellos, 31 no se renuevan' : (PL.GB ? this.fmtP(PL.GB.c[1][2]) : ''),
@@ -708,7 +708,7 @@ class Component extends DCLogic {
       sel: selV || { cands: [], hours: [], hasBack: false }, stSel: stSel || { rows: [] },
       clearSel: () => this.setState({ sel: null }),
       watch, slots,
-      sourceLine: 'Clasificaciones: Cook Political Report (Senado, 20 de octubre de 2026; Cámara, 23 de octubre de 2026). Encuestas: medias de Silver Bulletin a 29 de octubre de 2026, a partir de la base de encuestas del New York Times; solo tienen media las contiendas con al menos tres encuestas de dos institutos. Margen de error indicativo (±4,1 puntos en el Senado, ±4,4 puntos en la Cámara): diferencia media, desde 1998, entre la media de las encuestas publicadas en las tres últimas semanas y el resultado, calculada por El Grand Continent a partir de la base de encuestas de Silver Bulletin. Gráfico: El Grand Continent.',
+      sourceLine: 'Clasificaciones: Cook Political Report (Senado, 30 de octubre de 2026; Cámara, 23 de octubre de 2026). Encuestas: medias de Silver Bulletin a 29 de octubre de 2026, a partir de la base de encuestas del New York Times; solo tienen media las contiendas con al menos tres encuestas de dos institutos. Margen de error indicativo (±4,1 puntos en el Senado, ±4,4 puntos en la Cámara): diferencia media, desde 1998, entre la media de las encuestas publicadas en las tres últimas semanas y el resultado, calculada por El Grand Continent a partir de la base de encuestas de Silver Bulletin. Gráfico: El Grand Continent.',
       ruleLine: isSenate
         ? 'La mayoría está en 51 escaños; en caso de empate 50-50, el voto del vicepresidente J. D. Vance favorece a los republicanos. Los dos independientes que no se presentan, que votan con los demócratas, se cuentan con ellos.'
         : 'La mayoría está en 218 escaños. Escaños salientes: House Press Gallery (2 de septiembre de 2026) y 270toWin; los dos escaños vacantes (Florida y Texas) se atribuyen a su antiguo partido.'
