@@ -118,7 +118,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
           <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 32px; height: 12px; border-radius: 999px; background: repeating-linear-gradient(-45deg, #3b8ee6 0 3px, #ffffff 3px 6px);"></span>Hors scrutin</span>
         </sc-if>
         <span>* Sortant</span>
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #141414;"></span>Siège qui pencherait vers l’autre parti</span>
+        
       </div>
     </div>
   </section>
@@ -507,13 +507,13 @@ class Component extends DCLogic {
     // ---------- Sénat ----------
     const sRes = {};
     for (const st in RACES) sRes[st] = mkRes(SC[st], PL['S:' + st], RACES[st][4]);
-    const sGain = (st) => !!(sRes[st] && sideOf(sRes[st].rating) && sideOf(sRes[st].rating) !== RACES[st][1]);
+    const sGain = () => false;
 
     // ---------- Chambre ----------
     const house = this.state.house;
     const hRes = {}, hMeta = house ? this.houseMeta(house) : {};
     if (house) for (const c of house.cells) hRes[c.id] = mkRes(hMeta[c.id].cook, PL['H:' + c.id], hMeta[c.id].cands);
-    const hGain = (id) => !!(hRes[id] && hMeta[id] && sideOf(hRes[id].rating) && sideOf(hRes[id].rating) !== hMeta[id].holder);
+    const hGain = () => false;
 
     // ---------- Comptage par classement ----------
     const cnt = [0, 0, 0, 0, 0, 0, 0];

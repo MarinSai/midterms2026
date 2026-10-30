@@ -494,7 +494,7 @@ class Component extends DCLogic {
         : (dCtrl ? 'Les démocrates prennent la Chambre' : rCtrl ? 'Les républicains gardent la Chambre' : 'Chambre : les résultats en direct'),
       dek: isSenate
         ? (before ? '35 sièges sur 100 sont en jeu le 3 novembre : 33 élections ordinaires et deux partielles, en Ohio et en Floride. Les républicains détiennent 53 sièges ; les démocrates doivent en gagner quatre de plus pour prendre la majorité.' : '35 sièges sur 100 étaient en jeu. Les républicains détenaient 53 sièges avant le scrutin ; les démocrates devaient en gagner quatre de plus pour prendre la majorité.')
-        : (before ? 'Les 435 sièges de la Chambre sont renouvelés le 3 novembre. Au 2 septembre, les républicains en détenaient 218, les démocrates 214 et un indépendant 1, avec deux sièges vacants. La majorité est à 218.' : 'Les 435 sièges de la Chambre étaient renouvelés. Au 2 septembre, les républicains en détenaient 218, les démocrates 214 et un indépendant 1, avec deux sièges vacants. La majorité est à 218.'),
+        : (before ? 'Les 435 sièges de la Chambre sont renouvelés le 3 novembre. Les républicains en détiennent 218, les démocrates 214 et l’indépendant Kevin Kiley, élu républicain en Californie, 1 ; deux sièges sont vacants depuis avril (Floride et Texas). La majorité est à 218.' : 'Les 435 sièges de la Chambre étaient renouvelés. Les républicains en détenaient 218, les démocrates 214 et l’indépendant Kevin Kiley, élu républicain en Californie, 1 ; deux sièges sont vacants depuis avril (Floride et Texas). La majorité est à 218.'),
       showMockTag: false,
       liveCls: live ? 'live' : '', liveDot: live ? '#e85462' : '#b9b6b0', updatedLabel: updated,
       dTotal, rTotal,
@@ -522,7 +522,7 @@ class Component extends DCLogic {
       sourceLine: (feed ? 'Source : Associated Press' : 'Premiers résultats attendus le 4 novembre à minuit, heure de Paris') + ' · Graphique : Le Grand Continent',
       ruleLine: isSenate
         ? 'Il faut 51 sièges pour la majorité ; à 50-50, la voix du vice-président J. D. Vance revient aux républicains. Les deux indépendants hors scrutin, qui siègent avec les démocrates, sont comptés avec eux.'
-        : 'Il faut 218 sièges pour la majorité. Sièges sortants : House Press Gallery (2 septembre 2026) et 270toWin ; les deux sièges vacants (Floride et Texas) sont attribués à leur ancien parti.'
+        : 'Il faut 218 sièges pour la majorité. Sièges sortants : House Press Gallery (dernière mise à jour le 2 septembre 2026, sans changement depuis selon The Green Papers) ; les deux sièges vacants (Floride et Texas) sont attribués à leur ancien parti.'
     };
   }
 }
