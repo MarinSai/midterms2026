@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elezioni di midterm 2026 — Chiusura dei seggi - Il Grand Continent</title>
+<script async src="../../vendor/iframe-resizer-child-5.5.9.umd.js"></script>
+<style>
+@font-face{font-family:"GC Sanomat";src:url(../../fonts/sanomat-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"GC National";src:url(../../fonts/national-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GC National";src:url(../../fonts/national-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+body{margin:0;background:#fff;color:#141414;font-family:"GC National","Helvetica Neue",sans-serif;font-size:16px;line-height:1.45}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;margin:0}
+button:focus-visible,input:focus-visible,path:focus-visible{outline:2px solid #141414;outline-offset:2px}
+.wrapx{padding:4px 0 8px}
+.ttl{margin:0 0 6px;font-family:"GC Sanomat",Georgia,serif;font-weight:600;font-size:clamp(22px,3.2vw,30px);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+.dek{margin:0 0 14px;max-width:70ch;font-size:15px;line-height:1.5;color:#3a3936}
+.lgd{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:30px;padding:0 10px 0 6px;border-radius:999px;background:#f4f4f2;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.chip i{width:14px;height:14px;border-radius:3px;display:inline-block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.chip[aria-pressed="true"]{background:#141414;color:#fff}
+.chip.hatch i{background:repeating-linear-gradient(-45deg,#e9a25a 0 3px,#8a4a1c 3px 6px)!important}
+.mapw{position:relative}
+svg.map{width:100%;height:auto;display:block;overflow:visible}
+svg.map path.st{stroke:#fff;stroke-width:.9;transition:opacity .15s;cursor:pointer}
+svg.map path.st.dim{opacity:.22}
+svg.map path.sel{fill:none;stroke:#141414;stroke-width:2.6;pointer-events:none}
+svg.map text{font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;pointer-events:none;text-anchor:middle}
+svg.map .lab{font-size:11px;font-weight:600;letter-spacing:.02em}
+svg.map .tim{font-size:10.5px}
+svg.map .co{font-size:13.5px;text-anchor:start}
+.card{position:absolute;z-index:5;width:min(300px,86%);background:#fff;border:1px solid #e4e2de;border-radius:10px;box-shadow:0 8px 28px rgba(20,20,20,.16);padding:12px 14px;box-sizing:border-box;pointer-events:none}
+.card.pin{pointer-events:auto}
+.card h3{margin:0 0 4px;font-family:"GC Sanomat",Georgia,serif;font-weight:600;font-size:20px;line-height:1.1}
+.card .big{font-size:15px;font-weight:600}
+.card .small{font-size:12.5px;color:#6b6965;margin-top:4px}
+.search{margin:22px auto 0;max-width:440px;display:flex;flex-direction:column;align-items:stretch;gap:8px;text-align:center}
+.search label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6b6965}
+.sbox{position:relative}
+.sbox svg{position:absolute;left:16px;top:50%;width:18px;height:18px;transform:translateY(-50%);stroke:#8c8a85;fill:none;stroke-width:2;stroke-linecap:round;pointer-events:none}
+.search input{font:inherit;font-size:16px;padding:12px 18px 12px 44px;border:1px solid #dcd9d3;border-radius:999px;width:100%;box-sizing:border-box;background:#f7f6f3;color:#141414;transition:border-color .15s,background .15s,box-shadow .15s;-webkit-appearance:none;appearance:none}
+.search input::placeholder{color:#9a978f}
+.search input::-webkit-search-cancel-button{filter:grayscale(1) opacity(.6);cursor:pointer}
+.search input:hover{border-color:#c4c0b8}
+.search input:focus{outline:none;background:#fff;border-color:#141414;box-shadow:0 0 0 3px rgba(20,20,20,.08)}
+.res{display:flex;flex-direction:column;text-align:left;background:#fff;border-radius:14px;overflow:hidden}
+.res:not(:empty){border:1px solid #e4e2de;box-shadow:0 8px 24px rgba(20,20,20,.08);margin-top:2px}
+.res button{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;padding:11px 18px;border-bottom:1px solid #f0eee9;font-size:15px}
+.res button:last-child{border-bottom:0}
+.res button:hover,.res button[aria-current="true"]{background:#f6f5f2}
+.res .t{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14px;padding:3px 10px;border-radius:999px;background:#f4f4f2}
+.none{font-size:14px;color:#6b6965;padding:12px 18px;text-align:center}
+.src{margin:14px 0 0;font-size:12.5px;line-height:1.55;color:#6b6965}
+@media (max-width:600px){svg.map .tim,svg.map .lab,svg.map .co{display:none}.card{position:static;width:100%;margin-top:8px;box-shadow:0 2px 10px rgba(20,20,20,.08)}}
+</style>
+</head>
+<body>
+<div id="app" class="wrapx"></div>
+<script>
+window.__typo = function (root) {
+  if (!root) return;
+  const fr = (document.documentElement.lang || 'fr').startsWith('fr');
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), list = [];
+  while (w.nextNode()) list.push(w.currentNode);
+  for (const n of list) {
+    const p = n.parentNode; if (!p || p.nodeName === 'SCRIPT' || p.nodeName === 'STYLE') continue;
+    let t = n.nodeValue, o = t;
+    t = t.replace(/(\w)'(\w)/g, '$1’$2');
+    if (fr) t = t.replace(/ ([;!?])/g, ' $1').replace(/ :/g, ' :').replace(/« /g, '« ').replace(/ »/g, ' »');
+    if (t !== o) n.nodeValue = t;
+  }
+};
+(function () {
+  const FR = (document.documentElement.lang || 'fr').startsWith('fr');
+  // Heure de l'Est : [premiers bureaux fermés, derniers bureaux fermés] - Associated Press
+  const H = { AL: [20, 20], AK: [24, 25], AZ: [21, 21], AR: [20.5, 20.5], CA: [23, 23], CO: [21, 21], CT: [20, 20], DE: [20, 20], FL: [19, 20], GA: [19, 19], HI: [24, 24], ID: [22, 23], IL: [20, 20], IN: [18, 19], IA: [21, 21], KS: [20, 21], KY: [18, 19], LA: [21, 21], ME: [20, 20], MD: [20, 20], MA: [20, 20], MI: [20, 21], MN: [21, 21], MS: [20, 20], MO: [20, 20], MT: [22, 22], NE: [21, 21], NV: [22, 22], NH: [19, 20], NJ: [20, 20], NM: [21, 21], NY: [21, 21], NC: [19.5, 19.5], ND: [20, 21], OH: [19.5, 19.5], OK: [20, 20], OR: [22, 23], PA: [20, 20], RI: [20, 20], SC: [19, 19], SD: [20, 21], TN: [20, 20], TX: [20, 21], UT: [22, 22], VT: [19, 19], VA: [19, 19], WA: [23, 23], WV: [19.5, 19.5], WI: [21, 21], WY: [21, 21] };
+  const NAMES = { AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', ID: 'Idaho', IL: 'Illinois', IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana', ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota', MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada', NH: 'New Hampshire', NJ: 'New Jersey', NM: 'Nuovo Messico', NY: 'New York', NC: 'Carolina del Nord', ND: 'Dakota del Nord', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'Carolina del Sud', SD: 'Dakota del Sud', TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia', WA: 'Washington', WV: 'Virginia Occidentale', WI: 'Wisconsin', WY: 'Wyoming' };
+  // noms anglais, pour la recherche
+  const EN = { CA: 'California', FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', LA: 'Louisiana', NM: 'New Mexico', NC: 'North Carolina', ND: 'North Dakota', PA: 'Pennsylvania', SC: 'South Carolina', SD: 'South Dakota', VA: 'Virginia', WV: 'West Virginia' };
+  const NOTES = {
+    FL: 'La maggior parte dei seggi chiude all’01:00; quelli del Panhandle, con l’ora del Centro, alle 02:00. I risultati vengono pubblicati solo dopo la chiusura del Panhandle, alle 02:00.',
+    NH: 'La maggior parte dei seggi chiude all’01:00, alcuni comuni alle 02:00.',
+    IN: 'La maggior parte dei seggi chiude a mezzanotte; quelli dell’ovest, con l’ora del Centro, all’01:00.',
+    KY: 'La maggior parte dei seggi chiude a mezzanotte; quelli dell’ovest, con l’ora del Centro, all’01:00.',
+    MI: 'La maggior parte dei seggi chiude alle 02:00; quelli della Penisola Superiore, con l’ora del Centro, alle 03:00.',
+    KS: 'La maggior parte dei seggi chiude alle 02:00; quelli dell’estremo ovest, con l’ora delle Montagne Rocciose, alle 03:00.',
+    TX: 'La maggior parte dei seggi chiude alle 02:00; quelli della zona di El Paso, con l’ora delle Montagne Rocciose, alle 03:00.',
+    SD: 'I seggi dell’est chiudono alle 02:00, quelli dell’ovest, con l’ora delle Montagne Rocciose, alle 03:00.',
+    ND: 'La maggior parte dei seggi chiude alle 02:00; quelli dell’ovest, con l’ora delle Montagne Rocciose, alle 03:00.',
+    ID: 'La maggior parte dei seggi chiude alle 04:00; quelli del nord, con l’ora del Pacifico, alle 05:00.',
+    OR: 'La contea di Malheur, con l’ora delle Montagne Rocciose, chiude alle 04:00; il resto dello Stato alle 05:00.',
+    AK: 'La maggior parte dei seggi chiude alle 06:00; l’ovest delle isole Aleutine alle 07:00.',
+    AZ: 'I primi risultati vengono pubblicati solo un’ora dopo la chiusura.'
+  };
+  const TIMES = [18, 19, 19.5, 20, 20.5, 21, 22, 23, 24];
+  const COL = { 18: '#fdf3c4', 19: '#f9e09a', 19.5: '#f5c76a', 20: '#efa14b', 20.5: '#e1883d', 21: '#d06a2c', 22: '#b4511f', 23: '#8a3815', 24: '#5e2410', 25: '#3a1408' };
+  const DARK = (t) => t >= 21;
+  const fmt = (et) => {
+    const h = (Math.floor(et) + 6) % 24, m = et % 1 ? 30 : 0;
+    if (FR) return h === 0 && !m ? 'minuit' : h + 'h' + (m ? m : '');
+    return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+  };
+  const fmtET = (et) => { const h = Math.floor(et) % 24, m = et % 1 ? 30 : 0; return FR ? h + 'h' + (m ? m : '') : String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0'); };
+  const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  // petits États du Nord-Est : étiquettes à droite de la carte
+  const CX = 958, VBW = FR ? 1030 : 1050;
+  const CO_Y = { VT: 128, NH: 158, MA: 188, RI: 218, CT: 248, NJ: 280, DE: 312, MD: 344 };
+  const NUDGE = { HI: [62, 2], FL: [18, 0], LA: [-14, 0], MI: [14, 22], KY: [6, 2], ID: [0, 20], CA: [-10, 0], WV: [-3, 4], VA: [10, 4] };
+  let geo = null, sel = null, pinned = false, hl = null, q = '', kbIdx = -1;
+  const app = document.getElementById('app');
+  const esc = (v) => String(v == null ? '' : v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const split = (st) => H[st][0] !== H[st][1];
+  // heure retenue sur la carte : celle de la plupart des bureaux (Oregon : tout l'État sauf le comté de Malheur)
+  const MAIN = { OR: 23 };
+  const main = (st) => MAIN[st] != null ? MAIN[st] : H[st][0];
+  const fillOf = (st) => COL[main(st)];
+  const cardHtml = (st) => {
+    const a = H[st][0];
+    const big = split(st)
+      ? 'Chiusura della maggior parte dei seggi: ' + fmt(main(st))
+      : 'Chiusura dei seggi: ' + fmt(a);
+    return '<h3>' + esc(NAMES[st]) + '</h3><div class="big">' + big + '</div>'
+      + '<div class="small">Ora di Parigi, notte tra il 3 e il 4 novembre (' + fmtET(main(st)) + ', ora dell’Est)</div>'
+      + (NOTES[st] ? '<div class="small">' + esc(NOTES[st]) + '</div>' : '');
+  };
+  function matches() {
+    if (!q.trim()) return [];
+    const n = norm(q.trim());
+    return Object.keys(NAMES).filter((st) => norm(NAMES[st]).includes(n) || norm(EN[st] || '').includes(n) || st.toLowerCase() === n)
+      .sort((x, y) => norm(NAMES[x]).indexOf(n) - norm(NAMES[y]).indexOf(n) || NAMES[x].localeCompare(NAMES[y]));
+  }
+  function render(keepFocus) {
+    const mob = window.matchMedia('(max-width: 600px)').matches;
+    const focusSearch = document.activeElement && document.activeElement.id === 'q';
+    let defs = '<defs>';
+    defs += '</defs>';
+    let paths = '', labels = '', cos = '';
+    if (geo) {
+      for (const st in geo.states) {
+        if (!H[st]) continue;
+        const g = geo.states[st];
+        const dim = hl != null ? (main(st) === hl ? '' : ' dim') : '';
+        paths += '<path class="st' + dim + '" data-st="' + st + '" tabindex="0" role="button" aria-label="' + esc(NAMES[st] + ', ' + fmt(main(st))) + '" d="' + g.d + '" fill="' + fillOf(st) + '"></path>';
+        const tc = DARK(main(st)) && st !== 'HI' ? '#fff' : '#141414';
+        if (CO_Y[st]) {
+          const y = CO_Y[st];
+          cos += '<path d="M' + g.cx + ',' + g.cy + 'L' + CX + ',' + y + '" stroke="#5a5853" stroke-width="1" fill="none"></path><circle cx="' + g.cx + '" cy="' + g.cy + '" r="2.2" fill="#141414"></circle><rect x="' + (CX + 3) + '" y="' + (y - 10) + '" width="16" height="16" rx="3" fill="' + fillOf(st) + '" stroke="rgba(0,0,0,.18)" stroke-width=".8"></rect><text class="co" x="' + (CX + 25) + '" y="' + (y + 3) + '" fill="#141414"><tspan font-weight="600">' + st + '</tspan>' + (mob ? '' : ' ' + fmt(main(st))) + '</text>';
+        } else {
+          const nd = NUDGE[st] || [0, 0], x = g.cx + nd[0], y = g.cy + nd[1];
+          labels += '<text class="lab" x="' + x + '" y="' + (mob ? y + 4 : y - 1) + '" fill="' + tc + '">' + st + '</text>' + (mob ? '' : '<text class="tim" x="' + x + '" y="' + (y + 11) + '" fill="' + tc + '">' + fmt(main(st)) + '</text>');
+        }
+      }
+    }
+    const selPath = sel && geo && geo.states[sel] ? '<path class="sel" d="' + geo.states[sel].d + '"></path>' : '';
+    const legend = TIMES.map((t) => '<button class="chip" data-t="' + t + '" aria-pressed="' + (hl === t) + '"><i style="background:' + COL[t] + '"></i>' + fmt(t) + '</button>').join('');
+    const res = matches();
+    const resHtml = !q.trim() ? '' : (res.length ? res.map((st, i) => '<button data-pick="' + st + '" aria-current="' + (i === kbIdx || st === sel) + '"><span>' + esc(NAMES[st]) + '</span><span class="t">' + fmt(main(st)) + '</span></button>').join('') : '<div class="none">Nessuno Stato corrisponde.</div>');
+    const card = sel ? '<div class="card' + (pinned ? ' pin' : '') + '" id="card">' + cardHtml(sel) + '</div>' : '';
+    app.innerHTML = '<h2 class="ttl">A che ora chiudono i seggi?</h2>'
+      + '<p class="dek">Ora di Parigi, nella notte tra martedì 3 e mercoledì 4 novembre. Negli Stati in cui i seggi non chiudono tutti alla stessa ora, la mappa indica l’ora di chiusura della maggior parte di essi.</p>'
+      + '<div class="lgd" role="group" aria-label="Filtra per ora di chiusura">' + legend + '</div>'
+      + '<div class="mapw"><svg class="map" viewBox="0 0 ' + VBW + ' 610" role="img" aria-label="Mappa degli orari di chiusura dei seggi per Stato">' + defs + paths + selPath + cos + labels + '</svg>' + (mob ? '' : card) + '</div>'
+      + (mob ? card : '')
+      + '<div class="search"><label for="q">Cerca uno Stato</label><div class="sbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg><input id="q" type="search" autocomplete="off" placeholder="Per esempio: Texas, Georgia…" value="' + esc(q) + '"></div><div class="res" role="listbox">' + resHtml + '</div></div>'
+      + '<p class="src">Orari: Associated Press. Ora di Parigi: ora dell’Est + 6h. Grafico: Il Grand Continent</p>';
+    if (!mob && sel) place();
+    window.__typo(app);
+    if (focusSearch || keepFocus) { const i = document.getElementById('q'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
+  }
+  // fiche : à côté de l'État, sans sortir de la carte
+  function place() {
+    const c = document.getElementById('card'), box = app.querySelector('.mapw'); if (!c || !geo) return;
+    const g = geo.states[sel], bw = box.clientWidth, bh = box.clientHeight, k = bw / VBW;
+    let x = (CO_Y[sel] ? CX : g.cx) * k + 18, y = g.cy * k - c.offsetHeight / 2;
+    if (x + c.offsetWidth > bw) x = (CO_Y[sel] ? CX : g.cx) * k - 18 - c.offsetWidth;
+    x = Math.max(0, Math.min(x, bw - c.offsetWidth)); y = Math.max(0, Math.min(y, bh - c.offsetHeight));
+    c.style.left = Math.round(x) + 'px'; c.style.top = Math.round(y) + 'px';
+  }
+  const choose = (st, pin) => { sel = st; pinned = !!pin; render(); };
+  app.addEventListener('mouseover', (e) => { if (pinned) return; const p = e.target.closest('path.st'); if (p && p.dataset.st !== sel) choose(p.dataset.st, false); });
+  app.addEventListener('mouseout', (e) => { if (pinned) return; if (e.target.closest('path.st') && !(e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('path.st'))) { sel = null; render(); } });
+  app.addEventListener('click', (e) => {
+    const p = e.target.closest('path.st'), chip = e.target.closest('.chip[data-t]'), pick = e.target.closest('[data-pick]');
+    if (chip) { const t = +chip.dataset.t; hl = hl === t ? null : t; render(); return; }
+    if (pick) { q = NAMES[pick.dataset.pick]; kbIdx = -1; choose(pick.dataset.pick, true); scrollToMap(); return; }
+    if (p) { const st = p.dataset.st; if (pinned && sel === st) { sel = null; pinned = false; render(); } else choose(st, true); return; }
+    if (!e.target.closest('.card, .search')) { if (sel) { sel = null; pinned = false; render(); } }
+  });
+  app.addEventListener('keydown', (e) => {
+    if (e.target.id === 'q') {
+      const res = matches();
+      if (e.key === 'ArrowDown') { kbIdx = Math.min(res.length - 1, kbIdx + 1); render(true); e.preventDefault(); }
+      else if (e.key === 'ArrowUp') { kbIdx = Math.max(0, kbIdx - 1); render(true); e.preventDefault(); }
+      else if (e.key === 'Enter' && res.length) { const st = res[Math.max(0, kbIdx)]; q = NAMES[st]; kbIdx = -1; choose(st, true); scrollToMap(); }
+      else if (e.key === 'Escape') { q = ''; kbIdx = -1; render(true); }
+      return;
+    }
+    const p = e.target.closest('path.st');
+    if (p && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); choose(p.dataset.st, true); }
+    if (e.key === 'Escape' && sel) { sel = null; pinned = false; render(); }
+  });
+  app.addEventListener('input', (e) => { if (e.target.id === 'q') { q = e.target.value; kbIdx = -1; render(true); } });
+  function scrollToMap() {
+    const el = app.querySelector('.mapw'); if (!el) return;
+    const p = window.parentIframe || window.parentIFrame;
+    if (p && window.top !== window.self && typeof p.scrollToOffset === 'function') { try { p.scrollToOffset(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - 12)); return; } catch (err) {} }
+    try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) {}
+  }
+  let rw = 0; window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => render(), 120); });
+  render();
+  fetch('../../senat-geo.json').then((r) => r.json()).then((g) => { geo = g; render(); }).catch(() => {});
+})();
+</script>
+</body>
+</html>

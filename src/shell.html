@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi-mandat 2026 — Sénat et Chambre - Le Grand Continent</title>
+<script async src="../vendor/iframe-resizer-child-5.5.9.umd.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+@font-face{font-family:"GC Sanomat";src:url(fonts/sanomat-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"GC Sanomat";src:url(fonts/sanomat-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GC Sanomat";src:url(fonts/sanomat-bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"GC National";src:url(fonts/national-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GC National";src:url(fonts/national-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+body{margin:0;background:#ffffff}
+a{color:#c62f3f}a:hover{color:#8e1a27}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;margin:0}
+button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
+.mono{font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;font-variant-numeric:tabular-nums}
+.st{position:absolute;inset:0;pointer-events:none;outline:none}
+.st svg{width:100%;height:100%;display:block}
+.st path{pointer-events:visiblePainted;transition:opacity .15s}
+.st:not([data-off]) path{cursor:pointer}
+.st:not([data-off]) path:hover{opacity:.78}
+.st:focus-visible path{stroke:#111;stroke-width:2.5}
+.lbl{position:absolute;transform:translate(-50%,-50%);font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;font-size:10.5px;font-weight:500;letter-spacing:.04em;pointer-events:none;white-space:nowrap;display:flex;align-items:center;gap:3px}
+.co{position:absolute;transform:translateY(-50%);height:20px;padding:0 7px;border-radius:999px;box-sizing:border-box;font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;font-size:10.5px;font-weight:500;letter-spacing:.04em;display:flex;align-items:center;gap:3px}
+.co:hover{opacity:.8}
+.cell{position:absolute;box-sizing:border-box;border-radius:2px;transition:opacity .15s;display:flex;align-items:center;justify-content:center}
+.cell:hover{opacity:.72}
+.cell:focus-visible{outline:2px solid #111;outline-offset:1px;z-index:2}
+.hlbl{position:absolute;z-index:5;transform:translate(-50%,-50%);font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;font-size:10px;font-weight:600;letter-spacing:.02em;pointer-events:none;color:#141414;white-space:nowrap;line-height:1.05;text-align:center;text-shadow:0 0 2px #fff,0 0 2px #fff,0 0 3px #fff}
+.pop.pv{pointer-events:none;left:0;top:0;will-change:transform}.pop.pv-in{animation:pvin .12s ease-out}@keyframes pvin{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.pop{position:absolute;z-index:10;width:min(330px,92%);background:#fff;border:1px solid #e4e2de;border-radius:10px;box-shadow:0 8px 28px rgba(20,20,20,.16);padding:12px 12px 10px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box;text-align:left;line-height:1.3}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) 36px 70px 56px;align-items:center;gap:6px;padding:6px 8px;font-size:13px}
+@media (max-width:600px){.pop{left:4%!important;right:auto!important}}
+@media (max-width:600px){.lgd{gap:6px 14px!important;font-size:9.5px!important;letter-spacing:.04em!important;margin-top:18px!important}.lgd > div{gap:6px 14px!important}.lgd span[style*='width:32px']{width:22px!important}.thumbs{flex:1 1 100%!important;flex-wrap:nowrap!important;gap:10px!important}.thumbs .thumb{width:104px!important;padding:6px!important;gap:4px!important}div[aria-label='Choisir un scénario']{display:grid!important;grid-template-columns:1fr 1fr;gap:6px!important}div[aria-label='Choisir un scénario'] > button{padding:8px 10px!important;gap:2px!important;min-height:0!important}div[aria-label='Choisir un scénario'] > button > span:last-child{font-size:13px!important}nav[aria-label='Dans cette page']{padding:12px 14px 12px!important;gap:10px 24px!important;margin-bottom:22px!important}nav[aria-label='Dans cette page'] button{gap:8px!important;min-height:0!important}nav[aria-label='Dans cette page'] button > span:first-child{font-size:14px!important}}
+.popm{flex:1 1 100%;width:100%}.popm .pop{position:static!important;width:100%!important;max-width:none!important;box-shadow:0 2px 10px rgba(20,20,20,.08)!important;margin-top:2px}
+.mapside{flex:1 1 480px;min-width:0;display:flex;gap:28px;align-items:flex-start}.tl-side{display:none}@media (min-width:1100px){.tl-side{flex:0 0 260px;display:flex;flex-direction:column;gap:12px;padding-left:22px;border-left:1px solid #e4e2de}.tl-below{display:none!important}}
+.st:focus-visible{outline:none}.scn{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))}@media (max-width:900px){.scn{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:600px){.pop .x{width:44px!important;height:44px!important;margin:-10px -10px 0 0!important}}
+.slots{scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}.slots::-webkit-scrollbar{display:none}.slots.end{-webkit-mask-image:none;mask-image:none}.sbar{position:relative;height:3px;border-radius:3px;background:#ecebe8;margin-top:2px}.sbar>span{position:absolute;top:0;bottom:0;border-radius:3px;background:#1c1b1c}
+
+.thumb{transition:border-color .2s,opacity .2s}.thumb:hover{opacity:1!important}
+.row{transition:background .15s}
+.row:hover{background:#f6f5f2}
+.pill{position:absolute;top:0;height:18px;border-radius:999px;transition:left .6s cubic-bezier(.2,.7,.2,1),width .6s cubic-bezier(.2,.7,.2,1)}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,84,98,.5)}50%{box-shadow:0 0 0 5px rgba(232,84,98,0)}}
+.live{animation:pulse 2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.live{animation:none}.pill{transition:none}}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0"><defs><pattern id="noel" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="5" height="5" fill="#ffffff"></rect><rect width="1" height="5" fill="#d3d0ca"></rect></pattern></defs></svg>
+<div id="app"></div>
+<script>
+// Défilement compatible iframe : dans une iframe redimensionnée par iframe-resizer, c’est la page parente qui défile
+// (Safari ne propage pas scrollIntoView d’une iframe d’un autre domaine vers la page qui l’accueille).
+// Typographie appliquée au texte affiché : espaces insécables (français), apostrophe typographique, initiales espacées, titres en italique
+window.__typo = function (root) {
+  if (!root) return;
+  const fr = (document.documentElement.lang || 'fr').startsWith('fr');
+  const TIT = /((?:The )?New York Times|Cook Political Report|2026 Poll Hours Report)/;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), list = [];
+  while (w.nextNode()) list.push(w.currentNode);
+  for (const n of list) {
+    const p = n.parentNode; if (!p || p.nodeName === 'SCRIPT' || p.nodeName === 'STYLE' || p.nodeName === 'I') continue;
+    let t = n.nodeValue, o = t;
+    t = t.replace(/(\w)'(\w)/g, '$1’$2').replace(/\b([A-Z])\.([A-Z])\./g, '$1. $2.');
+    if (fr) t = t.replace(/ ([;!?])/g, ' $1').replace(/ :/g, ' :').replace(/« /g, '« ').replace(/ »/g, ' »');
+    if (t !== o) n.nodeValue = t;
+    if (TIT.test(t) && p.closest && !p.closest('i')) {
+      const f = document.createDocumentFragment();
+      for (const part of t.split(TIT)) { if (!part) continue; if (TIT.test(part)) { const i = document.createElement('i'); i.textContent = part; f.appendChild(i); } else f.appendChild(document.createTextNode(part)); }
+      p.replaceChild(f, n);
+    }
+  }
+};
+window.__gcScroll = function (el, block) {
+  if (!el) return;
+  const p = window.parentIframe || window.parentIFrame;
+  if (p && window.top !== window.self && typeof p.scrollToOffset === 'function') {
+    try { p.scrollToOffset(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - 12)); return; } catch (e) {}
+  }
+  try { el.scrollIntoView({ behavior: 'smooth', block: block || 'start' }); } catch (e) { el.scrollIntoView(); }
+};
+// Fiche ouverte sous la carte (téléphone) : on cale le haut de la carte en haut de l’écran,
+// la fiche apparaît juste en dessous ; on ne descend pas plus bas.
+window.__gcReveal = function (el) {
+  if (!el) return;
+  const box = document.querySelector('.mapbox') || el;
+  const p = window.parentIframe || window.parentIFrame, inFrame = p && window.top !== window.self && typeof p.scrollToOffset === 'function';
+  const y = Math.max(0, box.getBoundingClientRect().top + window.scrollY - 12);
+  if (inFrame) { try { p.scrollToOffset(0, y); return; } catch (e) {} }
+  // hors iframe : on remonte juste assez pour montrer la fiche, sans jamais faire passer le haut de la carte hors de l’écran
+  const t = box.getBoundingClientRect().top, pb = el.getBoundingClientRect().bottom;
+  const d = t < 0 ? t - 12 : Math.min(t - 12, pb - window.innerHeight + 12);
+  if (Math.abs(d) > 4) window.scrollTo({ top: window.scrollY + d, behavior: 'smooth' });
+};
+</script>
+<script>
+// Petit adaptateur : même logique que la maquette du canevas
+class DCLogic {
+  constructor(props) { this.props = props; this.state = {}; }
+  setState(p) { this.state = Object.assign({}, this.state, typeof p === 'function' ? p(this.state) : p); window.__render(); }
+}
+</script>
+<script>
+/*__COMPONENT__*/
+</script>
+<script>
+(function () {
+  const esc = (v) => String(v == null ? '' : v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const map = { avant: 'Avant le scrutin', soiree: 'Soirée électorale', final: 'Résultats définitifs' };
+  const q = new URLSearchParams(location.search);
+  const props = {
+    scenario: map[q.get('scenario')] || 'Soirée électorale',
+    startChamber: q.get('chambre') === 'chambre' || q.get('chamber') === 'house' ? 'Chambre' : 'Sénat',
+    feedUrl: q.get('feed') || '',
+    pollSeconds: +q.get('poll') || 60
+  };
+  // Les fichiers de la carte sont servis à côté de la page
+  const BLOBS = { '/_blob/887bfdd2f68fc724fc9240ab6081605d': 'senat-geo.json', '/_blob/ba93beb33d7fdf13da21a8fc3e035859': 'house-grid.json' };
+  const realFetch = window.fetch.bind(window);
+  window.fetch = (u, o) => realFetch(typeof u === 'string' && BLOBS[u] ? BLOBS[u] : u, o);
+  const comp = new Component(props); window.__comp = comp;
+
+  let handlers = {};
+  let hc = 0;
+  const h = (fn) => { if (!fn) return ''; const id = 'h' + (hc++); handlers[id] = fn; return id; };
+  const dotH = (on, c, size) => on ? '<span style="width:' + (size || '6px') + ';height:' + (size || '6px') + ';border-radius:50%;background:' + c + '"></span>' : '';
+  const MONO_S = 'font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;';
+  const H2 = 'margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:26px;letter-spacing:-.01em';
+  const H3 = 'margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:30px;line-height:1.02;letter-spacing:-.01em';
+  const closeBtn = (fn) => '<button data-h="' + h(fn) + '" aria-label="Fermer le détail" style="flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#6b6965;margin:-10px -12px 0 0"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button>';
+  const rowBtn = (w, small) => '<button class="row" data-h="' + h(w.pick) + '" aria-label="' + esc(w.aria) + '" style="width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:' + (small ? 6 : 7) + 'px;padding:' + (small ? '10px 8px' : '12px 8px') + ';' + (small ? '' : 'margin:0 -8px;width:calc(100% + 16px);') + 'border-bottom:1px solid #efedea;border-radius:6px;text-align:left;min-height:44px"><span style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span' + (small ? ' class="mono" style="font-weight:600;font-size:12.5px"' : ' style="font-weight:600;font-size:15px"') + '>' + esc(w.name + w.gainMark) + '</span><span class="mono" style="font-size:11px;color:' + w.statusColor + '">' + esc(w.status) + '</span></span><span aria-hidden="true" style="display:flex;gap:3px;height:' + (small ? 6 : 8) + 'px"><span style="' + w.aStyle + '"></span><span style="flex:1 1 0;border-radius:999px;background:#f0eeea"></span><span style="' + w.bStyle + '"></span></span>' + (small ? '' : '<span class="mono" style="display:flex;justify-content:space-between;font-size:11.5px;color:#5c5a56"><span>' + esc(w.a) + '</span><span>' + esc(w.b) + '</span></span>') + '</button>';
+
+  window.__render = function () {
+    const mob = window.matchMedia('(max-width: 600px)').matches;
+    const popOnly = window.__popOnly;
+    if (!popOnly) handlers = {};
+    const v = comp.renderVals();
+    const tabs = v.tabs.map((t) => '<button class="seg" role="tab" aria-selected="' + t.on + '" data-h="' + h(t.pick) + '" style="' + t.style + '">' + t.label + '</button>').join('');
+    const pills = v.pills.map((g) => '<span class="pill" title="' + esc(g.title) + '" style="' + g.style + '"></span>').join('');
+    const legend = v.legendParties.map((p) => '<div style="display:grid;grid-template-columns:auto 54px 54px;row-gap:6px;align-items:center"><span></span><span style="text-align:center">En tête</span><span style="text-align:center">Gagné</span><span style="padding-right:8px">' + p.name + '</span><span style="height:12px;border-radius:999px 0 0 999px;background:' + p.tint + '"></span><span style="height:12px;border-radius:0 999px 999px 0;background:' + p.solid + '"></span></div>').join('');
+    const slots = v.slots.map((s) => '<div style="flex:1 0 92px;display:flex;flex-direction:column;gap:10px"><span style="' + s.lineStyle + '"></span><span style="display:flex;flex-direction:column;gap:1px"><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-variant-numeric:tabular-nums;font-size:17px;font-weight:600;color:' + s.timeColor + '">' + s.time + '</span><span class="mono" style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">' + s.n + '</span></span><span style="display:flex;flex-wrap:wrap;gap:5px">' + s.chips.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="position:static;transform:none;min-height:26px;' + c.style + '">' + c.t + dotH(c.gain, c.dot) + '</button>').join('') + '</span></div>').join('');
+
+    const slotsSide = v.slots.map((s) => '<div style="display:grid;grid-template-columns:64px 1fr;column-gap:10px;align-items:start;padding:7px 0;border-top:1px solid #efede9"><span style="display:flex;flex-direction:column;gap:1px"><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-variant-numeric:tabular-nums;font-size:15px;font-weight:600;color:' + s.timeColor + '">' + s.time + '</span><span class="mono" style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">' + s.n + '</span></span><span style="display:flex;flex-wrap:wrap;gap:4px">' + s.chips.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="position:static;transform:none;min-height:22px;font-size:10.5px;padding:0 7px;' + c.style + '">' + c.t + dotH(c.gain, c.dot) + '</button>').join('') + '</span></div>').join('');
+    const tlSide = '<aside class="tl-side" aria-label="Calendrier de la nuit électorale"><div style="display:flex;flex-direction:column;gap:4px"><h2 style="margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:20px;letter-spacing:-.01em">La nuit électorale</h2><span class="mono" style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c">Fermeture des bureaux, heure de Paris</span></div><div>' + slotsSide + '</div></aside>';
+    const thumbs = '<div class="thumbs" aria-label="Changer de carte" style="flex:0 0 116px;display:flex;flex-wrap:wrap;gap:14px">'
+      + '<button class="thumb" aria-pressed="' + v.thumbS.on + '" data-h="' + h(v.thumbS.pick) + '" style="' + v.thumbS.style + '"><span style="display:block;position:relative;width:100%;aspect-ratio:975/610"><svg aria-hidden="true" viewBox="0 0 975 610" style="position:absolute;inset:0;width:100%;height:100%">' + v.miniS.map((m) => '<path d="' + m.d + '" fill="' + m.fill + '" stroke="#fff" stroke-width="3"></path>').join('') + '</svg></span><span class="mono" style="' + v.thumbS.labelStyle + '">Sénat</span></button>'
+      + '<button class="thumb" aria-pressed="' + v.thumbH.on + '" data-h="' + h(v.thumbH.pick) + '" style="' + v.thumbH.style + '"><span style="display:block;position:relative;width:100%;aspect-ratio:' + v.hAspect + '">' + v.miniH.map((m) => '<span style="' + m.style + '"></span>').join('') + '</span><span class="mono" style="' + v.thumbH.labelStyle + '">Chambre</span></button></div>';
+
+    let pop = '';
+    const popHead = (kicker, name) => '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="mono" style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;">' + esc(kicker) + '</span><span style="font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:18px;line-height:1.1">' + esc(name) + '</span></div><button class="x" aria-label="Fermer" data-h="' + h(v.clearSel) + '" style="flex:none;width:32px;height:32px;margin:-6px -6px 0 0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#6b6965"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg></button></div>';
+    if (v.hasSel) {
+      const s = v.sel;
+      pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
+        + '<div><div class="prow mono" style="padding-top:0;padding-bottom:4px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c;border-bottom:1px solid #efedea"><span>Candidat</span><span>Parti</span><span style="text-align:right">Voix</span><span style="text-align:right">%</span></div>'
+        + s.cands.map((c) => '<div class="prow" style="border-bottom:1px solid #efedea;' + c.rowStyle + '"><span style="font-weight:600;line-height:1.2">' + esc(c.check + c.n + c.star) + '</span><span style="font-size:12px;opacity:.85">' + c.ps + '</span><span class="mono" style="text-align:right;font-size:12px">' + c.vn + '</span><span class="mono" style="text-align:right;font-weight:600">' + c.pn + '</span></div>').join('') + '</div>'
+        + (s.hasRcv ? '<div style="display:flex;flex-direction:column;gap:4px;padding:8px 10px;border-radius:8px;background:#f6f5f2"><span class="mono" style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c">Après report des voix (vote préférentiel)</span>' + s.rcvRows.map((c) => '<div style="display:flex;align-items:center;gap:8px;font-size:13px"><span style="width:3px;align-self:stretch;background:' + c.color + '"></span><span style="font-weight:600;flex:1">' + esc(c.n) + '</span><span style="font-size:12px;opacity:.85">' + c.ps + '</span><span class="mono" style="font-weight:600;min-width:56px;text-align:right">' + c.pn + '</span></div>').join('') + '</div>' : '')
+        + (s.note ? '<span style="font-size:12.5px;line-height:1.4;color:#3a3936">' + esc(s.note) + '</span>' : '')
+        + '<div class="mono" style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11.5px;color:#6b6965;"><span>' + esc(s.foot) + '</span><span style="flex:none;white-space:nowrap">* Sortant</span></div>'
+        + (s.hasBack ? '<button class="mono" data-h="' + h(s.back) + '" style="align-self:flex-start;min-height:28px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#141414;border-bottom:1px solid #141414">Tout l’État →</button>' : '')
+        + '</div>';
+    } else if (v.hasStateSel) {
+      const s = v.stSel;
+      pop = '<div class="pop" role="dialog" aria-label="' + esc(s.name) + '" style="' + v.popStyle + '">' + popHead(s.kicker, s.name)
+        + '<div class="mono" style="display:flex;gap:14px;font-size:11.5px"><span style="color:#1f6fc4">Dém. ' + s.d + '</span><span style="color:#c62f3f">Rép. ' + s.r + '</span><span style="color:#6b6965">Non tranché ' + s.u + '</span></div>'
+        + '<div style="max-height:210px;overflow-y:auto">' + s.rows.map((w) => '<button class="row mono" data-h="' + h(w.pick) + '" aria-label="' + esc(w.aria) + '" style="width:100%;display:flex;justify-content:space-between;gap:8px;padding:7px 4px;border-bottom:1px solid #efedea;font-size:11.5px;text-align:left;box-sizing:border-box"><span style="font-weight:600">' + esc(w.name + w.gainMark) + '</span><span style="color:' + w.statusColor + '">' + esc(w.status) + '</span></button>').join('') + '</div></div>';
+    }
+
+    if (popOnly) {
+      // Survol : une seule fiche qui suit la souris ; on change son contenu sans la recréer, pour qu’elle ne saute pas
+      const box = document.querySelector('.mapbox'); if (!box) return;
+      const old = box.querySelector('.pop');
+      if (!pop || mob) { if (old) old.remove(); return; }
+      if ((comp.state.sel || null) === window.__pinned) { if (old) old.remove(); box.insertAdjacentHTML('beforeend', pop); window.__typo(box.querySelector('.pop')); return; }
+      const tmp = document.createElement('div'); tmp.innerHTML = pop; const el = tmp.firstElementChild;
+      if (old && old.classList.contains('pv')) { old.innerHTML = el.innerHTML; old.setAttribute('aria-label', el.getAttribute('aria-label') || ''); }
+      else { if (old) old.remove(); el.classList.add('pv', 'pv-in'); el.removeAttribute('style'); box.appendChild(el); }
+      window.__typo(box.querySelector('.pop'));
+      window.__placePv && window.__placePv();
+      return;
+    }
+    let mapHtml;
+    if (v.isSenate) {
+      mapHtml = '<div class="mapbox" style="flex:1 1 480px;min-width:0;position:relative;aspect-ratio:975/610">' + (v.geoReady
+        ? v.states.map((s) => '<button class="st"' + (s.disabled ? ' aria-disabled="true" tabindex="-1" data-off="1"' : '') + ' data-h="' + h(s.pick) + '" aria-label="' + esc(s.aria) + '"><svg viewBox="0 0 975 610"><path d="' + s.d + '" fill="' + s.fill + '" stroke="' + s.stroke + '" stroke-width="' + s.sw + '" stroke-linejoin="round"></path></svg></button>').join('')
+          + '<svg aria-hidden="true" viewBox="0 0 975 610" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"><path d="' + v.selD + '" fill="none" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"></path>' + (mob ? [] : v.coLines).map((l) => '<path d="' + l.d + '" fill="none" stroke="#141414" stroke-width=".8"></path>').join('') + '</svg>'
+          + v.labels.map((l) => '<span class="lbl" style="' + l.style + '">' + l.t + dotH(l.gain, l.dot) + '</span>').join('')
+          + (mob ? '' : v.callouts.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + '">' + c.t + dotH(c.gain, c.dot) + '</button>').join('')) + (mob ? '' : pop)
+        : '<div class="mono" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;' + MONO_S + '">Chargement de la carte…</div>') + '</div>';
+      if (mob && v.geoReady && v.callouts.length) mapHtml = '<div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:8px">' + mapHtml.replace('flex:1 1 480px;', 'flex:none;width:100%;') + '<div class="costrip" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="mono" style="' + MONO_S + '">Nord-Est</span>' + v.callouts.map((c) => '<button class="co" data-h="' + h(c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + ';position:static;transform:none;min-height:30px;padding:0 12px">' + c.t + dotH(c.gain, c.dot) + '</button>').join('') + '</div></div>';
+    } else {
+      mapHtml = '<div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:10px"><div class="mapbox" style="position:relative;width:100%;aspect-ratio:' + v.hAspect + '">'
+        + v.cells.map((c) => '<button class="cell" data-h="' + h(mob && c.pickState ? c.pickState : c.pick) + '" aria-label="' + esc(c.aria) + '" style="' + c.style + '">' + dotH(c.gain, c.dot, '32%') + '</button>').join('')
+        + '<svg aria-hidden="true" viewBox="' + v.hView + '" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4"><path d="' + v.hOutline + '" fill="none" stroke="#141414" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="square"></path></svg>'
+        + (mob ? v.hLabels.filter((l) => +l.n >= 6) : v.hLabels).map((l) => '<span class="hlbl" style="' + l.style + '">' + l.t + (l.n && !mob ? '<br>' + l.n : '') + '</span>').join('') + (mob ? '' : pop)
+        + '</div><span style="font-size:13.5px;color:#6b6965;">Chaque hexagone représente une circonscription, regroupée par État ; sa position dans l’État est indicative.</span></div>';
+    }
+
+    const legend2 = (v.isSenate ? '<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:16px;height:16px;box-sizing:border-box;border:1px solid #8c8a85;background:repeating-linear-gradient(-45deg,#b9b6b0 0 1px,transparent 1px 4px)"></span>Pas d’élection</span>' : '')
+      + '<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:2px;background:#dcd9d4"></span>Pas encore de résultat</span><span>* Sortant</span><span>✓ Vainqueur</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#141414"></span>Gain</span>';
+
+    if (!window.__pvOn) window.__pinned = comp.state.sel || null;   // une mise à jour pendant un survol n'épingle pas la fiche survolée
+    const prevList = document.querySelector('.pop:not(.pv) [style*="max-height:210px"]'), prevListTop = prevList ? prevList.scrollTop : 0, prevListKey = String(comp.state.sel);
+    document.getElementById('app').innerHTML =
+      '<div style="background:#fff;color:#141414;font-family:\'GC National\',Georgia,serif;font-size:16px;line-height:1.45"><div style="max-width:1200px;margin:0 auto;padding:32px clamp(16px,3vw,40px) 56px;box-sizing:border-box">'
+      + '<header style="display:flex;flex-direction:column;gap:14px;padding-bottom:26px"><div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 28px"><h1 style="flex:1 1 520px;margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:clamp(36px,5.2vw,62px);line-height:1;letter-spacing:-.02em;max-width:30ch;text-wrap:balance">Midterms : suivez tous les résultats en direct</h1>' + (v.updatedLabel ? '<p class="upd" role="status" aria-live="polite" style="flex:none;margin:0 0 6px;display:inline-flex;align-items:center;gap:8px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:13px;line-height:1.3;color:#6b6965"><span aria-hidden="true" style="flex:none;width:8px;height:8px;border-radius:50%;background:' + v.liveDot + '"></span>' + esc(v.updatedLabel) + '</p>' : '') + '</div><p style="margin:0;max-width:64ch;font-size:18px;line-height:1.5;color:#3a3936">Les électeurs américains ont voté ce mardi 3 novembre pour renouveler la Chambre des représentants et plus d’un tiers du Sénat. Plusieurs milliers de scrutins ont également eu lieu au sein des États, pour élire notamment des gouverneurs, des procureurs généraux et renouveler les législatures d’État.</p><p style="margin:0;max-width:64ch;font-size:18px;line-height:1.5;color:#3a3936">Nos cartes sont mises à jour minute par minute toute la nuit électorale pour suivre le scrutin le plus important du deuxième mandat de Donald Trump.</p>'
+      + (v.showMockTag ? '<span class="mono" style="align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7a5600;background:#fbefcc;border-radius:999px;padding:4px 10px">Maquette - résultats fictifs</span>' : '') + '</header>'
+      + '<nav aria-label="Dans cette page" style="background:#f4f4f2;margin:4px 0 30px;padding:16px 22px 16px;display:flex;flex-wrap:wrap;gap:14px 44px;align-items:flex-end">' + v.navGroups.map((g) => '<div style="display:flex;flex-direction:column;gap:10px;min-width:0"><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#6b6965">' + esc(g.label) + '</span><div style="display:flex;flex-wrap:wrap;gap:0 28px">' + g.items.map((it) => '<button data-h="' + h(it.pick) + '" aria-current="' + it.cur + '" aria-label="' + esc(it.label) + '" style="display:flex;flex-direction:column;gap:12px;text-align:left;min-height:44px;padding:0;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;"><span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:16px;font-weight:600;line-height:1.25;color:#1c1b1c">' + esc(it.label) + '<span style="font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:' + it.tagBg + ';border-radius:999px;padding:2px 7px">' + esc(it.tag) + '</span></span><span aria-hidden="true" style="' + it.barStyle + '"></span></button>').join('') + '</div></div>').join('') + '</nav>'
+      + '<section aria-label="Répartition des sièges"><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px"><h2 style="margin:0;font-family:\'GC Sanomat\',Georgia,serif;font-weight:600;font-size:30px;line-height:1.05;letter-spacing:-.01em">' + esc(v.headline) + '</h2><p style="margin:0;max-width:70ch;font-size:16px;line-height:1.5;color:#3a3936">' + esc(v.dek) + '</p></div><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:\'GC Sanomat\', Georgia, serif;font-weight:600;font-variant-numeric:lining-nums tabular-nums;font-size:clamp(42px,5vw,60px);line-height:1;color:#3b8ee6;letter-spacing:-.02em">' + v.dTotal + '</span><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-weight:600;font-size:16px;color:#1f6fc4">Démocrates ' + v.dCheck + '</span></div>'
+      + '<div style="flex:1;position:relative;align-self:stretch"></div>'
+      + '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span style="font-family:\'GC Sanomat\', Georgia, serif;font-weight:600;font-variant-numeric:lining-nums tabular-nums;font-size:clamp(42px,5vw,60px);line-height:1;color:#e85462;letter-spacing:-.02em">' + v.rTotal + '</span><span style="font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-weight:600;font-size:16px;color:#c62f3f">' + v.rCheck + ' Républicains</span></div></div>'
+      + '<div style="position:relative;margin-top:12px;' + v.barBox + '"><div class="mono" style="' + v.markStyle + '"><span style="font-size:11.5px;font-weight:500;letter-spacing:.1em;margin-right:-.1em;white-space:nowrap">' + v.markLabel + '</span><svg width="10" height="7" viewBox="0 0 10 7" aria-hidden="true"><path d="M0 0h10L5 7z" fill="#141414"></path></svg></div><div role="img" aria-label="' + esc(v.barAria) + '" style="position:absolute;inset:0">' + pills + '</div><div aria-hidden="true" style="' + v.markLine + '"></div></div>'
+      + '<div class="mono" style="display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:12.5px;color:#6b6965;"><span>' + (v.isSenate ? '<span aria-hidden="true" style="display:inline-block;width:22px;height:9px;border-radius:999px;vertical-align:-1px;margin-right:6px;background:repeating-linear-gradient(-45deg,#3b8ee6 0 2.5px,#fff 2.5px 5px)"></span>' : '') + v.dVotes + '</span><span style="text-align:center">' + v.pendingLabel + '</span><span style="text-align:right">' + v.rVotes + (v.isSenate ? '<span aria-hidden="true" style="display:inline-block;width:22px;height:9px;border-radius:999px;vertical-align:-1px;margin-left:6px;background:repeating-linear-gradient(-45deg,#e85462 0 2.5px,#fff 2.5px 5px)"></span>' : '') + '</span></div>'
+      + '<div class="lgd" style="display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:30px"><div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c">' + legend + '</div><div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1c1b1c">' + legend2 + '</div></div></section>'
+      + '<section id="cartes" style="scroll-margin-top:16px;display:flex;flex-wrap:wrap;gap:28px 40px;padding-top:34px;margin-top:34px;"><div style="flex:999 1 640px;min-width:0;display:flex;flex-direction:column;gap:14px"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px"><h2 style="' + H2 + '">' + v.mapTitle + '</h2><span class="mono" style="' + MONO_S + '">' + v.mapHint + '</span></div>'
+      + '<div style="display:flex;flex-wrap:wrap;gap:18px 24px;align-items:flex-start">' + thumbs + '<div class="mapside">' + mapHtml + tlSide + '</div>' + (mob && pop ? '<div class="popm">' + pop + '</div>' : '') + '</div>'
+      + (v.isSenate ? '<p style="margin:0;font-size:13.5px;color:#6b6965;">Ohio et Floride : élections partielles pour les sièges laissés par J. D. Vance et Marco Rubio en 2025.</p>' : '') + '</div>'
+      + '</section>'
+      + '<section class="tl-below" aria-label="Calendrier de la nuit électorale" style="padding-top:34px;margin-top:34px;display:flex;flex-direction:column;gap:18px"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px"><h2 style="' + H2 + '">La nuit électorale, heure par heure</h2><span class="mono" style="' + MONO_S + '">Premiers résultats attendus - heure de Paris, 4 novembre</span></div><div class="slots" style="display:flex;gap:6px;overflow-x:auto;padding-bottom:6px">' + slots + '</div><div class="sbar" aria-hidden="true"><span></span></div></section>'
+      + '<footer class="mono" style="margin-top:40px;font-family:\'GC National\',\'Helvetica Neue\',sans-serif;font-size:12.5px;line-height:1.55;color:#6b6965;display:flex;flex-direction:column;gap:2px"><span>' + esc(v.sourceLine) + '</span><span>' + esc(v.ruleLine) + '</span><span>Horaires : Associated Press.</span></footer>'
+      + '</div></div>';
+    if (prevListTop && window.__listKey === prevListKey) { const nl = document.querySelector('.pop:not(.pv) [style*="max-height:210px"]'); if (nl) nl.scrollTop = prevListTop; }
+    window.__listKey = prevListKey;
+    window.__typo(document.getElementById('app'));
+    // Ordinateur : la fiche épinglée reste dans le cadre de la carte (plus étroite à côté du calendrier)
+    const pd = !mob && document.querySelector('.mapbox .pop:not(.pv)');
+    if (pd) { const bx = pd.closest('.mapbox').getBoundingClientRect(), r = pd.getBoundingClientRect(); let dx = 0, dy = 0;
+      if (r.right > bx.right) dx = bx.right - r.right; if (r.left + dx < bx.left) dx = bx.left - r.left;
+      if (r.height <= bx.height) { if (r.bottom > bx.bottom) dy = bx.bottom - r.bottom; if (r.top + dy < bx.top) dy = bx.top - r.top; }
+      if (dx || dy) pd.style.translate = Math.round(dx) + 'px ' + Math.round(dy) + 'px'; }
+    // Sur téléphone : la fiche ouverte vient sous la carte, on la fait entrer à l’écran
+    const pm = document.querySelector('.popm');
+    // seulement quand la sélection change (pas à chaque mise à jour des chiffres)
+    if (pm) { const key = String(comp.state.sel); if (window.__popKey !== key) { window.__popKey = key; window.__gcReveal(pm); } } else window.__popKey = null;
+    // Repère de défilement du calendrier
+    const sl = document.querySelector('.slots'), sb = document.querySelector('.sbar');
+    if (sl && sb) {
+      const upd = () => { const over = sl.scrollWidth > sl.clientWidth + 2; sb.style.display = over ? 'block' : 'none'; if (!over) { sl.classList.add('end'); return; }
+        const w = sl.clientWidth / sl.scrollWidth * 100, l = sl.scrollLeft / sl.scrollWidth * 100; sb.firstChild.style.width = w + '%'; sb.firstChild.style.left = l + '%';
+        sl.classList.toggle('end', sl.scrollLeft + sl.clientWidth >= sl.scrollWidth - 4); };
+      if (window.__slScroll) sl.scrollLeft = window.__slScroll;   // position conservée d’une mise à jour à l’autre
+      sl.addEventListener('scroll', () => { window.__slScroll = sl.scrollLeft; upd(); }, { passive: true });
+      window.__slotsUpd = upd; if (!window.__slotsResize) { window.__slotsResize = true; window.addEventListener('resize', () => { if (window.__slotsUpd) window.__slotsUpd(); }); }
+      upd();
+    }
+    const lf = window.__lastFocus;
+    rove();
+    if (lf) { const el = document.querySelector('[aria-label="' + CSS.escape(lf) + '"]'); if (el) el.focus({ preventScroll: true }); }
+    // fiche ouverte au clavier : le focus passe dans la fiche (Échap ou × le rendent à l’État)
+    if (window.__kbOpen) { window.__kbOpen = false; const pd = document.querySelector('.pop:not(.pv), .popm .pop'); if (pd) { pd.tabIndex = -1; pd.focus({ preventScroll: true }); } }
+  };
+  // Sur ordinateur, la fiche s’ouvre au survol de la carte ; un clic l’épingle (comme avant)
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+  let hoverId = null, raf = 0;
+  const preview = (id) => {
+    window.__pvOn = id !== null;
+    const prev = comp.state.sel || null;
+    window.__popOnly = true;
+    try {
+      if (id === null) comp.setState({ sel: window.__pinned });
+      else { const fn = handlers[id]; if (fn) fn(); if (!comp.state.sel && prev) comp.setState({ sel: prev }); }
+    } finally { window.__popOnly = false; }
+  };
+  const app = document.getElementById('app');
+  // Position de la fiche de survol : à droite du curseur (à gauche s’il n’y a pas la place), sans sortir de la carte
+  let mx = 0, my = 0, mraf = 0;
+  window.__placePv = () => {
+    const box = document.querySelector('.mapbox'), el = box && box.querySelector('.pop.pv'); if (!el) return;
+    const bw = box.clientWidth, bh = box.clientHeight, w = el.offsetWidth, hh = el.offsetHeight, g = 18;
+    let x = mx + g; if (x + w > bw) x = mx - g - w; x = Math.max(0, Math.min(x, bw - w));
+    let y = my - hh / 2; y = Math.max(0, Math.min(y, Math.max(0, bh - hh)));
+    el.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
+  };
+  app.addEventListener('mousemove', (e) => {
+    const box = e.target.closest && e.target.closest('.mapbox'); if (!box) return;
+    const r = box.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top;
+    cancelAnimationFrame(mraf); mraf = requestAnimationFrame(window.__placePv);
+  });
+  app.addEventListener('mouseover', (e) => {
+    if (!canHover.matches || window.matchMedia('(max-width: 600px)').matches) return;
+    let b = e.target.closest('.mapbox [data-h]');
+    if (b && b.closest('.pop')) return;
+    if (b && (b.dataset.off || !handlers[b.getAttribute('data-h')])) b = null; // État sans élection : comme un fond de carte
+    if (!b) {
+      // curseur sur un fond de la carte (État sans élection, mer, interstice) : la fiche de survol s’efface après un court délai
+      if (hoverId !== null && e.target.closest('.mapbox')) { clearTimeout(hideT); hideT = setTimeout(clearHover, 90); }
+      return;
+    }
+    clearTimeout(hideT);
+    const id = b.getAttribute('data-h'); if (id === hoverId) return;
+    hoverId = id; cancelAnimationFrame(raf); raf = requestAnimationFrame(() => preview(id));
+  });
+  const clearHover = () => { if (hoverId === null) return; hoverId = null; cancelAnimationFrame(raf); raf = requestAnimationFrame(() => preview(null)); };
+  let hideT = 0;
+  app.addEventListener('mouseout', (e) => {
+    if (hoverId === null || !e.target.closest('.mapbox')) return;
+    const to = e.relatedTarget; if (to && to.closest && to.closest('.mapbox')) return;
+    clearTimeout(hideT); clearHover();
+  });
+  document.addEventListener('mouseleave', () => { clearTimeout(hideT); clearHover(); });
+  const dropSoft = () => { const s = window.__soft; window.__soft = null; if (!s || window.__pinned !== s) return; clearTimeout(hideT); cancelAnimationFrame(raf); hoverId = null; window.__pinned = null; comp.setState({ sel: null }); };
+  app.addEventListener('mouseout', (e) => {
+    if (!window.__soft || !e.target.closest('.mapside')) return;
+    const to = e.relatedTarget; if (to && to.closest && to.closest('.mapside')) return;
+    dropSoft();
+  });
+  document.addEventListener('mouseleave', () => { if (window.__soft) dropSoft(); });
+  app.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-h]');
+    if (!b || b.dataset.off || !handlers[b.getAttribute('data-h')]) { if (comp.state.sel && !e.target.closest('.pop, .popm')) { window.__soft = null; window.__pinned = null; hoverId = null; comp.setState({ sel: null }); } return; }
+    window.__lastFocus = b.closest('.pop') ? window.__selLabel : b.getAttribute('aria-label');
+    if (b.closest('.mapbox') && !b.closest('.pop') || b.closest('.slots, .tl-side')) window.__selLabel = b.getAttribute('aria-label');
+    const id = b.getAttribute('data-h');
+    // clic sur la case survolée : la fiche déjà affichée est épinglée au lieu d’être refermée
+    if (id === hoverId && comp.state.sel && comp.state.sel !== window.__pinned) { hoverId = null; window.__pvOn = false; window.__render(); return; }
+    hoverId = null; window.__pvOn = false;
+    window.__kbOpen = e.detail === 0 && !b.closest('.pop'); // activation au clavier (Entrée, Espace)
+    const fn = handlers[id]; if (fn) fn();
+    // État choisi dans le calendrier à côté de la carte : sélection « souple », qui disparaît quand le curseur quitte la carte et le calendrier
+    window.__soft = b.closest('.tl-side') && comp.state.sel ? comp.state.sel : null;
+    // clic dans le calendrier sous la carte (téléphone, tablette) : on remonte jusqu’à la carte
+    if (b.closest('.tl-below')) requestAnimationFrame(() => { const box = document.querySelector('.mapbox'); if (box) window.__gcScroll(box, 'start'); });
+  });
+
+  // Clavier : Échap ferme la fiche ; flèches pour se déplacer entre les circonscriptions (un seul arrêt de tabulation pour la carte de la Chambre)
+  const rove = () => { const cells = [...document.querySelectorAll('.mapbox .cell[data-h]')]; if (!cells.length) return;
+    const cur = cells.find((c) => c === document.activeElement) || cells.find((c) => c.getAttribute('aria-label') === window.__selLabel) || cells[0];
+    for (const c of cells) c.tabIndex = c === cur ? 0 : -1; };
+  window.__rove = rove;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && comp.state.sel) { window.__soft = null; window.__pinned = null; hoverId = null; window.__lastFocus = window.__selLabel; comp.setState({ sel: null }); return; }
+    const a = document.activeElement; if (!a || !a.classList || !a.classList.contains('cell') || !/^Arrow/.test(e.key)) return;
+    e.preventDefault();
+    const r0 = a.getBoundingClientRect(), x0 = r0.left + r0.width / 2, y0 = r0.top + r0.height / 2;
+    const dx = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0, dy = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
+    let best = null, bd = 1e9;
+    for (const c of document.querySelectorAll('.mapbox .cell[data-h]')) { if (c === a) continue; const r = c.getBoundingClientRect(), x = r.left + r.width / 2 - x0, y = r.top + r.height / 2 - y0;
+      const along = x * dx + y * dy; if (along <= 1) continue; const d = along + 2.5 * Math.abs(x * dy + y * dx); if (d < bd) { bd = d; best = c; } }
+    if (best) { a.tabIndex = -1; best.tabIndex = 0; best.focus(); }
+  });
+  window.__render();
+  comp.componentDidMount();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+{
+ "description": "Découpage en blocs de la Chambre (une case par circonscription), dessiné par Le Grand Continent : coin haut-gauche (colonne, rangée), largeur en cases, alignement de la dernière rangée (L, R, C). Un vide d'une case entre États.",
+ "states": {
+  "WA": {
+   "x": 1,
+   "y": 0,
+   "w": 4,
+   "align": "L"
+  },
+  "OR": {
+   "x": 0,
+   "y": 4,
+   "w": 3,
+   "align": "L"
+  },
+  "CA": {
+   "x": 0,
+   "y": 7,
+   "w": 4,
+   "align": "L"
+  },
+  "ID": {
+   "x": 6,
+   "y": 1,
+   "w": 1,
+   "align": "L"
+  },
+  "NV": {
+   "x": 5,
+   "y": 5,
+   "w": 2,
+   "align": "L"
+  },
+  "MT": {
+   "x": 8,
+   "y": 0,
+   "w": 2,
+   "align": "L"
+  },
+  "WY": {
+   "x": 9,
+   "y": 3,
+   "w": 1,
+   "align": "L"
+  },
+  "UT": {
+   "x": 8,
+   "y": 6,
+   "w": 2,
+   "align": "L"
+  },
+  "AZ": {
+   "x": 5,
+   "y": 10,
+   "w": 3,
+   "align": "L"
+  },
+  "NM": {
+   "x": 9,
+   "y": 10,
+   "w": 2,
+   "align": "L"
+  },
+  "ND": {
+   "x": 11,
+   "y": 0,
+   "w": 1,
+   "align": "L"
+  },
+  "SD": {
+   "x": 11,
+   "y": 2,
+   "w": 1,
+   "align": "L"
+  },
+  "NE": {
+   "x": 11,
+   "y": 4,
+   "w": 3,
+   "align": "L"
+  },
+  "CO": {
+   "x": 11,
+   "y": 6,
+   "w": 3,
+   "align": "L"
+  },
+  "MN": {
+   "x": 15,
+   "y": 0,
+   "w": 2,
+   "align": "L"
+  },
+  "IA": {
+   "x": 15,
+   "y": 5,
+   "w": 2,
+   "align": "L"
+  },
+  "KS": {
+   "x": 15,
+   "y": 8,
+   "w": 2,
+   "align": "L"
+  },
+  "OK": {
+   "x": 12,
+   "y": 11,
+   "w": 3,
+   "align": "L"
+  },
+  "TX": {
+   "x": 9,
+   "y": 14,
+   "w": 6,
+   "align": "C"
+  },
+  "WI": {
+   "x": 18,
+   "y": 1,
+   "w": 2,
+   "align": "L"
+  },
+  "MI": {
+   "x": 21,
+   "y": 0,
+   "w": 3,
+   "align": "L"
+  },
+  "MO": {
+   "x": 18,
+   "y": 7,
+   "w": 3,
+   "align": "L"
+  },
+  "AR": {
+   "x": 17,
+   "y": 11,
+   "w": 2,
+   "align": "L"
+  },
+  "LA": {
+   "x": 17,
+   "y": 14,
+   "w": 3,
+   "align": "L"
+  },
+  "IL": {
+   "x": 22,
+   "y": 6,
+   "w": 3,
+   "align": "L"
+  },
+  "IN": {
+   "x": 26,
+   "y": 6,
+   "w": 3,
+   "align": "L"
+  },
+  "OH": {
+   "x": 30,
+   "y": 4,
+   "w": 4,
+   "align": "L"
+  },
+  "KY": {
+   "x": 26,
+   "y": 10,
+   "w": 3,
+   "align": "L"
+  },
+  "TN": {
+   "x": 22,
+   "y": 13,
+   "w": 5,
+   "align": "L"
+  },
+  "MS": {
+   "x": 21,
+   "y": 16,
+   "w": 2,
+   "align": "L"
+  },
+  "AL": {
+   "x": 24,
+   "y": 16,
+   "w": 2,
+   "align": "L"
+  },
+  "GA": {
+   "x": 27,
+   "y": 16,
+   "w": 4,
+   "align": "L"
+  },
+  "FL": {
+   "x": 27,
+   "y": 21,
+   "w": 7,
+   "align": "R"
+  },
+  "SC": {
+   "x": 32,
+   "y": 16,
+   "w": 3,
+   "align": "L"
+  },
+  "NC": {
+   "x": 31,
+   "y": 12,
+   "w": 5,
+   "align": "L"
+  },
+  "WV": {
+   "x": 32,
+   "y": 9,
+   "w": 1,
+   "align": "L"
+  },
+  "VA": {
+   "x": 34,
+   "y": 8,
+   "w": 4,
+   "align": "L"
+  },
+  "PA": {
+   "x": 35,
+   "y": 3,
+   "w": 5,
+   "align": "L"
+  },
+  "NY": {
+   "x": 35,
+   "y": -3,
+   "w": 7,
+   "align": "L"
+  },
+  "NJ": {
+   "x": 41,
+   "y": 4,
+   "w": 3,
+   "align": "L"
+  },
+  "MD": {
+   "x": 39,
+   "y": 9,
+   "w": 4,
+   "align": "L"
+  },
+  "DE": {
+   "x": 44,
+   "y": 9,
+   "w": 1,
+   "align": "L"
+  },
+  "CT": {
+   "x": 43,
+   "y": 1,
+   "w": 3,
+   "align": "L"
+  },
+  "RI": {
+   "x": 47,
+   "y": 1,
+   "w": 1,
+   "align": "L"
+  },
+  "MA": {
+   "x": 43,
+   "y": -3,
+   "w": 5,
+   "align": "L"
+  },
+  "VT": {
+   "x": 43,
+   "y": -5,
+   "w": 1,
+   "align": "L"
+  },
+  "NH": {
+   "x": 45,
+   "y": -5,
+   "w": 2,
+   "align": "L"
+  },
+  "ME": {
+   "x": 48,
+   "y": -5,
+   "w": 2,
+   "align": "L"
+  },
+  "AK": {
+   "x": 0,
+   "y": 22,
+   "w": 1,
+   "align": "L"
+  },
+  "HI": {
+   "x": 2,
+   "y": 23,
+   "w": 2,
+   "align": "L"
+  }
+ }
+}

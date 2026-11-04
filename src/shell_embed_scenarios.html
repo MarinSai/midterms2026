@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi-mandat 2026 — Quatre scénarios pour le Congrès - Le Grand Continent</title>
+<script async src="../vendor/iframe-resizer-child-5.5.9.umd.js"></script>
+
+<style>
+@font-face{font-family:"GC Sanomat";src:url(../fonts/sanomat-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"GC Sanomat";src:url(../fonts/sanomat-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GC Sanomat";src:url(../fonts/sanomat-bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"GC National";src:url(../fonts/national-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GC National";src:url(../fonts/national-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+body{margin:0;background:#ffffff}
+a{color:#c62f3f}a:hover{color:#8e1a27}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;margin:0}
+button:focus-visible,a:focus-visible{outline:2px solid #111;outline-offset:2px}
+.mono{font-family:"GC National","Helvetica Neue",sans-serif;font-variant-numeric:tabular-nums;font-variant-numeric:tabular-nums}
+body{font-family:'GC National','Helvetica Neue',sans-serif;font-size:16px;line-height:1.45;color:#141414}
+.scn button{transition:background .15s}
+.credit{margin:8px 0 0;font-size:11px;color:#6b6965}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// Défilement compatible iframe : dans une iframe redimensionnée par iframe-resizer, c’est la page parente qui défile
+// (Safari ne propage pas scrollIntoView d’une iframe d’un autre domaine vers la page qui l’accueille).
+// Typographie appliquée au texte affiché : espaces insécables (français), apostrophe typographique, initiales espacées, titres en italique
+window.__typo = function (root) {
+  if (!root) return;
+  const fr = (document.documentElement.lang || 'fr').startsWith('fr');
+  const TIT = /((?:The )?New York Times|Cook Political Report|2026 Poll Hours Report)/;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), list = [];
+  while (w.nextNode()) list.push(w.currentNode);
+  for (const n of list) {
+    const p = n.parentNode; if (!p || p.nodeName === 'SCRIPT' || p.nodeName === 'STYLE' || p.nodeName === 'I') continue;
+    let t = n.nodeValue, o = t;
+    t = t.replace(/(\w)'(\w)/g, '$1’$2').replace(/\b([A-Z])\.([A-Z])\./g, '$1. $2.');
+    if (fr) t = t.replace(/ ([;!?])/g, ' $1').replace(/ :/g, ' :').replace(/« /g, '« ').replace(/ »/g, ' »');
+    if (t !== o) n.nodeValue = t;
+    if (TIT.test(t) && p.closest && !p.closest('i')) {
+      const f = document.createDocumentFragment();
+      for (const part of t.split(TIT)) { if (!part) continue; if (TIT.test(part)) { const i = document.createElement('i'); i.textContent = part; f.appendChild(i); } else f.appendChild(document.createTextNode(part)); }
+      p.replaceChild(f, n);
+    }
+  }
+};
+window.__gcScroll = function (el, block) {
+  if (!el) return;
+  const p = window.parentIframe || window.parentIFrame;
+  if (p && window.top !== window.self && typeof p.scrollToOffset === 'function') {
+    try { p.scrollToOffset(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - 12)); return; } catch (e) {}
+  }
+  try { el.scrollIntoView({ behavior: 'smooth', block: block || 'start' }); } catch (e) { el.scrollIntoView(); }
+};
+</script>
+<script>
+// Petit adaptateur : même logique que la maquette du canevas
+class DCLogic {
+  constructor(props) { this.props = props; this.state = {}; }
+  setState(p) { this.state = Object.assign({}, this.state, typeof p === 'function' ? p(this.state) : p); window.__render(); }
+}
+</script>
+<script>
+/*__COMPONENT__*/
+</script>
+<script>
+(function () {
+  const esc = (v) => String(v == null ? '' : v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const props = { scenario: 'Avant le scrutin', startChamber: 'Sénat', feedUrl: '', pollSeconds: 60 };
+  /*__BLOBS__*/
+  const realFetch = window.fetch.bind(window);
+  window.fetch = (u, o) => realFetch(typeof u === 'string' && BLOBS[u] ? BLOBS[u] : u, o);
+  const comp = new Component(props);
+  let handlers = {};
+  const h = (fn) => { if (!fn) return ''; const id = 'h' + Object.keys(handlers).length; handlers[id] = fn; return id; };
+  window.__render = function () {
+    handlers = {};
+    const v = comp.renderVals();
+    const focused = document.activeElement && document.activeElement.closest && document.activeElement.closest('.scn button') ? [...document.querySelectorAll('.scn button')].indexOf(document.activeElement) : -1;
+    document.getElementById('app').innerHTML = '<div style="padding:4px 0 6px">' + (''
+      /*__SCN__*/
+      ).replace('padding-top: 34px; margin-top: 34px;', '').replace('font-size: 26px;', 'font-size: clamp(22px, 3.2vw, 30px); line-height: 1.12;') + '<p class="credit">Graphique : Le Grand Continent</p></div>';
+    if (focused >= 0) { const b = document.querySelectorAll('.scn button')[focused]; if (b) b.focus(); }
+    window.__typo(document.getElementById('app'));
+  };
+  document.getElementById('app').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-h]'); if (!b) return;
+    const fn = handlers[b.getAttribute('data-h')]; if (fn) fn();
+  });
+  window.__render();
+  comp.componentDidMount();
+})();
+</script>
+</body>
+</html>
