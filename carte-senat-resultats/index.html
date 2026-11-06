@@ -134,13 +134,28 @@ class Component extends DCLogic {
       } else {
         this.setState({ chamber: 'H', sel: m[3] ? 'H:' + st + '-' + (/al/i.test(m[3]) ? 'AL' : m[3].padStart(2, '0')) : 'HS:' + st });
       }
-      [400, 1500].forEach((t) => setTimeout(() => this.goTo('cartes'), t));
+      this.scrollToMapWhenReady();
     } catch (e) {}
+  }
+  // en iframe, la page parente ne défile qu'une fois la poignée de main iframe-resizer faite (window.parentIframe) :
+  // on attend qu'elle existe (jusqu'à 20 s) ; page seule : défilement direct
+  scrollToMapWhenReady() {
+    clearInterval(this._scrollWait);
+    if (window.top === window.self) { [400, 1500].forEach((t) => setTimeout(() => this.goTo('cartes'), t)); return; }
+    const t0 = Date.now();
+    this._scrollWait = setInterval(() => {
+      const p = window.parentIframe || window.parentIFrame;
+      if (p && typeof p.scrollToOffset === 'function') {
+        clearInterval(this._scrollWait);
+        setTimeout(() => this.goTo('cartes'), 300);
+        setTimeout(() => this.goTo('cartes'), 1500);
+      } else if (Date.now() - t0 > 20000) clearInterval(this._scrollWait);
+    }, 150);
   }
   componentDidUpdate(prev) {
     if (prev.feedUrl !== this.props.feedUrl || prev.pollSeconds !== this.props.pollSeconds) this.startFeed();
   }
-  componentWillUnmount() { clearInterval(this.timer); window.removeEventListener('hashchange', this._hash); }
+  componentWillUnmount() { clearInterval(this.timer); clearInterval(this._scrollWait); window.removeEventListener('hashchange', this._hash); }
 
   // Flux Bloomberg (données AP) : fichiers publics, CORS ouvert, mis à jour en continu le soir de l’élection.
   //   candidates.tsv : raceKey (vide = même course que la ligne précédente), candidateID, partyCode, first, last, isIncumbent…
